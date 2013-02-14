@@ -38,11 +38,12 @@
 			$('#btnInfo').click(function()
 			{
 				var info =
-						'Device Name: <strong>' + device.name + '</strong>.<br />' + 
-                        'Device UUID: <strong>' + device.uuid + '</strong>.<br />' + 
-                        'Platform Name: <strong>' + device.platform + '</strong>.<br />' + 
-                        'Platform Version: <strong>' + device.version + '</strong>.<br />' + 
-						'PhoneGap: Version: <strong>' + device.phonegap + '</strong>.';
+					'Device Model: <strong>' + device.model + '</strong>.<br />' + 
+					'Device UUID: <strong>' + device.uuid + '</strong>.<br />' + 
+					'Device Name: <strong>' + device.name + '</strong>.<br />' + 
+					'Platform Name: <strong>' + device.platform + '</strong>.<br />' + 
+					'Platform Version: <strong>' + device.version + '</strong>.<br />' + 
+					'PhoneGap: Version: <strong>' + device.cordova + '</strong>.';
 						
 				$('#deviceInfoBody').html(info);
 				
