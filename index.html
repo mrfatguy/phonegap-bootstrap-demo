@@ -18,57 +18,44 @@
     </head>
     <body>
 	
-		<div class="container-fluid">
-
-			<div class="row-fluid">
+		<div class="well">
+		
+			<a id="btnInfo" href="#" class="btn btn-large btn-primary">Device Info</a>
 			
-				<div class="span2">
-				
-				  Sidebar content -- left-sided on large screens and put to top (strange?) on wide resolutions.
-				  
-				</div>
-				
-				<div class="span10">
-				
-					<div class="well">
-					
-						<div style="margin-bottom: 7px"><a id="btnInfo" href="#" class="btn btn-large btn-block btn-primary">Device Info</a></div>
-						
-						<div style="margin-bottom: 7px"><a id="btnAcrid" href="#" class="btn btn-large btn-block btn-info">acrid.pl</a></div>
-						
-						<div style="margin-bottom: 7px"><a id="btnNone" href="#" class="btn btn-large btn-block disabled">Disabled Button</a></div>
-					
-					</div>
-					
-					<div id="deviceInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deviceInfoLabel" aria-hidden="true">
-					
-						<div class="modal-header">
-						
-							<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-							<h3>Modal header</h3>
-							
-						</div>
-						
-						<div class="modal-body">
-						
-							<p id="deviceInfoBody" style="text-align: left">Device info</p>
-							
-						</div>
-						
-						<div class="modal-footer">
-						
-							<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
-							
-						</div>
-					</div>
-				
-				</div>
-				
-			</div>
-		  
+			<a id="btnAcrid" href="#" class="btn btn-large btn-info">acrid.pl</a>
+			
+			<a id="btnNone" href="#" class="btn btn-large disabled">Disabled Button</a>
+		
 		</div>
 		
-
+		<div class="well">
+		
+			<img src="img/logo.png" class="img-polaroid" />
+		
+		</div>
+		
+		<div id="deviceInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deviceInfoLabel" aria-hidden="true">
+		
+			<div class="modal-header">
+			
+				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+				<h3>Modal header</h3>
+				
+			</div>
+			
+			<div class="modal-body">
+			
+				<p id="deviceInfoBody" style="text-align: left">Device info</p>
+				
+			</div>
+			
+			<div class="modal-footer">
+			
+				<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
+				
+			</div>
+			
+		</div>
 		
 		<script>
 			$('#btnInfo').click(function()
