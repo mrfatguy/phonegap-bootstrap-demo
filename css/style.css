@@ -4,3 +4,7 @@ body
     margin: 0px;
     padding: 10px;
 }
+
+p.fsome-title {color: #999}
+
+p.fsome-example {margin-left: 1.5em}
