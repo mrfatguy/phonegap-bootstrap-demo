@@ -65,278 +65,24 @@
 
                 </div>
 
-                <div class="tabbable">
+                <ul class="nav nav-tabs" id="myTabs">
+                    
+                  <li class="active"><a href="#bootstrap" data-url="_bootstrap.html">Bootstrap</a></li>
+                  
+                  <li><a href="#javascript" data-url="_javascript.html">Javascript</a></li>
+                  
+                  <li><a href="#fontawesome" data-url="_fontawesome.html">Font Awesome</a></li>
+                  
+                </ul>
 
-                    <ul class="nav nav-tabs">
-
-                        <li><a href="#tab1" data-toggle="tab">Visual</a></li>
-
-                        <li><a href="#tab2" data-toggle="tab">Media</a></li>
-
-                        <li><a href="#tab3" data-toggle="tab">JavaScript</a></li>
-                        
-                        <li class="active"><a href="#tab4" data-toggle="tab">Font Awesome</a></li>
-
-                    </ul>
-
-                    <div class="tab-content" style="min-height: 300px">
-
-                        <div class="tab-pane" id="tab1">
-
-
-                            <table class="table table-bordered table-striped">
-                            <thead>
-                              <tr>
-                                <th>Labels</th>
-                                <th>Markup</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>
-                                  <span class="label">Default</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label"&gt;Default&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="label label-success">Success</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label label-success"&gt;Success&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="label label-warning">Warning</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label label-warning"&gt;Warning&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="label label-important">Important</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label label-important"&gt;Important&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="label label-info">Info</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label label-info"&gt;Info&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                              <tr>
-                                <td>
-                                  <span class="label label-inverse">Inverse</span>
-                                </td>
-                                <td>
-                                  <code>&lt;span class="label label-inverse"&gt;Inverse&lt;/span&gt;</code>
-                                </td>
-                              </tr>
-                            </tbody>
-                          </table>
-
-                            <div class="well well-small">
-
-                            <p>Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.</p>
-
-                            <div class="progress progress-striped">
-                              <div class="bar" style="width: 70%;"></div>
-                            </div>
-
-                            <div class="progress progress-striped active">
-                              <div class="bar" style="width: 50%;"></div>
-                            </div>
-
-                            <div class="progress">
-                              <div class="bar" style="width: 30%;"></div>
-                            </div>
-
-                            Cras sit amet nibh libero, in gravida nulla. Nulla vel metus scelerisque ante sollicitudin commodo. Cras purus odio, vestibulum in vulputate at, tempus viverra turpis. Fusce condimentum nunc ac nisi vulputate fringilla. Donec lacinia congue felis in faucibus.
-
-                        </div>
-
-
-                        </div>
-
-                        <div class="tab-pane" id="tab2">
-
-                            <div class="row-fluid">
-                                <ul class="thumbnails">
-                                  <li class="span4">
-                                    <div class="thumbnail">
-                                      <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="data:image/png;base64,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">
-                                      <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
-                                      </div>
-                                    </div>
-                                  </li>
-                                  <li class="span4">
-                                    <div class="thumbnail">
-                                      <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="data:image/png;base64,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">
-                                      <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
-                                      </div>
-                                    </div>
-                                  </li>
-                                  <li class="span4">
-                                    <div class="thumbnail">
-                                      <img data-src="holder.js/300x200" alt="300x200" style="width: 300px; height: 200px;" src="data:image/png;base64,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">
-                                      <div class="caption">
-                                        <h3>Thumbnail label</h3>
-                                        <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                        <p><a href="#" class="btn btn-primary">Action</a> <a href="#" class="btn">Action</a></p>
-                                      </div>
-                                    </div>
-                                  </li>
-                                </ul>
-                              </div>
-
-                        </div>
-
-                        <div class="tab-pane" id="tab3">
-
-                            <div class="bs-docs-example" style="max-width: 860px">
-                              <div id="myCarousel" class="carousel slide">
-                                <ol class="carousel-indicators">
-                                  <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-                                  <li data-target="#myCarousel" data-slide-to="1" class=""></li>
-                                  <li data-target="#myCarousel" data-slide-to="2" class="active"></li>
-                                </ol>
-                                <div class="carousel-inner">
-                                  <div class="item">
-                                    <img src="img/bootstrap-mdo-sfmoma-01.jpg" alt="">
-                                    <div class="carousel-caption">
-                                      <h4>First Thumbnail label</h4>
-                                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                    </div>
-                                  </div>
-                                  <div class="item">
-                                    <img src="img/bootstrap-mdo-sfmoma-02.jpg" alt="">
-                                    <div class="carousel-caption">
-                                      <h4>Second Thumbnail label</h4>
-                                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                    </div>
-                                  </div>
-                                  <div class="item active">
-                                    <img src="img/bootstrap-mdo-sfmoma-03.jpg" alt="">
-                                    <div class="carousel-caption">
-                                      <h4>Third Thumbnail label</h4>
-                                      <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-                                    </div>
-                                  </div>
-                                </div>
-                                <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
-                                <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
-                              </div>
-                            </div>
-
-                        </div>
-                        
-                        <div class="tab-pane active" id="tab4">
-
-                            <div style="font-size: 18px; text-align: left">
-                                
-                                <p class="fsome-title">Inline icon:</p>
-                                
-                                <p class="fsome-example"><i class="icon-cog"></i> icon-cog</p>
-                                
-                                <p class="fsome-title">Buttons:</p>
-                                
-                                <p class="fsome-example">
-                                    
-                                    <a class="btn" href="#"><i class="icon-repeat"></i> Reload</a>
-                                    <a class="btn btn-success" href="#"><i class="icon-shopping-cart icon-large"></i> Checkout</a>
-                                    <a class="btn btn-large btn-primary" href="#"><i class="icon-comment"></i> Comment</a>
-                                    <a class="btn btn-small btn-info" href="#"><i class="icon-info-sign"></i> Info</a>
-                                    <a class="btn btn-danger" href="#"><i class="icon-trash icon-large"></i> Delete</a>
-                                    <a class="btn btn-small" href="#"><i class="icon-cog"></i> Settings</a>
-                                    <a class="btn btn-large btn-danger" href="#"><i class="icon-flag icon-2x pull-left"></i> Font Awesome<br>Version 3.2.1</a>
-                                    <a class="btn btn-primary" href="#"><i class="icon-refresh icon-spin"></i> Synchronizing Content...</a>
-                                
-                                </p>
-                                
-                                <p class="fsome-title">Navigation:</p>
-                                
-                                <div class="well" style="padding: 8px 0;">
-
-                                    <ul class="nav nav-list">
-                                      <li class="active"><a href="#"><i class="icon-fixed-width icon-home"></i> Home</a></li>
-                                      <li><a href="#"><i class="icon-fixed-width icon-book"></i> Library</a></li>
-                                      <li><a href="#"><i class="icon-fixed-width icon-pencil"></i> Applications</a></li>
-                                      <li><a href="#"><i class="icon-fixed-width icon-cogs"></i> Settings</a></li>
-                                    </ul>
-
-                                </div>
-                                
-                                <p class="fsome-title">Forms:</p>
-                                
-                                    <form>
-                                      <div class="input-prepend">
-                                        <span class="add-on"><i class="icon-envelope"></i></span>
-                                        <input type="text" placeholder="Email address">
-                                      </div>
-                                      <div class="input-prepend">
-                                        <span class="add-on"><i class="icon-key"></i></span>
-                                        <input type="password" placeholder="Password">
-                                      </div>
-                                    </form>
-                                
-                                <p class="fsome-title">Larger icons:</p>
-                                
-                                <p class="fsome-example"><i class="icon-camera-retro icon-large"></i> icon-camera-retro&nbsp;<i class="icon-camera-retro icon-2x"></i> icon-camera-retro&nbsp;<i class="icon-camera-retro icon-3x"></i> icon-camera-retro&nbsp;<i class="icon-camera-retro icon-4x"></i> icon-camera-retro</p>
-                                
-                                <p class="fsome-title">Pulled icons:</p>
-                                
-                                <p class="fsome-example">
-                                    
-                                    <i class="icon-quote-left icon-4x pull-left icon-muted"></i>
-
-                                    Use a few of the new styles together, and you've got easy pull quotes or a great introductory article image. Or spinning icons for loading and refreshing content. Or fun big icons in multi-line buttons. You can combine all of them in any combination to get lots of new possibilities.
-                                    
-                                </p>
-
-                                <p class="fsome-title" style="clear: both">Non-standard list bullets:</p>
-
-                                <ul class="icons-ul" style="margin-left: 3em">
-                                  <li><i class="icon-li icon-ok"></i>one</li>
-                                  <li><i class="icon-li icon-ok"></i>two</li>
-                                  <li><i class="icon-li icon-ok"></i>three</li>
-                                </ul>
-                                
-                                <p class="fsome-title">Animated icons:</p>
-
-                                <p class="fsome-example"><i class="icon-spinner icon-spin icon-large"></i> icon-spinner icon-spin icon-large</p>
-                                
-                                <p class="fsome-title">Rotated icons:</p>
-                                
-                                <p class="fsome-example">
-
-                                    <i class="icon-shield icon-rotate-90"></i>&nbsp;icon-shield icon-rotate-90<br>
-                                    <i class="icon-shield icon-rotate-180"></i>&nbsp;icon-shield icon-rotate-180<br>
-                                    <i class="icon-shield icon-rotate-270"></i>&nbsp;icon-shield icon-rotate-270<br>
-                                    <i class="icon-shield icon-flip-horizontal"></i>&nbsp;icon-shield icon-flip-horizontal<br>
-                                    <i class="icon-shield icon-flip-vertical"></i>&nbsp;icon-shield icon-flip-vertical
-                                
-                                </p>
-
-                            </div>
-
-                        </div>
-
-                    </div>
-
+                <div class="tab-content">
+                    
+                  <div class="tab-pane active" id="bootstrap">Please wait, loading...</div>
+                  
+                  <div class="tab-pane" id="javascript"></div>
+                  
+                  <div class="tab-pane" id="fontawesome"></div>
+                  
                 </div>
                     
             </div>
@@ -347,6 +93,7 @@
 			<div class="modal-header">
 			
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                
 				<h3>Modal header</h3>
 				
 			</div>
@@ -365,37 +112,63 @@
 			
 		</div>
 		
-		<script>
-			$('#btnInfo').click(function()
-			{
-				var info =
-					'Device Model: <strong>' + device.model + '</strong>.<br />' + 
-					'Device UUID: <strong>' + device.uuid + '</strong>.<br />' + 
-					'Device Name: <strong>' + device.name + '</strong>.<br />' + 
-					'Platform Name: <strong>' + device.platform + '</strong>.<br />' + 
-					'Platform Version: <strong>' + device.version + '</strong>.<br />' + 
-					'PhoneGap: Version: <strong>' + device.cordova + '</strong>.';
-						
-				$('#deviceInfoBody').html(info);
-				
-				$('#deviceInfo').modal();
-			});
-			
-			$('#btnAcrid').click(function()
-			{
-				var ref = window.open('http://acrid.pl', '_system', 'location=yes');
-			});
-		</script>
-		
         <script type="text/javascript">
         /*<![CDATA[*/
-        jQuery(function($)
-        {
-                $('body').on('click', '#tab4 a', function()
+            jQuery(function($)
+            {
+                /**
+                 * Device info dialog box
+                 */
+                $('#btnInfo').click(function()
+                {
+                    var info =
+                        'Device Model: <strong>' + device.model + '</strong>.<br />' + 
+                        'Device UUID: <strong>' + device.uuid + '</strong>.<br />' + 
+                        'Device Name: <strong>' + device.name + '</strong>.<br />' + 
+                        'Platform Name: <strong>' + device.platform + '</strong>.<br />' + 
+                        'Platform Version: <strong>' + device.version + '</strong>.<br />' + 
+                        'PhoneGap: Version: <strong>' + device.cordova + '</strong>.';
+
+                    $('#deviceInfoBody').html(info);
+
+                    $('#deviceInfo').modal();
+                });
+
+                $('#btnAcrid').click(function()
+                {
+                    var ref = window.open('http://acrid.pl', '_system', 'location=yes');
+                });
+                
+                /**
+                 * Dynamic tabs
+                 */
+                $('#myTabs a').click(function (e)
+                {
+                    e.preventDefault();
+
+                    var url = $(this).attr("data-url");
+                    var href = this.hash;
+                    var pane = $(this);
+
+                    $(href).load(url, function(result)
+                    {      
+                        pane.tab('show');
+                    });
+                });
+
+                $('#bootstrap').load($('.active a').attr("data-url"), function(result)
+                {
+                    $('.active a').tab('show');
+                });
+                
+                /**
+                 * Top-left corner button and dropdown handler
+                 */
+                $('body').on('click', '#fontAwesome a', function()
                 {
                     alert("You've tapped on '" + $.trim($(this).text()) + "'!");
                 });
-        });
+            });
         /*]]>*/
         </script>
         

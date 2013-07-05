@@ -1,0 +1,5 @@
+- apprise + wymienić alerty,
+
+- blockUI + generalny na URL change / AJAX,
+
+- wypróbować jakiś realny AJAX, np. do jakieś pogody or sth.
