@@ -1,5 +1,7 @@
-- apprise + wymienić alerty,
+[ ] Add alternative styles from bootswatch.com.
 
-- blockUI + generalny na URL change / AJAX,
+[ ] Include Apprise for message boxes and replace dully alert()'s.
 
-- wypróbować jakiś realny AJAX, np. do jakieś pogody or sth.
+[ ] Include BlockUI with auto-attach for URL change / AJAX.
+
+[ ] Test some real AJAX and/or PhoneGap Internet API (for example some weather system) for exchanging data with external internet server.
