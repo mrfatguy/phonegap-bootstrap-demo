@@ -1,7 +1,7 @@
-[ ] Add alternative styles from bootswatch.com.
+[+] Add alternative styles from bootswatch.com.
 
-[ ] Include Apprise for message boxes and replace dully alert()'s.
-
-[ ] Include BlockUI with auto-attach for URL change / AJAX.
+[-] (WON'TDO -- this would look ugly in comparison with Bootswatch themes!) Include Apprise for message boxes and replace dully alert()'s.
 
 [ ] Test some real AJAX and/or PhoneGap Internet API (for example some weather system) for exchanging data with external internet server.
+
+[ ] Include BlockUI with auto-attach for URL change / AJAX.

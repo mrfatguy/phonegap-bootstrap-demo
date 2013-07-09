@@ -37,33 +37,33 @@
                               
                             <ul class="dropdown-menu">
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.amelia.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.amelia.min.css (Amelia)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.amelia.min.css"><i class="icon-fixed-width"></i> bootstrap.amelia.min.css (Amelia)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cerulean.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cerulean.min.css (Cerulean)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cerulean.min.css"><i class="icon-fixed-width"></i> bootstrap.cerulean.min.css (Cerulean)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cosmo.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cosmo.min.css (Cosmo)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cosmo.min.css"><i class="icon-fixed-width"></i> bootstrap.cosmo.min.css (Cosmo)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cyborg.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cyborg.min.css (Cyborg)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cyborg.min.css"><i class="icon-fixed-width"></i> bootstrap.cyborg.min.css (Cyborg)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.flatly.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.flatly.min.css (Flatly)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.flatly.min.css"><i class="icon-fixed-width"></i> bootstrap.flatly.min.css (Flatly)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.journal.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.journal.min.css (Journal)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.journal.min.css"><i class="icon-fixed-width"></i> bootstrap.journal.min.css (Journal)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.readable.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.readable.min.css (Readable)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.readable.min.css"><i class="icon-fixed-width"></i> bootstrap.readable.min.css (Readable)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.simplex.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.simplex.min.css (Simplex)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.simplex.min.css"><i class="icon-fixed-width"></i> bootstrap.simplex.min.css (Simplex)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.slate.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.slate.min.css (Slate)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.slate.min.css"><i class="icon-fixed-width"></i> bootstrap.slate.min.css (Slate)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.spacelab.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.spacelab.min.css (Spacelab)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.spacelab.min.css"><i class="icon-fixed-width"></i> bootstrap.spacelab.min.css (Spacelab)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.superhero.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.superhero.css (Superhero)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.superhero.css"><i class="icon-fixed-width"></i> bootstrap.superhero.css (Superhero)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.united.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.united.min.css (United)</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.united.min.css"><i class="icon-fixed-width"></i> bootstrap.united.min.css (United)</a></li>
                               
                               <li class="divider"></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.min.css (Default)</a></li>
+                              <li><a href="#" style="font-weight: bold" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.min.css"><i class="icon-fixed-width icon-arrow-right"></i> bootstrap.min.css (Default)</a></li>
                               
                             </ul>
                             
@@ -207,6 +207,9 @@
                     
                     $('header#overview').find('h1').html(title);
                     $('header#overview').find('code').html(stylesheet);
+                    
+                    $('.change-style-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
+                    $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
                 });
             });
         /*]]>*/
