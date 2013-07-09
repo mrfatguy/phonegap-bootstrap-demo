@@ -198,7 +198,15 @@
                 
                 $('body').on('click', '.change-style-menu-item', function()
                 {
+                    var
+                        item = $(this).text(),
+                        title = item.substring(item.indexOf('(') + 1, item.indexOf(')')),
+                        stylesheet = item.substring(1, item.indexOf('(') - 1);
+                        
                     $('link[title="main"]').attr('href', $(this).attr('rel'));
+                    
+                    $('header#overview').find('h1').html(title);
+                    $('header#overview').find('code').html(stylesheet);
                 });
             });
         /*]]>*/
