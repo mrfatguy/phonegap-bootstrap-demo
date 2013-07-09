@@ -6,13 +6,13 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
 		<link href="assets/style.css" rel="stylesheet" media="screen">
-        <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen">
+        <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen" title="main">
 		<link href="assets/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/font-awesome/font-awesome.min.css" rel="stylesheet">
 		
         <script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="assets/jquery.min.js"></script>
-		<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js"></script>
+		<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js" title="main"></script>
 		<script type="text/javascript" src="assets/app.js"></script>       
 		
         <title>PhoneGap Demo Bootstrap</title>
@@ -29,23 +29,41 @@
 
                         <div id="main-menu-dropdown" class="btn-group">
                             
-                            <a class="btn" href="#"><i class="icon-user"></i> User</a>
+                            <a class="btn" href="#" id="buttonStyle"><i class="icon-cog"></i> Style</a>
                             
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 
                               <span class="icon-caret-down"></span></a>
                               
                             <ul class="dropdown-menu">
-                                
-                              <li><a href="#"><i class="icon-fixed-width icon-pencil"></i> Edit</a></li>
                               
-                              <li><a href="#"><i class="icon-fixed-width icon-trash"></i> Delete</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.amelia.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.amelia.min.css (Amelia)</a></li>
                               
-                              <li><a href="#"><i class="icon-fixed-width icon-ban-circle"></i> Ban</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cerulean.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cerulean.min.css (Cerulean)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cosmo.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cosmo.min.css (Cosmo)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cyborg.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.cyborg.min.css (Cyborg)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.flatly.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.flatly.min.css (Flatly)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.journal.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.journal.min.css (Journal)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.readable.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.readable.min.css (Readable)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.simplex.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.simplex.min.css (Simplex)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.slate.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.slate.min.css (Slate)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.spacelab.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.spacelab.min.css (Spacelab)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.superhero.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.superhero.css (Superhero)</a></li>
+                              
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.united.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.united.min.css (United)</a></li>
                               
                               <li class="divider"></li>
                               
-                              <li><a href="#"><i class="icon-fixed-width icon-comment"></i> Make admin</a></li>
+                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.min.css"><i class="icon-fixed-width icon-pencil"></i> bootstrap.min.css (Default)</a></li>
                               
                             </ul>
                             
@@ -117,7 +135,9 @@
             jQuery(function($)
             {
                 /**
-                 * Device info dialog box
+                 * Device info dialog box.
+                 * 
+                 * Gathers device information and displays it as Bootstrap modal.
                  */
                 $('#btnInfo').click(function()
                 {
@@ -140,7 +160,9 @@
                 });
                 
                 /**
-                 * Dynamic tabs
+                 * Dynamic tabs.
+                 * 
+                 * Load contents of each tab dynamically, upon navigation to that tab.
                  */
                 $('#myTabs a').click(function (e)
                 {
@@ -162,11 +184,21 @@
                 });
                 
                 /**
-                 * Top-left corner button and dropdown handler
+                 * Top-left corner button and dropdown handler.
+                 * 
+                 * onClick handler for dynamic change of Bootstrap's styles. Based
+                 * on Bootswatch.com's Bootstrap styles and following example:
+                 * 
+                 * http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/#.UdusmTv0F0o
                  */
-                $('body').on('click', '#fontAwesome a', function()
+                $('body').on('click', '#buttonStyle', function()
                 {
-                    alert("You've tapped on '" + $.trim($(this).text()) + "'!");
+                    alert("Select Bootswatch.com style from the dropdown.\n\nNotice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application restart you'll again see default styles...\n\nSee: http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/ for an example on how to implement this with storing currently selected stylesheet in cookies.");
+                });
+                
+                $('body').on('click', '.change-style-menu-item', function()
+                {
+                    $('link[title="main"]').attr('href', $(this).attr('rel'));
                 });
             });
         /*]]>*/

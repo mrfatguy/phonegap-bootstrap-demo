@@ -111,5 +111,25 @@
         <i class="icon-shield icon-flip-vertical"></i>&nbsp;icon-shield icon-flip-vertical
 
     </p>
+    
+<script type="text/javascript">
+        /*<![CDATA[*/
+            jQuery(function($)
+            {
+                /**
+                 * Example Font Awesome buttons general onClick handler.
+                 * 
+                 * Since this is only a fake example, no real interface, we're
+                 * handling click on every button with the same handler. In real-world
+                 * application each button would have to be handled separately.
+                 * Take a look at main `index.html` file to see example of such.
+                 */
+                $('body').on('click', '#fontAwesome a', function()
+                {
+                    alert("You've tapped on '" + $.trim($(this).text()) + "'!");
+                });
+            });
+        /*]]>*/
+        </script>
 
 </div>
