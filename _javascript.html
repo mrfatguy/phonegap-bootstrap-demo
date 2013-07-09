@@ -1,3 +1,33 @@
+<div class="page-header"><h1>AJAX Example</h1></div>
+
+<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a href="http://www.jsontest.com/">http://www.jsontest.com/</a> service.</p>
+
+<p>
+    
+    <a id="ipButton" class="btn btn-inverse" href="#"><i class="icon-random icon-white"></i> IP Address</a>
+    
+    <a id="timeButton" class="btn" href="#"><i class="icon-calendar"></i> Date & Time</a>
+    
+    <a id="md5Button" class="btn btn-primary" href="#"><i class="icon-cog"></i> MD5</a>
+
+</p>
+
+<p>More information, resources and examples:</p>
+
+<ul>
+
+    <li><a href="http://www.jsontest.com/">JSON Test -- Simple testing for JSON-based applications</a>,</li>
+    
+    <li><a href="http://samcroft.co.uk/2011/updated-loading-data-in-phonegap-using-jquery-1-5/">Updated: loading external data into an iOS PhoneGap app using jQuery 1.5</a>,</li>
+    
+    <li><a href="http://samcroft.co.uk/2012/posting-data-from-a-phonegap-app-to-a-server-using-jquery/">Posting data from a PhoneGap app to a server using jQuery</a>,</li>
+    
+    <li><a href="http://stackoverflow.com/questions/3543513/how-to-parse-jsonp-data-returned-from-remote-server">How to parse JSONP data returned from remote server</a>,</li>
+
+</ul>
+
+<div class="page-header"><h1>Bootstrap Carousel</h1></div>
+
 <div class="bs-docs-example" style="max-width: 800px">
     
     <div id="myCarousel" class="carousel slide">
@@ -129,3 +159,72 @@
     </div>
     
 </div>
+
+<script type="text/javascript">
+/*<![CDATA[*/
+    jQuery(function($)
+    {
+        $('body').on('click', '#ipButton', function()
+        {
+            $.ajax
+            ({
+                type : "GET",
+                dataType : "jsonp",
+                url : 'http://ip.jsontest.com/',
+                data : {},
+                success: function(data)
+                {
+                    alert('Your IP Address is: ' + data.ip);
+                },
+                error: function()
+                {
+                   alert('There was an error loading the data!');
+                }
+            });
+        });
+        
+        $('body').on('click', '#timeButton', function()
+        {
+            $.ajax
+            ({
+                type : "GET",
+                dataType : "jsonp",
+                url : 'http://date.jsontest.com/',
+                data : {},
+                success: function(data)
+                {
+                    alert('Current date is ' + data.date + ', current time (UTC) is ' + data.time + ' and ' + data.milliseconds_since_epoch + ' milliseconds has past since the Unix Epoch.');
+                },
+                error: function()
+                {
+                   alert('There was an error loading the data!');
+                }
+            });
+        });
+        
+        $('body').on('click', '#md5Button', function()
+        {
+            var string = prompt('Enter ANY text');
+            
+            if (string !== null && string !== '')
+            {
+                $.ajax
+                ({
+                    type : "GET",
+                    dataType : "jsonp",
+                    url : 'http://md5.jsontest.com/?text=' + string,
+                    data : {},
+                    success: function(data)
+                    {
+                        prompt('MD5 hash of "' + data.original + '" is: ', data.md5);
+                    },
+                    error: function()
+                    {
+                       alert('There was an error loading the data!');
+                    }
+                });            
+            }
+        });
+    });
+/*]]>*/
+</script>
