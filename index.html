@@ -5,7 +5,8 @@
         <meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<link href="assets/style.css" rel="stylesheet" media="screen">
+		<link href="assets/clock.css" rel="stylesheet" />
+        <link href="assets/style.css" rel="stylesheet" media="screen">
         <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen" title="main">
 		<link href="assets/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/font-awesome/font-awesome.min.css" rel="stylesheet">
@@ -206,6 +207,17 @@
                     
                     $('.change-style-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
                     $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
+                    
+                    if(title === 'Cyborg' || title === 'Superhero')
+                    {
+                        $('#clock').removeClass('white');
+                        $('#clock').addClass('dark');
+                    }
+                    else
+                    {
+                        $('#clock').removeClass('dark');
+                        $('#clock').addClass('white');
+                    }
                 });
             });
         /*]]>*/
