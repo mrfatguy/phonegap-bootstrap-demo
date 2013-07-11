@@ -185,7 +185,7 @@
     {
         function connectionOrInternetError()
         {
-            alert("There was an error loading the data from the server or you're not connected to the Internet!");
+            apprise("There was an error loading data!<br /><br />Either you're not connected to the Internet or server didn't respond...", {'textOk':'Got that!'});
             
             return false;
         }
@@ -205,7 +205,7 @@
                 data : {},
                 success: function(data)
                 {
-                    alert('Your IP Address is: ' + data.ip);
+                    apprise('Your IP Address is: <code>' + data.ip + '</code>.', {'textOk':'Great, thanks!'});
                 },
                 error: connectionOrInternetError
             });
@@ -223,7 +223,7 @@
                 data : {},
                 success: function(data)
                 {
-                    alert('Current date is ' + data.date + ', current time (UTC) is ' + data.time + ' and ' + data.milliseconds_since_epoch + ' milliseconds has past since the Unix Epoch.');
+                    apprise('Current date is: <code>' + data.date + '</code>.<br />Current time (UTC) is: <code>' + data.time + '</code><br /><br /><code>' + data.milliseconds_since_epoch + ' milliseconds</code> has past since Unix Epoch.', {});
                 },
                 error: connectionOrInternetError
             });
@@ -233,23 +233,24 @@
         {
             if(!isConnected()) connectionOrInternetError();
             
-            var string = prompt('Enter ANY text');
-            
-            if (string !== null && string !== '')
+            apprise('Enter ANY text', {'input':true, 'textOk':'Hash it!', 'textCancel':'No, thanks...'}, function(r)
             {
-                $.ajax
-                ({
-                    type : "GET",
-                    dataType : "jsonp",
-                    url : 'http://md5.jsontest.com/?text=' + string,
-                    data : {},
-                    success: function(data)
-                    {
-                        prompt('MD5 hash of "' + data.original + '" is: ', data.md5);
-                    },
-                    error: connectionOrInternetError
-                });            
-            }
+                if(typeof(r) === 'string')
+                {
+                    $.ajax
+                    ({
+                        type : "GET",
+                        dataType : "jsonp",
+                        url : 'http://md5.jsontest.com/?text=' + r,
+                        data : {},
+                        success: function(data)
+                        {
+                            apprise('MD5 hash of <kbd>' + data.original + '</kbd> is <kbd>' + data.md5 + '</kbd>.', {});
+                        },
+                        error: connectionOrInternetError
+                    });
+                }
+            });
         });
         
         /**

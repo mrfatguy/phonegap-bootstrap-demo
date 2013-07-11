@@ -128,12 +128,9 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Device Model: <code>' + device.model + '</code>.<br />' + 
-                        'Device UUID: <code>' + device.uuid + '</code>.<br />' + 
-                        'Device Name: <code>' + device.name + '</code>.<br />' + 
-                        'Platform Name: <code>' + device.platform + '</code>.<br />' + 
-                        'Platform Version: <code>' + device.version + '</code>.<br />' + 
-                        'PhoneGap: Version: <code>' + device.cordova + '</code>.';
+                        'Model: <code>' + device.model + '</code>.<br />' + 
+                        'UUID: <code>' + device.uuid + '</code>.<br />' + 
+                        'Platform: <code>' + device.platform + ' ' + device.version + '</code>.';
 
 //                    $('#deviceInfoBody').html(info);
 
@@ -180,7 +177,7 @@
                  */
                 $('body').on('click', '#buttonStyle', function()
                 {
-                    alert("Select Bootswatch.com style from the dropdown.\n\nNotice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application restart you'll again see default styles...\n\nSee: http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/ for an example on how to implement this with storing currently selected stylesheet in cookies.");
+                    apprise("Select Bootswatch.com style from the dropdown.<br /><br />Notice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application restart you'll again see default styles...<br /><br />See: <code>http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/</code> for an example on how to implement this with storing currently selected stylesheet in cookies.", {});
                 });
                 
                 $('body').on('click', '.change-style-menu-item', function()
