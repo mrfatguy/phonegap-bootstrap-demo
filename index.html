@@ -5,16 +5,20 @@
         <meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
-		<link href="assets/clock.css" rel="stylesheet" />
         <link href="assets/style.css" rel="stylesheet" media="screen">
+		<link href="assets/clock.css" rel="stylesheet" />
+		<link href="assets/apprise/apprise-1.5.min.css" rel="stylesheet" />
+        
         <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen" title="main">
 		<link href="assets/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/font-awesome/font-awesome.min.css" rel="stylesheet">
 		
         <script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="assets/jquery.min.js"></script>
+		<script type="text/javascript" src="assets/apprise/apprise-1.5.min.js"></script>
+		<script type="text/javascript" src="assets/app.js"></script>
+        
 		<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js" title="main"></script>
-		<script type="text/javascript" src="assets/app.js"></script>       
 		
         <title>PhoneGap Demo Bootstrap</title>
     </head>
@@ -107,30 +111,6 @@
             </div>
         </div>
 		
-		<div id="deviceInfo" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="deviceInfoLabel" aria-hidden="true">
-		
-			<div class="modal-header">
-			
-				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                
-				<h3>Modal header</h3>
-				
-			</div>
-			
-			<div class="modal-body">
-			
-				<p id="deviceInfoBody" style="text-align: left">Device info</p>
-				
-			</div>
-			
-			<div class="modal-footer">
-			
-				<button class="btn btn-primary" data-dismiss="modal" aria-hidden="true">Close</button>
-				
-			</div>
-			
-		</div>
-		
         <script type="text/javascript">
         /*<![CDATA[*/
             function isConnected()
@@ -148,16 +128,17 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Device Model: <strong>' + device.model + '</strong>.<br />' + 
-                        'Device UUID: <strong>' + device.uuid + '</strong>.<br />' + 
-                        'Device Name: <strong>' + device.name + '</strong>.<br />' + 
-                        'Platform Name: <strong>' + device.platform + '</strong>.<br />' + 
-                        'Platform Version: <strong>' + device.version + '</strong>.<br />' + 
-                        'PhoneGap: Version: <strong>' + device.cordova + '</strong>.';
+                        'Device Model: <code>' + device.model + '</code>.<br />' + 
+                        'Device UUID: <code>' + device.uuid + '</code>.<br />' + 
+                        'Device Name: <code>' + device.name + '</code>.<br />' + 
+                        'Platform Name: <code>' + device.platform + '</code>.<br />' + 
+                        'Platform Version: <code>' + device.version + '</code>.<br />' + 
+                        'PhoneGap: Version: <code>' + device.cordova + '</code>.';
 
-                    $('#deviceInfoBody').html(info);
+//                    $('#deviceInfoBody').html(info);
 
-                    $('#deviceInfo').modal();
+//                    $('#deviceInfo').modal();
+                    apprise(info, {});
                 });
 
                 $('#btnAcrid').click(function()

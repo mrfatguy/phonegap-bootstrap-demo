@@ -1,9 +1,5 @@
 [ ] Test Apprise for message boxes and replace dully alert()'s with either it or Bootstrap Popups.
 
-[+] Add connection checking and block AJAX calls upon none:
-
-	* http://docs.phonegap.com/en/2.9.0/cordova_connection_connection.md.html#Connection
-	
 [ ] Add other PhoneGap specific functions.
 
 [ ] Test loading ads from inMobi:
