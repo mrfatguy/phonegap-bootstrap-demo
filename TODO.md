@@ -1,5 +1,3 @@
-[ ] Test Apprise for message boxes and replace dully alert()'s with either it or Bootstrap Popups.
-
 [ ] Add other PhoneGap specific functions.
 
 [ ] Test loading ads from inMobi:
