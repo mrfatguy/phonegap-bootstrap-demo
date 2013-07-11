@@ -183,11 +183,20 @@
 /*<![CDATA[*/
     jQuery(function($)
     {
+        function connectionOrInternetError()
+        {
+            alert("There was an error loading the data from the server or you're not connected to the Internet!");
+            
+            return false;
+        }
+        
         /**
          * AJAX Examples
          */
         $('body').on('click', '#ipButton', function()
         {
+            if(!isConnected()) connectionOrInternetError();
+            
             $.ajax
             ({
                 type : "GET",
@@ -198,15 +207,14 @@
                 {
                     alert('Your IP Address is: ' + data.ip);
                 },
-                error: function()
-                {
-                   alert('There was an error loading the data!');
-                }
+                error: connectionOrInternetError
             });
         });
         
         $('body').on('click', '#timeButton', function()
         {
+            if(!isConnected()) connectionOrInternetError();
+            
             $.ajax
             ({
                 type : "GET",
@@ -217,15 +225,14 @@
                 {
                     alert('Current date is ' + data.date + ', current time (UTC) is ' + data.time + ' and ' + data.milliseconds_since_epoch + ' milliseconds has past since the Unix Epoch.');
                 },
-                error: function()
-                {
-                   alert('There was an error loading the data!');
-                }
+                error: connectionOrInternetError
             });
         });
         
         $('body').on('click', '#md5Button', function()
         {
+            if(!isConnected()) connectionOrInternetError();
+            
             var string = prompt('Enter ANY text');
             
             if (string !== null && string !== '')
@@ -240,10 +247,7 @@
                     {
                         prompt('MD5 hash of "' + data.original + '" is: ', data.md5);
                     },
-                    error: function()
-                    {
-                       alert('There was an error loading the data!');
-                    }
+                    error: connectionOrInternetError
                 });            
             }
         });
@@ -251,7 +255,7 @@
         /**
          * Clock
          */
-            // Cache some selectors
+        // Cache some selectors
         var clock = $('#clock'),
             ampm = clock.find('.ampm');
 
