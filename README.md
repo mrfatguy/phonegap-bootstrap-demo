@@ -6,9 +6,11 @@ This demo contains or includes following things:
 
 * Twitter Bootstrap itself and examples of using it,
 
-* Font Awesome library along with some examples,
+* Font Awesome font library along with some cool examples,
 
 * Some examples of using AJAX / JSON calls from PhoneGap application,
+
+* Very cool and superb customizable digital display, purely in Javascript, from [3quarks.com](http://www.3quarks.com/en/SegmentDisplay/index.html),
 
 * Simple theme (stylesheet switcher) allowing dynamic (client-side) look change plus all the free Bootstrap themes / styles from Bootswatch.com.
 
