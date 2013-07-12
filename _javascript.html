@@ -205,7 +205,7 @@
                 data : {},
                 success: function(data)
                 {
-                    apprise('<div style="text-align: center">Your IP Address is:<br /><code>' + data.ip + '</code>.</div>', {'textOk':'Great, thanks!'});
+                    apprise('<div style="text-align: center">Your IP Address is:<br /><code>' + data.ip + '</code></div>', {'textOk':'Great, thanks!'});
                 },
                 error: connectionOrInternetError
             });
@@ -223,7 +223,7 @@
                 data : {},
                 success: function(data)
                 {
-                    apprise('Current date is: <code>' + data.date + '</code>.<br />Current time (UTC) is: <code>' + data.time + '</code><br /><br /><code>' + data.milliseconds_since_epoch + ' milliseconds</code> has past since Unix Epoch.', {});
+                    apprise('<div style="text-align: center">Current date is:<br /><code>' + data.date + '</code><br />Current time (UTC) is:<br /><code>' + data.time + '</code><br /><br />We\'ve <code>' + data.milliseconds_since_epoch + '</code> milliseconds since Unix Epoch.', {});
                 },
                 error: connectionOrInternetError
             });
@@ -233,7 +233,7 @@
         {
             if(!isConnected()) connectionOrInternetError();
             
-            apprise('Enter ANY text', {'input':true, 'textOk':'Hash it!', 'textCancel':'No, thanks...'}, function(r)
+            apprise('Enter ANY text', {'input':true, 'textOk':'Go!', 'textCancel':'No, thanks...'}, function(r)
             {
                 if(typeof(r) === 'string')
                 {

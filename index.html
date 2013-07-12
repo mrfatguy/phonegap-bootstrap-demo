@@ -133,8 +133,8 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Model: <code>' + device.model + '</code><br />' + 
-                        'UUID: <code>' + device.uuid + '</code><br />' + 
+                        'Model: <code>' + device.model + '</code><br /><br />' + 
+                        'UUID: <code>' + device.uuid + '</code><br /><br />' + 
                         'Platform: <code>' + device.platform + ' ' + device.version + '</code>';
 
                     apprise(info, {});
