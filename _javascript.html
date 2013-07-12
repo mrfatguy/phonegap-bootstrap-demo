@@ -1,6 +1,6 @@
 <div class="page-header"><h1>AJAX Example</h1></div>
 
-<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a href="http://www.jsontest.com/">JSON Test</a> service.</p>
+<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a href="#" onclick="openUrl('http://www.jsontest.com/');">JSON Test</a> service.</p>
 
 <p>
     
@@ -16,13 +16,13 @@
 
 <ul>
 
-    <li><a href="http://samcroft.co.uk/2011/updated-loading-data-in-phonegap-using-jquery-1-5/">Loading external data into PhoneGap app</a>,</li>
+    <li><a href="#" onclick="openUrl('http://samcroft.co.uk/2011/updated-loading-data-in-phonegap-using-jquery-1-5/');">Loading external data into PhoneGap app</a>,</li>
     
-    <li><a href="http://samcroft.co.uk/2012/posting-data-from-a-phonegap-app-to-a-server-using-jquery/">Posting data from a PhoneGap app to a server</a>,</li>
+    <li><a href="#" onclick="openUrl('http://samcroft.co.uk/2012/posting-data-from-a-phonegap-app-to-a-server-using-jquery/');">Posting data from a PhoneGap app to a server</a>,</li>
     
-    <li><a href="http://www.jsontest.com/">Simple testing for JSON-based applications</a>,</li>
+    <li><a href="#" onclick="openUrl('http://www.jsontest.com/');">Simple testing for JSON-based applications</a>,</li>
     
-    <li><a href="http://stackoverflow.com/questions/3543513/how-to-parse-jsonp-data-returned-from-remote-server">How to parse JSONP data from remote server</a>.</li>
+    <li><a href="#" onclick="openUrl('http://stackoverflow.com/questions/3543513/how-to-parse-jsonp-data-returned-from-remote-server');">How to parse JSONP data from remote server</a>.</li>
 
 </ul>
 
@@ -30,7 +30,7 @@
 
 <div class="page-header"><h1>Digital Clock</h1></div>
 
-<p>Simplified version of pure CSS 3 / HTML 5 digital clock from <a href="http://tutorialzine.com/2013/06/digital-clock/">Tutorialzine</a>.</p>
+<p>Simplified version of pure CSS 3 / HTML 5 digital clock from <a href="#" onclick="openUrl('http://tutorialzine.com/2013/06/digital-clock/');">Tutorialzine</a>.</p>
 
     <div id="clock" class="light">
         <div class="display">
@@ -205,7 +205,7 @@
                 data : {},
                 success: function(data)
                 {
-                    apprise('Your IP Address is: <code>' + data.ip + '</code>.', {'textOk':'Great, thanks!'});
+                    apprise('<div style="text-align: center">Your IP Address is:<br /><code>' + data.ip + '</code>.</div>', {'textOk':'Great, thanks!'});
                 },
                 error: connectionOrInternetError
             });

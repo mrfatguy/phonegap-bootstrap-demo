@@ -118,6 +118,11 @@
                 return !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
             }
             
+            function openUrl(url)
+            {
+                window.open(url, '_system', 'location=yes');
+            }
+            
             jQuery(function($)
             {
                 /**
@@ -128,19 +133,16 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Model: <code>' + device.model + '</code>.<br />' + 
-                        'UUID: <code>' + device.uuid + '</code>.<br />' + 
-                        'Platform: <code>' + device.platform + ' ' + device.version + '</code>.';
+                        'Model: <code>' + device.model + '</code><br />' + 
+                        'UUID: <code>' + device.uuid + '</code><br />' + 
+                        'Platform: <code>' + device.platform + ' ' + device.version + '</code>';
 
-//                    $('#deviceInfoBody').html(info);
-
-//                    $('#deviceInfo').modal();
                     apprise(info, {});
                 });
 
                 $('#btnAcrid').click(function()
                 {
-                    var ref = window.open('http://acrid.pl', '_system', 'location=yes');
+                    openUrl('http://acrid.pl');
                 });
                 
                 /**
@@ -177,7 +179,7 @@
                  */
                 $('body').on('click', '#buttonStyle', function()
                 {
-                    apprise("Select Bootswatch.com style from the dropdown.<br /><br />Notice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application restart you'll again see default styles...<br /><br />See <code>http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/</code> for an example on how to implement this with storing currently selected stylesheet in cookies.", {});
+                    apprise('Select Bootswatch.com style from the dropdown.<br /><br />Notice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application default styles will be applied...<br /><br />Visit <a href="#" onclick="openUrl(\'http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/\');">this page</a> for an example on how to implement this with storing currently selected stylesheet in cookies.', {});
                 });
                 
                 $('body').on('click', '.change-style-menu-item', function()
