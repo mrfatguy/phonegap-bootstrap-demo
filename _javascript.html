@@ -26,21 +26,21 @@
 
 </ul>
 
-
-
 <div class="page-header"><h1>Digital Clock</h1></div>
 
-<p>Pure Javascript digital clock from <a href="#" onclick="openUrl('http://www.3quarks.com/en/SegmentDisplay/index.html');">3quarks.com</a>.</p>
+<p>Pure JS digital display from <a href="#" onclick="openUrl('http://www.3quarks.com/en/SegmentDisplay/index.html');">3quarks.com</a>.</p>
 
-<canvas id="segment-display" width="280" height="50">
+<canvas id="segment-clock" width="280" height="50">
     Your browser is not supported!
 </canvas>
 
 <p></p>
 
-<p>This is only a tiny example. This is not only a clock, but a fully customizable digital display. And it is completely free (<em>Creative Commons 3.0 license</em>)! </p>
+<canvas id="segment-display" width="280" height="50">
+    Your browser is not supported!
+</canvas>
 
-<p><em>Notice, that this demo app does not contain <code>excanvas.js</code>, which is required for "Segment Display" to work under IE (even newest -- IE10) and problably on Windows Phone platform. Grab it from <a href="#" onclick="openUrl('http://www.3quarks.com/en/SegmentDisplay/index.html');">creator's site</a>, if you need it (my condolence, if you have to support IE!).</em></p>
+<p>If you see some look & feel errors (incorrect placement, some shearing), note, that they might (!) be caused by a lot of code (JS & CSS; many examples) in this demo and may or may not occur in your application, that will (probably) use much less of a code...</p>
 
 <div class="page-header"><h1>TB Carousel</h1></div>
 
@@ -180,23 +180,27 @@
 /*<![CDATA[*/
 
     /**
-     * Clock
+     * The clock & the display
      */
-    function animateTheClock()
+    function animateTheDisplays()
     {
         var
             time = new Date(),
             hours = time.getHours(),
             minutes = time.getMinutes(),
             seconds = time.getSeconds(),
+            milliseconds  = time.getMilliseconds(),
+            text = '           Phone Gap with Segment Display rocks...           ',
+            index = (2 * (seconds + 60 * minutes + 24 * 60 * hours) + Math.floor(milliseconds / 500)) % (text.length - 6),
             value = ((hours < 10) ? ' ' : '') + hours + ':' + ((minutes < 10) ? '0' : '') + minutes + ':' + ((seconds < 10) ? '0' : '') + seconds;
 
         theClock.setValue(value);
-
-        setTimeout(function(){animateTheClock()}, 1000);
+        
+        theDisplay.setValue(text.substr(index, 16));
     }
 
-    var theClock = new SegmentDisplay('segment-display');
+    var theClock = new SegmentDisplay('segment-clock');
+    var theDisplay = new SegmentDisplay('segment-display');
 
     theClock.pattern         = '##:##:##';
     theClock.displayAngle    = 5;
@@ -207,13 +211,30 @@
     theClock.segmentDistance = 0.1;
     theClock.segmentCount    = 7;
     theClock.cornerType      = 3;
-    theClock.colorOn         = 'rgba(9, 9, 9, 0.7)';
     theClock.colorOff        = 'rgba(200, 200, 200, 0.3)';
 
-    theClock.draw();
+    theDisplay.pattern         = '################';
+    theDisplay.displayAngle    = 5;
+    theDisplay.digitHeight     = 20;
+    theDisplay.digitWidth      = 15;
+    theDisplay.digitDistance   = 2.5;
+    theDisplay.segmentWidth    = 2;
+    theDisplay.segmentDistance = 0.1;
+    theDisplay.segmentCount    = 16;
+    theDisplay.cornerType      = 0;
+    theDisplay.colorOff        = 'rgba(200, 200, 200, 0.3)';
+    
+    theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
 
-    animateTheClock();
-        
+    theClock.draw();
+    theDisplay.draw();
+
+    animateTheDisplays();
+    setInterval(function(){animateTheDisplays()}, 100);
+    
+    /**
+     * jQuery
+     */
     jQuery(function($)
     {
         function connectionOrInternetError()

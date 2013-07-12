@@ -14,7 +14,8 @@
 		
 		<script type="text/javascript" src="assets/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/apprise/apprise-1.5.min.js"></script>
-		<script type="text/javascript" src="assets/segment-display.js"></script>
+		<script type="text/javascript" src="assets/segment-display/excanvas.min.js"></script>
+		<script type="text/javascript" src="assets/segment-display/segment-display.min.js"></script>
 		<script type="text/javascript" src="assets/app.js"></script>
         <script type="text/javascript" src="phonegap.js"></script>
         
@@ -199,16 +200,10 @@
                     
                     if(typeof(theClock) !== 'undefined')
                     {
-                        if(title === 'Cyborg' || title === 'Slate' || title === 'Superhero')
-                        {
-                            theClock.colorOn = 'rgba(36, 221, 34, 0.7)';
-                            theClock.colorOff = 'rgba(27, 65, 5, 0.3)';
-                        }
-                        else
-                        {
-                            theClock.colorOn = 'rgba(9, 9, 9, 0.7)';
-                            theClock.colorOff = 'rgba(200, 200, 200, 0.3)';
-                        }
+                        var colorOff = (title === 'Cyborg' || title === 'Slate' || title === 'Superhero') ? 'rgba(27, 65, 5, 0.3)' : 'rgba(200, 200, 200, 0.3)';
+                        
+                        theClock.colorOff = theDisplay.colorOff = colorOff;
+                        theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
                     }
                 });
             });
