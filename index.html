@@ -6,17 +6,17 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		
         <link href="assets/style.css" rel="stylesheet" media="screen">
-		<link href="assets/clock.css" rel="stylesheet" />
 		<link href="assets/apprise/apprise-1.5.min.css" rel="stylesheet" />
         
         <link href="assets/bootstrap/bootstrap.min.css" rel="stylesheet" media="screen" title="main">
 		<link href="assets/bootstrap/bootstrap-responsive.min.css" rel="stylesheet">
         <link href="assets/font-awesome/font-awesome.min.css" rel="stylesheet">
 		
-        <script type="text/javascript" src="phonegap.js"></script>
 		<script type="text/javascript" src="assets/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/apprise/apprise-1.5.min.js"></script>
+		<script type="text/javascript" src="assets/segment-display.js"></script>
 		<script type="text/javascript" src="assets/app.js"></script>
+        <script type="text/javascript" src="phonegap.js"></script>
         
 		<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js" title="main"></script>
 		
@@ -157,7 +157,7 @@
                     var url = $(this).attr("data-url");
                     var href = this.hash;
                     var pane = $(this);
-
+                    
                     $(href).load(url, function(result)
                     {      
                         pane.tab('show');
@@ -179,7 +179,7 @@
                  */
                 $('body').on('click', '#buttonStyle', function()
                 {
-                    apprise('Select Bootswatch.com style from the dropdown.<br /><br />Notice, that this is only an example, not real-world behavior, so changes to stylesheet are not permanent -- upon application default styles will be applied...<br /><br />Visit <a href="#" onclick="openUrl(\'http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/\');">this page</a> for an example on how to implement this with storing currently selected stylesheet in cookies.', {});
+                    apprise('<strong>Select Bootswatch.com style from the dropdown.</strong><br /><br />This is only an example and changes to stylesheet are not remembered. Visit <a href="#" onclick="openUrl(\'http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/\');">this page</a> for an example, how to store stylesheet in a cookie.<br /><br />Notice, that most non-standard stylesheets download extra fonts from Internet. Get them locally, to avoid extra costs for app user!', {});
                 });
                 
                 $('body').on('click', '.change-style-menu-item', function()
@@ -197,15 +197,18 @@
                     $('.change-style-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
                     $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
                     
-                    if(title === 'Cyborg' || title === 'Slate' || title === 'Superhero')
+                    if(typeof(theClock) !== 'undefined')
                     {
-                        $('#clock').removeClass('white');
-                        $('#clock').addClass('dark');
-                    }
-                    else
-                    {
-                        $('#clock').removeClass('dark');
-                        $('#clock').addClass('white');
+                        if(title === 'Cyborg' || title === 'Slate' || title === 'Superhero')
+                        {
+                            theClock.colorOn = 'rgba(36, 221, 34, 0.7)';
+                            theClock.colorOff = 'rgba(27, 65, 5, 0.3)';
+                        }
+                        else
+                        {
+                            theClock.colorOn = 'rgba(9, 9, 9, 0.7)';
+                            theClock.colorOff = 'rgba(200, 200, 200, 0.3)';
+                        }
                     }
                 });
             });
