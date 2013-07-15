@@ -1,14 +1,14 @@
 {
     "navigation":
     {
-        "info": "Info",
+        "info": "Urządzenie",
         "style": "Styl",
-        "acrid": "Acrid",
+        "acrid": "Strona WWW",
         "language": "Język"
     },
     "messages":
     {
         "style": "<strong>Wybierz styl Bootswatch.com z listy.</strong><br /><br />To tylko prosty przykład. Zmiany stylów nie są zapamiętywane.<br /><br />Proszę zwrócić uwagę, że większość niestandardowych stylów Bootswatch pobiera czcionki z Internetu. Należy pobrać i zapisać je lokalnie, aby uniknąć dodatkowych kosztów płaconych przez użytkowników Twojej aplikacji!",
-        "language": "<strong>Wybierz język z listy.</strong><br /><br />To tylko przykła działania i jedynie niewielka ilość tekstów jest faktycznie przetłumaczona..."
+        "language": "<strong>Wybierz język z listy.</strong><br /><br />To tylko przykła działania i jedynie niewielka ilość tekstów jest faktycznie przetłumaczona, przy pomocy tłumaczenia automatycznego (maszynowego), dzięki Google Translate."
     }
 }

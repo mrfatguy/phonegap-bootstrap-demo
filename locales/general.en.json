@@ -1,14 +1,14 @@
 {
     "navigation":
     {
-        "info": "Info",
-        "style": "Look",
-        "acrid": "Acrid",
-        "language": "Lang"
+        "info": "Device",
+        "style": "Style",
+        "acrid": "Webpage",
+        "language": "Language"
     },
     "messages":
     {
         "style": "<strong>Select Bootswatch.com style from dropdown.</strong><br /><br />This is only an example and changes to stylesheet are not remembered.<br /><br />Notice, that most non-standard stylesheets download extra fonts from Internet. Get them locally, to avoid extra costs for app user!",
-        "language": "<strong>Select language using dropdown.</strong><br /><br />This is only an example and and only few strings are actually translated..."
+        "language": "<strong>Select language using dropdown.</strong><br /><br />This is only an example and and only few strings are actually translated, with only machine-translation done by Google Translate."
     }
 }
