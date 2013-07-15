@@ -192,7 +192,7 @@
             milliseconds  = time.getMilliseconds(),
             text = '           Phone Gap with Segment Display rocks...           ',
             index = (2 * (seconds + 60 * minutes + 24 * 60 * hours) + Math.floor(milliseconds / 500)) % (text.length - 6),
-            value = ((hours < 10) ? ' ' : '') + hours + ':' + ((minutes < 10) ? '0' : '') + minutes + ':' + ((seconds < 10) ? '0' : '') + seconds;
+            value = ((hours < 10) ? '0' : '') + hours + ':' + ((minutes < 10) ? '0' : '') + minutes + ':' + ((seconds < 10) ? '0' : '') + seconds;
 
         theClock.setValue(value);
         

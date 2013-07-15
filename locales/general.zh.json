@@ -1,0 +1,14 @@
+{
+    "navigation":
+    {
+        "info": "信息",
+        "style": "风格",
+        "acrid": "Acrid",
+        "language": "语"
+    },
+    "messages":
+    {
+        "style": "<strong>选择Bootswatch.com从下拉风格.</strong><br /><br />这仅仅是一个例子，样式表的更改不会被记住。<br /><br />通知，大多数非标准样式表从互联网下载额外的字体。让他们在本地，以避免额外的应用程序用户的成本！",
+        "language": "<strong>选择语言使用下拉。</strong><br /><br />这仅仅是一个例子，只有几串实际上是翻译......"
+    }
+}

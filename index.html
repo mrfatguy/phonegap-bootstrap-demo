@@ -14,6 +14,7 @@
 		
 		<script type="text/javascript" src="assets/jquery.min.js"></script>
 		<script type="text/javascript" src="assets/apprise/apprise-1.5.min.js"></script>
+		<script type="text/javascript" src="assets/i18next-1.6.3.min.js"></script>
 		<script type="text/javascript" src="assets/segment-display/excanvas.min.js"></script>
 		<script type="text/javascript" src="assets/segment-display/segment-display.min.js"></script>
 		<script type="text/javascript" src="assets/app.js"></script>
@@ -33,44 +34,83 @@
 
                     <div class="pull-left">
 
-                        <div id="main-menu-dropdown" class="btn-group">
+                        <div id="style-dropdown" class="btn-group">
                             
-                            <a class="btn" href="#" id="buttonStyle"><i class="icon-cog"></i> Style</a>
+                            <a class="btn dropdown-toggle" href="#" id="buttonStyle">
+                                
+                                <i class="icon-cog"></i> 
+                                
+                                <span data-i18n="navigation.style">navigation.style</span>
+                            
+                            </a>
                             
                             <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
                                 
-                              <span class="icon-caret-down"></span></a>
-                              
+                                <span class="icon-caret-down"></span>
+                            
+                            </a>
+                            
                             <ul class="dropdown-menu">
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.amelia.min.css"><i class="icon-fixed-width"></i> bootstrap.amelia.min.css (Amelia)</a></li>
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.amelia.min.css"><i class="icon-fixed-width"></i> bootstrap.amelia.min.css (Amelia)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cerulean.min.css"><i class="icon-fixed-width"></i> bootstrap.cerulean.min.css (Cerulean)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cosmo.min.css"><i class="icon-fixed-width"></i> bootstrap.cosmo.min.css (Cosmo)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cyborg.min.css"><i class="icon-fixed-width"></i> bootstrap.cyborg.min.css (Cyborg)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.flatly.min.css"><i class="icon-fixed-width"></i> bootstrap.flatly.min.css (Flatly)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.journal.min.css"><i class="icon-fixed-width"></i> bootstrap.journal.min.css (Journal)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.readable.min.css"><i class="icon-fixed-width"></i> bootstrap.readable.min.css (Readable)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.simplex.min.css"><i class="icon-fixed-width"></i> bootstrap.simplex.min.css (Simplex)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.slate.min.css"><i class="icon-fixed-width"></i> bootstrap.slate.min.css (Slate)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.spacelab.min.css"><i class="icon-fixed-width"></i> bootstrap.spacelab.min.css (Spacelab)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.superhero.css"><i class="icon-fixed-width"></i> bootstrap.superhero.css (Superhero)</a></li>
+
+                                <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.united.min.css"><i class="icon-fixed-width"></i> bootstrap.united.min.css (United)</a></li>
+
+                                <li class="divider"></li>
+
+                                <li><a href="#" style="font-weight: bold" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.min.css"><i class="icon-fixed-width icon-arrow-right"></i> bootstrap.min.css (Default)</a></li>
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cerulean.min.css"><i class="icon-fixed-width"></i> bootstrap.cerulean.min.css (Cerulean)</a></li>
+                            </ul>
+                            
+                        </div>
+                        
+                        <div id="language-dropdown" class="btn-group">
+                            
+                            <a class="btn btn-warning" data-toggle="dropdown" href="#" id="buttonLanguage">
+                                
+                                <i class="icon-align-left"></i> 
+                                
+                                <span data-i18n="navigation.language">navigation.language</span>
+                            </a>
+                            
+                            <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
+                                
+                                <span class="icon-caret-down"></span>
+                            
+                            </a>
+                            
+                            <ul class="dropdown-menu">
                               
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cosmo.min.css"><i class="icon-fixed-width"></i> bootstrap.cosmo.min.css (Cosmo)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.cyborg.min.css"><i class="icon-fixed-width"></i> bootstrap.cyborg.min.css (Cyborg)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.flatly.min.css"><i class="icon-fixed-width"></i> bootstrap.flatly.min.css (Flatly)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.journal.min.css"><i class="icon-fixed-width"></i> bootstrap.journal.min.css (Journal)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.readable.min.css"><i class="icon-fixed-width"></i> bootstrap.readable.min.css (Readable)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.simplex.min.css"><i class="icon-fixed-width"></i> bootstrap.simplex.min.css (Simplex)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.slate.min.css"><i class="icon-fixed-width"></i> bootstrap.slate.min.css (Slate)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.spacelab.min.css"><i class="icon-fixed-width"></i> bootstrap.spacelab.min.css (Spacelab)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.superhero.css"><i class="icon-fixed-width"></i> bootstrap.superhero.css (Superhero)</a></li>
-                              
-                              <li><a href="#" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.united.min.css"><i class="icon-fixed-width"></i> bootstrap.united.min.css (United)</a></li>
-                              
-                              <li class="divider"></li>
-                              
-                              <li><a href="#" style="font-weight: bold" class="change-style-menu-item" rel="assets/bootstrap/bootstrap.min.css"><i class="icon-fixed-width icon-arrow-right"></i> bootstrap.min.css (Default)</a></li>
-                              
+                                <li><a href="#" class="change-language-menu-item" rel="de"><i class="icon-fixed-width"></i> Deutsch (de-DE)</a></li>
+
+                                <li><a href="#" class="change-language-menu-item" rel="zh"><i class="icon-fixed-width"></i> 中文（简体） (zh-CN)</a></li>
+                                
+                                <li><a href="#" class="change-language-menu-item" rel="pl"><i class="icon-fixed-width"></i> polski (pl-PL)</a></li>
+                                
+                                <li class="divider"></li>
+
+                                <li><a href="#" style="font-weight: bold" class="change-language-menu-item" rel="en"><i class="icon-fixed-width icon-arrow-right"></i> English (en-GB)</a></li>
+
                             </ul>
                             
                         </div>
@@ -79,9 +119,9 @@
 
                     <div class="pull-right text-right">
 
-                        <a id="btnInfo" href="#" class="btn btn-primary">Device Info</a>
+                        <a id="btnInfo" href="#" class="btn btn-primary"><i class="icon-info"></i> <span data-i18n="navigation.info">navigation.info</span></a>
 
-                        <a id="btnAcrid" href="#" class="btn btn-info">Acrid</a>
+                        <a id="btnAcrid" href="#" class="btn btn-info"><i class="icon-hand-right"></i> <span data-i18n="navigation.acrid">navigation.acrid</span></a>
 
                     </div>
 
@@ -114,6 +154,9 @@
 		
         <script type="text/javascript">
         /*<![CDATA[*/
+            /**
+             * Functions
+             */
             function isConnected()
             {
                 return !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
@@ -124,7 +167,23 @@
                 window.open(url, '_system', 'location=yes');
             }
             
-            jQuery(function($)
+            /**
+             * Translation
+             * 
+             * http://i18next.com/pages/doc_init.html
+             */
+            i18n.init
+            ({
+                lng: 'en-US',
+                ns: 'general',
+                useCookie: false,
+                resGetPath: 'locales/__ns__.__lng__.json'
+            }, function(){$('body').i18n();});
+
+            /**
+             * jQuery
+             */
+            $(function($)
             {
                 /**
                  * Device info dialog box.
@@ -171,7 +230,7 @@
                 });
                 
                 /**
-                 * Top-left corner button and dropdown handler.
+                 * Dynamic stylesheet changer.
                  * 
                  * onClick handler for dynamic change of Bootstrap's styles. Based
                  * on Bootswatch.com's Bootstrap styles and following example:
@@ -180,15 +239,20 @@
                  */
                 $('body').on('click', '#buttonStyle', function()
                 {
-                    apprise('<strong>Select Bootswatch.com style from the dropdown.</strong><br /><br />This is only an example and changes to stylesheet are not remembered. Visit <a href="#" onclick="openUrl(\'http://www.cssnewbie.com/simple-jquery-stylesheet-switcher/\');">this page</a> for an example, how to store stylesheet in a cookie.<br /><br />Notice, that most non-standard stylesheets download extra fonts from Internet. Get them locally, to avoid extra costs for app user!', {});
+                    apprise(i18n.t("messages.style"), {});
+                });
+                
+                $('body').on('click', '#buttonLanguage', function()
+                {
+                    apprise(i18n.t("messages.language"), {});
                 });
                 
                 $('body').on('click', '.change-style-menu-item', function()
                 {
                     var
                         item = $(this).text(),
-                        title = item.substring(item.indexOf('(') + 1, item.indexOf(')')),
-                        stylesheet = item.substring(1, item.indexOf('(') - 1);
+                        stylesheet = item.substring(1, item.indexOf('(') - 1),
+                        title = item.substring(item.indexOf('(') + 1, item.indexOf(')'));
                         
                     $('link[title="main"]').attr('href', $(this).attr('rel'));
                     
@@ -205,6 +269,26 @@
                         theClock.colorOff = theDisplay.colorOff = colorOff;
                         theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
                     }
+                });
+                
+                /**
+                 * Dynamic language changer.
+                 * 
+                 * onClick handler for dynamic change of page's language. Based
+                 * on i18next engine: http://i18next.com/
+                 */
+                $('body').on('click', '.change-language-menu-item', function()
+                {
+                    var
+                        code = $(this).attr('rel');
+                        
+                    i18n.setLng(code, function(t)
+                    {
+                        $('body').i18n();
+                    });
+                        
+                    $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
+                    $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
                 });
             });
         /*]]>*/

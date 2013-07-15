@@ -1,0 +1,14 @@
+{
+    "navigation":
+    {
+        "info": "Info",
+        "style": "Stil",
+        "acrid": "Acrid",
+        "language": "Lang"
+    },
+    "messages":
+    {
+        "style": "<strong>Wählen Bootswatch.com Stil aus Dropdown-Menü.</strong><br /><br />Dies ist nur ein Beispiel und Änderungen Stylesheet werden nicht gespeichert.<br /><br />Hinweis, laden Sie, dass die meisten Nicht-Standard-Stylesheets zusätzliche Schriftarten aus dem Internet. Holen Sie sie lokal, um zusätzliche Kosten für App Benutzer zu vermeiden!",
+        "language": "<strong>Wählen Sie Sprache mit Dropdown-Menü.</strong><br /><br />Dies ist nur ein Beispiel und nur wenige Strings tatsächlich übersetzt..."
+    }
+}
