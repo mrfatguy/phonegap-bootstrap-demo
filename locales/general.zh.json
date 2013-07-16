@@ -1,10 +1,34 @@
 {
-    "navigation":
+    "phonegap":
+    {
+        "loader": "请等待，加载...",
+        "connection":
+        {
+            "title": "连接",
+            "label": "连接类型"
+        },
+        "acceleration":
+        {
+            "start": "开始",
+            "stop": "停止",
+            "title": "加速度计",
+            "line1": "加速在<strong>__axis__</strong>轴是<strong>__acceleration__</strong>的。",
+            "line2": "当前时间戳是<strong>__timestamp__</strong>的。",
+            "error": "获得加速度计的数据时出错..."
+        }
+    },
+    "buttons":
     {
         "info": "设备",
         "style": "风格",
         "acrid": "网页",
         "language": "语"
+    },
+    "tabs":
+    {
+        "bootstrap": "自举",
+        "javascript": "Javascript的",
+        "phonegap": "PhoneGap的"
     },
     "messages":
     {

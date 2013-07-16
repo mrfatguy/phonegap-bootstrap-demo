@@ -40,7 +40,7 @@
                                 
                                 <i class="icon-cog"></i> 
                                 
-                                <span data-i18n="navigation.style">navigation.style</span>
+                                <span data-i18n="buttons.style">buttons.style</span>
                             
                             </a>
                             
@@ -92,7 +92,7 @@
                                 
                                 <i class="icon-align-left"></i> 
                                 
-                                <span data-i18n="navigation.language">navigation.language</span>
+                                <span data-i18n="buttons.language">buttons.language</span>
                             </a>
                             
                             <a class="btn btn-warning dropdown-toggle" data-toggle="dropdown" href="#">
@@ -121,11 +121,11 @@
 
                     <div class="pull-right text-right">
 
-                        <a id="btnInfo" href="#" class="btn btn-primary"><i class="icon-info"></i> <span data-i18n="navigation.info">navigation.info</span></a>
+                        <a id="btnInfo" href="#" class="btn btn-primary"><i class="icon-info"></i> <span data-i18n="buttons.info">buttons.info</span></a>
                         
                         <div style="margin-bottom: 5px"></div>
 
-                        <a id="btnAcrid" href="#" class="btn btn-info"><i class="icon-hand-right"></i> <span data-i18n="navigation.acrid">navigation.acrid</span></a>
+                        <a id="btnAcrid" href="#" class="btn btn-info"><i class="icon-hand-right"></i> <span data-i18n="buttons.acrid">buttons.acrid</span></a>
 
                     </div>
 
@@ -135,11 +135,11 @@
 
                 <ul class="nav nav-tabs" id="myTabs">
                     
-                  <li class="active"><a href="#bootstrap" data-url="_bootstrap.html">Bootstrap</a></li>
+                  <li class="active"><a href="#bootstrap" data-url="_bootstrap.html" data-i18n="tabs.bootstrap">tabs.bootstrap</a></li>
                   
-                  <li><a href="#javascript" data-url="_javascript.html">Javascript</a></li>
+                  <li><a href="#javascript" data-url="_javascript.html" data-i18n="tabs.javascript">tabs.javascript</a></li>
                   
-                  <li><a href="#javascript" data-url="_phonegap.html">PhoneGap</a></li>
+                  <li><a href="#phonegap" data-url="_phonegap.html" data-i18n="tabs.phonegap">tabs.phonegap</a></li>
                   
                 </ul>
 
@@ -171,6 +171,11 @@
                 window.open(url, '_system', 'location=yes');
             }
             
+            function updatePhonegapTab()
+            {
+                $('#connectionType').html(checkConnection());
+            }
+            
             /**
              * Translation
              * 
@@ -182,7 +187,10 @@
                 ns: 'general',
                 useCookie: false,
                 resGetPath: 'locales/__ns__.__lng__.json'
-            }, function(){$('body').i18n();});
+            }, function()
+            {
+                $('body').i18n();
+            });
 
             /**
              * jQuery
@@ -225,8 +233,15 @@
                     $(href).load(url, function(result)
                     {      
                         pane.tab('show');
+                        
+                        $('body').i18n();
                     });
                 });
+                
+                $('#myTabs a').on('shown', function(e)
+                {
+                    if(e.target.hash === '#phonegap') updatePhonegapTab();
+                })
 
                 $('#bootstrap').load($('.active a').attr("data-url"), function(result)
                 {
@@ -283,12 +298,13 @@
                  */
                 $('body').on('click', '.change-language-menu-item', function()
                 {
-                    var
-                        code = $(this).attr('rel');
+                    var code = $(this).attr('rel');
                         
                     i18n.setLng(code, function(t)
                     {
                         $('body').i18n();
+                        
+                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
                     });
                         
                     $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');

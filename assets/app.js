@@ -18,7 +18,7 @@ var app =
 	
     backButtonHandler: function()
 	{
-        apprise(i18n.t("messages.exit"), {'verify':true, 'textOk':i18n.t("messages.yes"), 'textCancel':i18n.t("messages.no")}, function(r)
+        apprise(i18n.t("messages.exit"), {'verify':true, 'textYes':i18n.t("messages.yes"), 'textNo':i18n.t("messages.no")}, function(r)
         {
             if(r) navigator.app.exitApp();
         });

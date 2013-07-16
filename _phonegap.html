@@ -1,29 +1,93 @@
-<div class="page-header"><h1>Connection</h1></div>
+<div class="page-header"><h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1></div>
 
-<p>Connection type: <span id="connectionType" style="font-weight: bold">Unknown connection</span></p>
+<p><span data-i18n="phonegap.connection.label">phonegap.connection.label</span>: <span id="connectionType" style="font-weight: bold" data-i18n="phonegap.loader">Please, wait...</span></p>
+
+<div class="page-header"><h1 data-i18n="phonegap.acceleration.title">phonegap.acceleration.title</h1></div>
+
+<p>
+    <a id="btnAccelerationStart" class="btn btn-primary btn-large" href="#" data-i18n="phonegap.acceleration.start">phonegap.acceleration.start</a>
+    <a id="btnAccelerationStop" class="btn btn-info btn-large" href="#" data-i18n="phonegap.acceleration.stop" style="display: none">phonegap.acceleration.stop</a>
+</p>
+
+<p><span id="accelerationText"></span></p>
 
 <script type="text/javascript">
 /*<![CDATA[*/
-    jQuery(function($)
+    function checkConnection()
     {
-        function checkConnection()
+        var networkState = navigator.connection.type;
+
+        var states = {};
+        states[Connection.UNKNOWN]  = 'Unknown connection';
+        states[Connection.ETHERNET] = 'Ethernet connection';
+        states[Connection.WIFI]     = 'WiFi connection';
+        states[Connection.CELL_2G]  = 'Cell 2G connection';
+        states[Connection.CELL_3G]  = 'Cell 3G connection';
+        states[Connection.CELL_4G]  = 'Cell 4G connection';
+        states[Connection.CELL]     = 'Cell generic connection';
+        states[Connection.NONE]     = 'No network connection';
+
+        return states[networkState];
+    }
+
+    function onAccelerationSuccess(acceleration)
+    {
+        var g = 9.80665;
+        
+        acceleration.x = (acceleration.x * g) + ' m/s\u00b2';
+        acceleration.y = (acceleration.y * g) + ' m/s\u00b2';
+        acceleration.z = ((acceleration.z + 1) * g) + ' m/s\u00b2';
+        
+        var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
+
+        var accelerationText = i18n.t('phonegap.acceleration.line1',
         {
-            var networkState = navigator.connection.type;
+            axis: 'X',
+            acceleration: acceleration.x
+        });
 
-            var states = {};
-            states[Connection.UNKNOWN]  = 'Unknown connection';
-            states[Connection.ETHERNET] = 'Ethernet connection';
-            states[Connection.WIFI]     = 'WiFi connection';
-            states[Connection.CELL_2G]  = 'Cell 2G connection';
-            states[Connection.CELL_3G]  = 'Cell 3G connection';
-            states[Connection.CELL_4G]  = 'Cell 4G connection';
-            states[Connection.CELL]     = 'Cell generic connection';
-            states[Connection.NONE]     = 'No network connection';
+        accelerationText = accelerationText + '<br />' + i18n.t('phonegap.acceleration.line1',
+        {
+            axis: 'Y',
+            acceleration: acceleration.y
+        });
 
-            return states[networkState];
-        }
+        accelerationText = accelerationText + '<br />' + i18n.t('phonegap.acceleration.line1',
+        {
+            axis: 'Z',
+            acceleration: acceleration.z
+        });
 
-        $('#connectionType').html(checkConnection());
+        $('#accelerationText').html(accelerationText + '<br />' + timestampText);
+        
+    }
+    
+    function onAccelerationError()
+    {
+        $('#accelerationText').html(i18n.t('phonegap.acceleration.error'));
+    };
+    
+	jQuery(function($)
+    {
+        var watchID = 0;
+        
+		$('#btnAccelerationStart').click(function()
+		{
+			var options = {frequency: 3000};  //In milliseconds, means: update every 3 seconds here.
+			
+			watchID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, options);
+			
+			$('#btnAccelerationStop').show();
+			$('#btnAccelerationStart').hide();
+		});
+
+		$('#btnAccelerationStop').click(function()
+		{
+			navigator.accelerometer.clearWatch(watchID);
+			
+			$('#btnAccelerationStart').show();
+			$('#btnAccelerationStop').hide();
+		});
     });
 /*]]>*/
 </script>
