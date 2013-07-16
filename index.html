@@ -234,15 +234,12 @@
                     {      
                         pane.tab('show');
                         
+                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
+                        
                         $('body').i18n();
                     });
                 });
                 
-                $('#myTabs a').on('shown', function(e)
-                {
-                    if(e.target.hash === '#phonegap') updatePhonegapTab();
-                })
-
                 $('#bootstrap').load($('.active a').attr("data-url"), function(result)
                 {
                     $('.active a').tab('show');
@@ -288,6 +285,8 @@
                         theClock.colorOff = theDisplay.colorOff = colorOff;
                         theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
                     }
+                    
+                    if($('div#phonegap').hasClass('active')) updatePhonegapTab();
                 });
                 
                 /**
