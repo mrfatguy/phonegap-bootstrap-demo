@@ -34,9 +34,9 @@
     {
         var g = 9.80665;
         
-        acceleration.x = (acceleration.x * g) + ' m/s\u00b2';
-        acceleration.y = (acceleration.y * g) + ' m/s\u00b2';
-        acceleration.z = ((acceleration.z + 1) * g) + ' m/s\u00b2';
+        acceleration.x = (acceleration.x * g).toFixed(2) + ' m/s\u00b2';
+        acceleration.y = (acceleration.y * g).toFixed(2) + ' m/s\u00b2';
+        acceleration.z = ((acceleration.z + 1) * g).toFixed(2) + ' m/s\u00b2';
         
         var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
 
@@ -73,9 +73,7 @@
         
 		$('#btnAccelerationStart').click(function()
 		{
-			var options = {frequency: 3000};  //In milliseconds, means: update every 3 seconds here.
-			
-			watchID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, options);
+			watchID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 1000});
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
@@ -84,10 +82,14 @@
 		$('#btnAccelerationStop').click(function()
 		{
 			navigator.accelerometer.clearWatch(watchID);
+            
+            $('#accelerationText').html('');
 			
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
 		});
+        
+        $('#connectionType').html(checkConnection());
     });
 /*]]>*/
 </script>

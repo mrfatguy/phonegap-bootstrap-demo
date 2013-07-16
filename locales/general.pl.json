@@ -12,7 +12,7 @@
             "start": "Start",
             "stop": "Stop",
             "title": "Akcelerometr",
-            "line1": "Przyspieszenie w osi <strong>__axis__</strong> wynosi <strong>__acceleration__<strong>.",
+            "line1": "Przyspieszenie w osi <strong>__axis__</strong> wynosi <strong>__acceleration__</strong>.",
             "line2": "Bieżący znacznik czasu to <strong>__timestamp__</strong>.",
             "error": "Wystąpił błąd podczas odczytu danych z akcelerometru..."
         }
