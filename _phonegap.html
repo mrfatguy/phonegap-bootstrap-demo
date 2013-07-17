@@ -1,6 +1,3 @@
-<div data-i18n="phonegap.description">phonegap.description</div>
-
-
 <!-- Connection -->
 
 <div class="page-header"><h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1></div>
@@ -32,7 +29,9 @@
 <p><span id="compassText"></span></p>
 
 
-<!-- Code -->
+<!-- Bottom description and code -->
+
+<div data-i18n="phonegap.description">phonegap.description</div>
 
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -53,7 +52,7 @@
         $('#connectionType').html((states[networkState]));
     }
     
-//    checkConnection();
+    checkConnection();
 
     /**
      * Acceleration
@@ -149,7 +148,7 @@
             onAccelerationSuccess(acceleration);
             
             //Start watching...
-			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 1000});
+			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 100});
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
