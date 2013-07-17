@@ -2,6 +2,7 @@
     "phonegap":
     {
         "loader": "请等待，加载...",
+        "description": "这是只限于设定的PhoneGap API的例子。它不包括整个API。如果你需要测试的功能，在这里失踪的，在互联网上搜索更复杂的PhoneGap API演示。只有前两（连接和加速度计）翻译成其他语言的例子。",
         "connection":
         {
             "title": "连接",

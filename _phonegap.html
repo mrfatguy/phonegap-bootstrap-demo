@@ -1,3 +1,5 @@
+<div data-i18n="phonegap.description">phonegap.description</div>
+
 <div class="page-header"><h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1></div>
 
 <p><span data-i18n="phonegap.connection.label">phonegap.connection.label</span>: <span id="connectionType" style="font-weight: bold" data-i18n="phonegap.loader">Please, wait...</span></p>
@@ -27,8 +29,10 @@
         states[Connection.CELL]     = 'Cell generic connection';
         states[Connection.NONE]     = 'No network connection';
 
-        return states[networkState];
+        $('#connectionType').html(checkConnection());
     }
+    
+//    checkConnection();
 
     function onAccelerationSuccess(acceleration)
     {
@@ -73,12 +77,14 @@
 		$('#btnAccelerationStart').click(function()
 		{
             //Fake initial values
-            var acceleration = new Object();
+            var
+                acceleration = new Object()
+                now = new Date();
             
             acceleration.x = 0;
             acceleration.y = 0;
             acceleration.z = -1;
-            acceleration.timestamp = Math.round(new Date().getTime() / 1000);
+            acceleration.timestamp = now.getTime();
             
             onAccelerationSuccess(acceleration);
             
@@ -98,8 +104,6 @@
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
 		});
-        
-        $('#connectionType').html(checkConnection());
     });
 /*]]>*/
 </script>

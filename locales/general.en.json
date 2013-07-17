@@ -2,6 +2,7 @@
     "phonegap":
     {
         "loader": "Please wait, loading...",
+        "description": "This is only limited set of PhoneGap API examples. It does not cover entire API. If you need to test features, that are missing here, search the Internet for more complex PhoneGap API demos. Only first two (Connection and Accelerometer) examples are translated into other languages.",
         "connection":
         {
             "title": "Connection",

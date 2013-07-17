@@ -2,6 +2,7 @@
     "phonegap":
     {
         "loader": "Proszę czekać, trwa ładowanie danych...",
+        "description": "Ta strona zawiera tylko wybrane przykłady PhoneGap API. Jeśli potrzebujesz przetestować inne, których tu brakuje, poszukaj w Internecie bardziej rozbudowanego demo PhoneGap API. Tylko dwa pierwsze przykłady (Connection i Accelerometer) zostały przetłumaczone na języki inne niż angielski.",
         "connection":
         {
             "title": "Połączenie",

@@ -2,6 +2,7 @@
     "phonegap":
     {
         "loader": "Bitte warten, Daten werden geladen...",
+        "description": "Dies wird nur von PhoneGap API Beispiele beschränkt gesetzt. Sie gilt nicht für gesamte API. Wenn Sie Funktionen testen müssen, dass hier fehlen, suchen im Internet für komplexere PhoneGap API Demos. Nur die ersten zwei (Anschluss und Accelerometer) Beispiele sind in andere Sprachen übersetzt.",
         "connection":
         {
             "title": "Anschluss",
