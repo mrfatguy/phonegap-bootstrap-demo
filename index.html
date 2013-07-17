@@ -136,21 +136,21 @@
 
                 <ul class="nav nav-tabs" id="myTabs">
                     
-                  <li class="active"><a href="#bootstrap" data-url="_bootstrap.html" data-i18n="tabs.bootstrap">tabs.bootstrap</a></li>
+                  <li class="active"><a href="#bootstrap" data-i18n="tabs.bootstrap" data-toggle="tab">tabs.bootstrap</a></li>
                   
-                  <li><a href="#javascript" data-url="_javascript.html" data-i18n="tabs.javascript">tabs.javascript</a></li>
+                  <li><a href="#javascript" data-i18n="tabs.javascript" data-toggle="tab">tabs.javascript</a></li>
                   
-                  <li><a href="#phonegap" data-url="_phonegap.html" data-i18n="tabs.phonegap">tabs.phonegap</a></li>
+                  <li><a href="#phonegap" data-i18n="tabs.phonegap" data-toggle="tab">tabs.phonegap</a></li>
                   
                 </ul>
 
                 <div class="tab-content">
                     
-                  <div class="tab-pane active" id="bootstrap">Please wait, loading...</div>
+                  <div class="tab-pane active" id="bootstrap" data-url="_bootstrap.html">Please wait, loading...</div>
                   
-                  <div class="tab-pane" id="javascript"></div>
+                  <div class="tab-pane" id="javascript" data-url="_javascript.html">Please wait, loading...</div>
                   
-                  <div class="tab-pane" id="phonegap"></div>
+                  <div class="tab-pane" id="phonegap" data-url="_phonegap.html">Please wait, loading...</div>
                   
                 </div>
                     
@@ -172,6 +172,23 @@
                 window.open(url, '_system', 'location=yes');
             }
             
+            function checkConnection()
+            {
+                var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
+
+                var states = {};
+                states[Connection.UNKNOWN]  = 'Unknown connection';
+                states[Connection.ETHERNET] = 'Ethernet connection';
+                states[Connection.WIFI]     = 'WiFi connection';
+                states[Connection.CELL_2G]  = 'Cell 2G connection';
+                states[Connection.CELL_3G]  = 'Cell 3G connection';
+                states[Connection.CELL_4G]  = 'Cell 4G connection';
+                states[Connection.CELL]     = 'Cell generic connection';
+                states[Connection.NONE]     = 'No network connection';
+
+                $('#connectionType').html(states[networkState]);
+            }
+            
             function updatePhonegapTab()
             {
                 checkConnection();
@@ -190,7 +207,18 @@
                 resGetPath: 'locales/__ns__.__lng__.json'
             }, function()
             {
-                $('body').i18n();
+                /**
+                 * Preload tabs' contents and then translate them!
+                 */
+                $("div.tab-pane").each(function()
+                {
+                    $(this).load($(this).attr("data-url"), function()
+                    {
+                        $('body').i18n();
+                        
+                        updatePhonegapTab();
+                    });
+                });
             });
 
             /**
@@ -216,34 +244,6 @@
                 $('#btnAcrid').click(function()
                 {
                     openUrl('http://acrid.pl');
-                });
-                
-                /**
-                 * Dynamic tabs.
-                 * 
-                 * Load contents of each tab dynamically, upon navigation to that tab.
-                 */
-                $('#myTabs a').click(function (e)
-                {
-                    e.preventDefault();
-
-                    var url = $(this).attr("data-url");
-                    var href = this.hash;
-                    var pane = $(this);
-                    
-                    $(href).load(url, function(result)
-                    {      
-                        pane.tab('show');
-                        
-                        $('body').i18n();
-                        
-                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
-                    });
-                });
-                
-                $('#bootstrap').load($('.active a').attr("data-url"), function(result)
-                {
-                    $('.active a').tab('show');
                 });
                 
                 /**
@@ -287,7 +287,7 @@
                         theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
                     }
                     
-                    if($('div#phonegap').hasClass('active')) updatePhonegapTab();
+                    updatePhonegapTab();
                 });
                 
                 /**
@@ -304,7 +304,7 @@
                     {
                         $('body').i18n();
                         
-                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
+                        updatePhonegapTab();
                     });
                         
                     $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');

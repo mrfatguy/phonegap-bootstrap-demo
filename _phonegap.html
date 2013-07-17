@@ -28,34 +28,24 @@
 
 <p><span id="compassText"></span></p>
 
+<!-- Events -->
+
+<div class="page-header"><h1>Event log</h1></div>
+
+<p>
+    <textarea id="eventLog" style="width: 100%; box-sizing: border-box; font-size: 8pt; font-family: monospace" rows="11"></textarea>
+</p>
 
 <!-- Bottom description and code -->
 
-<div data-i18n="phonegap.description">phonegap.description</div>
+<div style="border-top: 1px solid #eee"></div>
+
+<p></p>
+
+<p data-i18n="phonegap.description">phonegap.description</p>
 
 <script type="text/javascript">
 /*<![CDATA[*/
-    function checkConnection()
-    {
-        var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
-
-        var states = {};
-        states[Connection.UNKNOWN]  = 'Unknown connection';
-        states[Connection.ETHERNET] = 'Ethernet connection';
-        states[Connection.WIFI]     = 'WiFi connection';
-        states[Connection.CELL_2G]  = 'Cell 2G connection';
-        states[Connection.CELL_3G]  = 'Cell 3G connection';
-        states[Connection.CELL_4G]  = 'Cell 4G connection';
-        states[Connection.CELL]     = 'Cell generic connection';
-        states[Connection.NONE]     = 'No network connection';
-
-        $('#connectionType').html(states[networkState]);
-    }
-
-    /**
-     * Acceleration
-     */
-
     function onAccelerationSuccess(acceleration)
     {
         var g = 9.80665;
@@ -92,10 +82,6 @@
         $('#accelerationText').html(i18n.t('phonegap.acceleration.error'));
     };
     
-    /**
-     * Compass
-     */
-
     function onCompassSuccess(compass)
     {
         var
@@ -115,15 +101,8 @@
         if(CompassError.COMPASS_NOT_SUPPORTED) $('#compassText').html('Compass is not supported on this device!');
     };
     
-    /**
-     * jQuery
-     */
-    
 	$(function($)
     {
-        /**
-         * Variables
-         */
         var
             compassID = 0,
             accelerationID = 0;
