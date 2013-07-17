@@ -1,8 +1,14 @@
 <div data-i18n="phonegap.description">phonegap.description</div>
 
+
+<!-- Connection -->
+
 <div class="page-header"><h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1></div>
 
 <p><span data-i18n="phonegap.connection.label">phonegap.connection.label</span>: <span id="connectionType" style="font-weight: bold" data-i18n="phonegap.loader">Please, wait...</span></p>
+
+
+<!-- Acceleration -->
 
 <div class="page-header"><h1 data-i18n="phonegap.acceleration.title">phonegap.acceleration.title</h1></div>
 
@@ -12,6 +18,21 @@
 </p>
 
 <p><span id="accelerationText"></span></p>
+
+
+<!-- Compass -->
+
+<div class="page-header"><h1>Compass</h1></div>
+
+<p>
+    <a id="btnCompassStart" class="btn btn-primary btn-large" href="#" data-i18n="phonegap.acceleration.start">phonegap.acceleration.start</a>
+    <a id="btnCompassStop" class="btn btn-info btn-large" href="#" data-i18n="phonegap.acceleration.stop" style="display: none">phonegap.acceleration.stop</a>
+</p>
+
+<p><span id="compassText"></span></p>
+
+
+<!-- Code -->
 
 <script type="text/javascript">
 /*<![CDATA[*/
@@ -29,10 +50,14 @@
         states[Connection.CELL]     = 'Cell generic connection';
         states[Connection.NONE]     = 'No network connection';
 
-        $('#connectionType').html(checkConnection());
+        $('#connectionType').html((states[networkState]));
     }
     
 //    checkConnection();
+
+    /**
+     * Acceleration
+     */
 
     function onAccelerationSuccess(acceleration)
     {
@@ -70,15 +95,50 @@
         $('#accelerationText').html(i18n.t('phonegap.acceleration.error'));
     };
     
-	jQuery(function($)
+    /**
+     * Compass
+     */
+
+    function onCompassSuccess(compass)
     {
-        var watchID = 0;
+        var
+            timestampText = 'Current timestamp is <strong>' + compass.timestamp + '</strong>.',
+            headingText = '<strong>Magnetic heading</strong> is <strong>' + compass.magneticHeading + '</strong>.<br />';
+    
+        headingText = headingText + '<strong>True heading</strong> is <strong>' + compass.trueHeading + '</strong>.<br />';
+        headingText = headingText + '<strong>Heading accuracy</strong> is <strong>' + compass.headingAccuracy + '</strong>.';
+
+        $('#compassText').html(headingText + '<br />' + timestampText);
+    }
+    
+    function onCompassError(CompassError)
+    {
+        if(CompassError.COMPASS_INTERNAL_ERR) $('#compassText').html('Internal compass error has occured!');
         
+        if(CompassError.COMPASS_NOT_SUPPORTED) $('#compassText').html('Compass is not supported on this device!');
+    };
+    
+    /**
+     * jQuery
+     */
+    
+	$(function($)
+    {
+        /**
+         * Variables
+         */
+        var
+            compassID = 0,
+            accelerationID = 0;
+            
+        /**
+         * Acceleration
+         */
 		$('#btnAccelerationStart').click(function()
 		{
             //Fake initial values
             var
-                acceleration = new Object()
+                acceleration = new Object(),
                 now = new Date();
             
             acceleration.x = 0;
@@ -89,7 +149,7 @@
             onAccelerationSuccess(acceleration);
             
             //Start watching...
-			watchID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 1000});
+			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 1000});
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
@@ -97,12 +157,46 @@
 
 		$('#btnAccelerationStop').click(function()
 		{
-			navigator.accelerometer.clearWatch(watchID);
+			navigator.accelerometer.clearWatch(accelerationID);
             
             $('#accelerationText').html('');
 			
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
+		});
+        
+        /**
+         * Compass
+         */
+		$('#btnCompassStart').click(function()
+		{
+            //Fake initial values
+            var
+                compass = new Object(),
+                now = new Date();
+            
+            compass.magneticHeading = 0;
+            compass.trueHeading = 0;
+            compass.headingAccuracy = 0;
+            compass.timestamp = now.getTime();
+            
+            onCompassSuccess(compass);
+            
+            //Start watching...
+			compassID = navigator.compass.watchHeading(onCompassSuccess, onCompassError);
+			
+			$('#btnCompassStop').show();
+			$('#btnCompassStart').hide();
+		});
+
+		$('#btnCompassStop').click(function()
+		{
+			navigator.compass.clearWatch(compassID);
+            
+            $('#compassText').html('');
+			
+			$('#btnCompassStart').show();
+			$('#btnCompassStop').hide();
 		});
     });
 /*]]>*/
