@@ -18,7 +18,8 @@
 		<script type="text/javascript" src="assets/segment-display/excanvas.min.js"></script>
 		<script type="text/javascript" src="assets/segment-display/segment-display.min.js"></script>
 		<script type="text/javascript" src="assets/app.js"></script>
-        <script type="text/javascript" src="phonegap.js"></script>
+        
+        <script type="text/javascript" src="cordova.js"></script>
         
 		<script type="text/javascript" src="assets/bootstrap/bootstrap.min.js" title="main"></script>
 		
@@ -234,9 +235,9 @@
                     {      
                         pane.tab('show');
                         
-                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
-                        
                         $('body').i18n();
+                        
+                        if($('div#phonegap').hasClass('active')) updatePhonegapTab();
                     });
                 });
                 

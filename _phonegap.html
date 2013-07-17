@@ -37,7 +37,7 @@
 /*<![CDATA[*/
     function checkConnection()
     {
-        var networkState = navigator.connection.type;
+        var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
 
         var states = {};
         states[Connection.UNKNOWN]  = 'Unknown connection';
@@ -49,10 +49,8 @@
         states[Connection.CELL]     = 'Cell generic connection';
         states[Connection.NONE]     = 'No network connection';
 
-        $('#connectionType').html((states[networkState]));
+        $('#connectionType').html(states[networkState]);
     }
-    
-    checkConnection();
 
     /**
      * Acceleration
