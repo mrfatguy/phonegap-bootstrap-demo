@@ -5,7 +5,7 @@
 	xmlns="http://www.w3.org/ns/widgets"
 	xmlns:gap="http://phonegap.com/ns/1.0"
 	id="pl.acrid.demo.bootstrap"
-	version="1.5.0">
+	version="1.6.0">
 
 	<name>Demo Bootstrap</name>
 
@@ -36,5 +36,11 @@
 
     <gap:splash src="splash.png" />
 	
+	<feature name="http://api.phonegap.com/1.0/media"/>
+	<feature name="http://api.phonegap.com/1.0/device"/>
 	<feature name="http://api.phonegap.com/1.0/network"/>
+	<feature name="http://api.phonegap.com/1.0/battery"/>
+	<feature name="http://api.phonegap.com/1.0/geolocation"/>
+	<feature name="http://api.phonegap.com/1.0/notification"/>
+    
 </widget>

@@ -1,40 +1,116 @@
-<!-- Connection -->
+<style>
+#eventLog
+{
+    /* We are using mobile device! Scrollbars are a bit annoying on mobiles, and
+    so are disabled by default and must be enabled by force. */
+    width: 100%;
+    resize: none;
+    height: 100px;
+    font-size: 8pt;
+    max-height: 100px;
+    overflow-y: scroll;
+    box-sizing: border-box;
+    font-family: monospace;
+}    
+</style>
 
-<div class="page-header"><h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1></div>
+<!-- Connection -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_connection_connection.md.html#Connection -->
+<!-- Needs: <feature name="http://api.phonegap.com/1.0/network"/> in config.xml! -->
+
+<h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1>
 
 <p><span data-i18n="phonegap.connection.label">phonegap.connection.label</span>: <span id="connectionType" style="font-weight: bold" data-i18n="phonegap.loader">Please, wait...</span></p>
 
+<div class="page-header"></div>
 
-<!-- Acceleration -->
 
-<div class="page-header"><h1 data-i18n="phonegap.acceleration.title">phonegap.acceleration.title</h1></div>
+<!-- Geolocation -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_geolocation_geolocation.md.html#Geolocation -->
+<!-- Needs: <feature name="http://api.phonegap.com/1.0/geolocation"/> in config.xml! -->
 
-<p>
-    <a id="btnAccelerationStart" class="btn btn-primary btn-large" href="#" data-i18n="phonegap.acceleration.start">phonegap.acceleration.start</a>
-    <a id="btnAccelerationStop" class="btn btn-info btn-large" href="#" data-i18n="phonegap.acceleration.stop" style="display: none">phonegap.acceleration.stop</a>
-</p>
+<p></p>
+<p>To be continued...</p>
 
+<div class="page-header"></div>
+
+
+<!-- Accelerometer -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_accelerometer_accelerometer.md.html#Accelerometer -->
+
+<a id="btnAccelerationStart" class="btn btn-primary btn-large" href="#" data-i18n="phonegap.acceleration.title">phonegap.acceleration.title</a>
+<a id="btnAccelerationStop" class="btn btn-info btn-large" href="#" data-i18n="phonegap.acceleration.title" style="display: none">phonegap.acceleration.title</a>
+
+<p></p>
 <p><span id="accelerationText"></span></p>
+
+<div class="page-header"></div>
 
 
 <!-- Compass -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_compass_compass.md.html#Compass -->
 
-<div class="page-header"><h1>Compass</h1></div>
+<a id="btnCompassStart" class="btn btn-primary btn-large" href="#">Compass</a>
+<a id="btnCompassStop" class="btn btn-info btn-large" href="#" style="display: none">Compass</a>
 
-<p>
-    <a id="btnCompassStart" class="btn btn-primary btn-large" href="#" data-i18n="phonegap.acceleration.start">phonegap.acceleration.start</a>
-    <a id="btnCompassStop" class="btn btn-info btn-large" href="#" data-i18n="phonegap.acceleration.stop" style="display: none">phonegap.acceleration.stop</a>
-</p>
-
+<p></p>
 <p><span id="compassText"></span></p>
 
+<div class="page-header"></div>
+
+
+<!-- Media -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_media_media.md.html#Media -->
+<!-- Needs: <feature name="http://api.phonegap.com/1.0/media"/> in config.xml! -->
+
+<h3>Media</h3>
+
+<p>To be continued...</p>
+
+<div class="page-header"></div>
+
+
+<!-- Battery -- only available through events -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html#Events -->
+<!-- Needs: <feature name="http://api.phonegap.com/1.0/battery"/> in config.xml! -->
+
+<h3>Battery</h3>
+
+<p>Level: <strong><span id="lblBatteryLevel"></span></strong></p>
+<p>Status: <strong><span id="lblBatteryStatus"></span></strong></p>
+<p>Charging: <strong><span id="lblBatteryPlugged"></span></strong></p>
+
+<div class="page-header"></div>
+
+
 <!-- Events -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html#Events -->
 
-<div class="page-header"><h1>Event log</h1></div>
+<h3>Event log</h3>
 
-<p>
-    <textarea id="eventLog" style="width: 100%; box-sizing: border-box; font-size: 8pt; font-family: monospace" rows="11"></textarea>
-</p>
+<p><textarea id="eventLog"></textarea></p>
+
+<div class="page-header"></div>
+
+
+<!-- Storage -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_storage_storage.md.html#Storage -->
+
+<h3>Storage</h3>
+
+<p></p>
+<p>To be continued...</p>
+
+<div class="page-header"></div>
+
+<!-- Notification -->
+<!-- http://docs.phonegap.com/en/2.9.0/cordova_notification_notification.md.html#Notification -->
+<!-- Needs: <feature name="http://api.phonegap.com/1.0/notification"/> in config.xml! -->
+
+<a id="btnNotificationBeep" class="btn btn-success btn-large" href="#">Beep!</a>
+<a id="btnNotificationVibrate" class="btn btn-error btn-large" href="#">Vibrate!</a>
+
+<div class="page-header"></div>
 
 <!-- Bottom description and code -->
 
@@ -125,7 +201,7 @@
         /**
          * Acceleration
          */
-		$('#btnAccelerationStart').click(function()
+        $('body').on('click', '#btnAccelerationStart').click(function()
 		{
             //Fake initial values
             var
@@ -148,7 +224,7 @@
             app.writeEventLog('btnAccelerationStart.click();');
 		});
 
-		$('#btnAccelerationStop').click(function()
+		$('body').on('click', '#btnAccelerationStop').click(function()
 		{
 			navigator.accelerometer.clearWatch(accelerationID);
             
@@ -163,7 +239,7 @@
         /**
          * Compass
          */
-		$('#btnCompassStart').click(function()
+		$('body').on('click', '#btnCompassStart').click(function()
 		{
             //Fake initial values
             var
@@ -186,7 +262,7 @@
             app.writeEventLog('btnCompassStart.click();');
 		});
 
-		$('#btnCompassStop').click(function()
+		$('body').on('click', '#btnCompassStop').click(function()
 		{
 			navigator.compass.clearWatch(compassID);
             
@@ -196,6 +272,30 @@
 			$('#btnCompassStop').hide();
             
             app.writeEventLog('btnCompassStop.click();');
+		});
+        
+		$('body').on('click', '#btnNotificationVibrate').click(function()
+		{
+			navigator.notification.vibrate(2500);
+            
+            app.writeEventLog('btnNotificationVibrate.click();');
+		});
+        
+		$('body').on('click', '#btnNotificationBeep').click(function()
+		{
+            /**
+             * The iPhone does not feature a native beep API. Cordova implements
+             * beeps by playing an audio file via the media API. The app must provide
+             * a file with the desired beep tone. This file must be less than
+             * 30 seconds long, located in the www root directory, and must be named
+             * `beep.wav`.
+             * 
+             * Good beep-click sounds library: http://www.soundjay.com/button-sounds-1.html
+             * .wav File Signal Generator: http://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php
+             */
+			navigator.notification.beep(3);
+            
+            app.writeEventLog('btnNotificationVibrate.click();');
 		});
     });
 /*]]>*/

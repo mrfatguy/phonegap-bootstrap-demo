@@ -11,10 +11,27 @@ var app =
 	
     deviceReadyHandler: function()
 	{
-        //Actual handler, to handle app's exits.
+        /**
+         * Actual handler, to handle app's exits.
+         */
         document.addEventListener("backbutton", app.backButtonHandler, true);
         
-        //Demo purpose only events
+        /**
+         * Battery-related events.
+         * 
+         * Don't foreget about putting:
+         * 
+         * <feature name="http://api.phonegap.com/1.0/battery"/>
+         * 
+         * to your config.xml!
+         */
+        document.addEventListener('batterylow', app.batteryLowHandler, false);
+        document.addEventListener('batterystatus', app.batteryStatusHandler, false);
+        document.addEventListener('batterycritical', app.batteryCriticalHandler, false);
+        
+        /**
+         * Demo purpose only events.
+         */
         document.addEventListener('pause', app.pauseHandler, false);
         document.addEventListener('resume', app.resumeHandler, false);
         document.addEventListener('online', app.onlineHandler, false);
@@ -25,9 +42,6 @@ var app =
         document.addEventListener('startcallbutton', app.startCallButtonHandler, false);
         document.addEventListener('volumeupbutton', app.volumeUpButtonHandler, false);
         document.addEventListener('volumedownbutton', app.volumeDownButtonHandler, false);
-        document.addEventListener('batterylow', app.batteryLowHandler, false);
-        document.addEventListener('batterystatus', app.batteryStatusHandler, false);
-        document.addEventListener('batterycritical', app.batteryCriticalHandler, false);
         
 		setTimeout(function()
 		{
@@ -40,7 +54,9 @@ var app =
         app.writeEventLog('app.deviceReadyHandler();');
     },
 	
-    //Demo purpose only events
+    /**
+     * Demo purpose only events.
+     */
     pauseHandler: function(){app.writeEventLog('app.pauseHandler();');},
     resumeHandler: function(){app.writeEventLog('app.resumeHandler();');},
     onlineHandler: function(){app.writeEventLog('app.onlineHandler();');},
@@ -51,20 +67,45 @@ var app =
     startCallButtonHandler: function(){app.writeEventLog('app.startCallButtonHandler();');},
     volumeUpButtonHandler: function(){app.writeEventLog('app.volumeUpButtonHandler();');},
     volumeDownButtonHandler: function(){app.writeEventLog('app.volumeDownButtonHandler();');},
-    batteryLowHandler: function(info){app.writeEventLog('app.batteryLowHandler(level = ' + info.level +', isPlugged = ' + info.isPlugged + ');');},
-    batteryStatusHandler: function(info){app.writeEventLog('app.batteryStatusHandler(level = ' + info.level +', isPlugged = ' + info.isPlugged + ');');},
-    batteryCriticalHandler: function(info){app.writeEventLog('app.batteryCriticalHandler(level = ' + info.level +', isPlugged = ' + info.isPlugged + ');');},
+    
+    /**
+     * Battery-related events.
+     */
+    batteryLowHandler: function(info){app.batteryHandler('low', info);},
+    batteryStatusHandler: function(info){app.batteryHandler('status', info);},
+    batteryCriticalHandler: function(info){app.batteryHandler('critical', info);},
 	
-    //Actual handler, to handle app's exits.
+    /**
+     * General battery handler, to handle battery status updates
+     */
+    batteryHandler: function(type, info)
+	{
+        var
+            status = (type === 'status' ? 'normal' : type),
+            event = type.charAt(0).toUpperCase() + type.slice(1);
+        
+        $('#lblBatteryStatus').html(status);
+        $('#lblBatteryLevel').html(info.level + '%');
+        $('#lblBatteryPlugged').html((info.isPlugged) ? 'yes' : 'no');
+        
+        app.writeEventLog('app.battery' + event + 'Handler(level = ' + info.level +', isPlugged = ' + info.isPlugged + ');');
+    },
+	
+    /**
+     * Actual handler, to handle app's exits.
+     */
     backButtonHandler: function()
 	{
         app.writeEventLog('app.backButtonHandler();');
         
         apprise(i18n.t("messages.exit"), {'verify':true, 'textYes':i18n.t("messages.yes"), 'textNo':i18n.t("messages.no")}, function(r)
         {
-            app.writeEventLog('Aplication shutdown sequence completed!');
-            
-            if(r) navigator.app.exitApp();
+            if(r)
+            {
+                app.writeEventLog('Aplication is shutting down!');
+
+                navigator.app.exitApp();
+            }
         });
     },
             
@@ -139,9 +180,9 @@ var app =
     {
         var
             now = new Date(),
-            logEntry = '[' + now.getTime() + '] ' + log + "\n\n";
+            logEntry = '[' + now.getTime() + '] ' + log;
         
-        $('textarea#eventLog').text($('textarea#eventLog').text() + logEntry);
+        $('textarea#eventLog').text($('textarea#eventLog').text() + logEntry + "\n");
         
         console.log('writeEventLog: ' + logEntry);
     }
