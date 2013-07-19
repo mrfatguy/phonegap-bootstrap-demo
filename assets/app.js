@@ -35,6 +35,8 @@ var app =
 		},
 		1000);
         
+        app.updatePhonegapTab();
+        
         app.writeEventLog('app.deviceReadyHandler();');
     },
 	
@@ -56,12 +58,14 @@ var app =
     //Actual handler, to handle app's exits.
     backButtonHandler: function()
 	{
+        app.writeEventLog('app.backButtonHandler();');
+        
         apprise(i18n.t("messages.exit"), {'verify':true, 'textYes':i18n.t("messages.yes"), 'textNo':i18n.t("messages.no")}, function(r)
         {
+            app.writeEventLog('Aplication shutdown sequence completed!');
+            
             if(r) navigator.app.exitApp();
         });
-        
-        app.writeEventLog('app.backButtonHandler();');
     },
             
     checkConnection: function()
@@ -135,7 +139,7 @@ var app =
     {
         var
             now = new Date(),
-            logEntry = now.getTime() + ': ' + log + "\n\n";
+            logEntry = '[' + now.getTime() + '] ' + log + "\n\n";
         
         $('textarea#eventLog').text($('textarea#eventLog').text() + logEntry);
         
