@@ -27,10 +27,11 @@
 <!-- http://docs.phonegap.com/en/2.9.0/cordova_geolocation_geolocation.md.html#Geolocation -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/geolocation"/> in config.xml! -->
 
-<h3>Geolocation</h3>
+<a id="btnGeolocationStart" class="btn btn-primary btn-large" href="#">Geolocation</a>
+<a id="btnGeolocationStop" class="btn btn-info btn-large" href="#" style="display: none">Geolocation</a>
 
 <p></p>
-<p>To be continued...</p>
+<p><span id="positionText"></span></p>
 
 <div class="page-header"></div>
 
@@ -120,8 +121,55 @@
 
 <script type="text/javascript">
 /*<![CDATA[*/
+    function initPhonegapTab(mode)
+    {
+        var
+            coords = new Object(),
+            compass = new Object(),
+            position = new Object(),
+            acceleration = new Object(),
+            now = new Date();
+    
+        if((mode === 'compass') || (mode === 'all'))
+        {
+            compass.magneticHeading = 0;
+            compass.trueHeading = 0;
+            compass.headingAccuracy = 0;
+            compass.timestamp = now.getTime();
+
+            onCompassSuccess(compass);
+        }
+
+        if((mode === 'geolocation') || (mode === 'all'))
+        {
+            coords.latitude = 0;
+            coords.longitude = 0;
+            coords.accuracy = 0;
+            coords.altitude = 0;
+            coords.altitudeAccuracy = 0;
+            coords.heading = 0;
+            coords.speed = 0;
+            position.coords = coords;
+            position.timestamp = now;
+
+            onGeolocationSuccess(position);
+        }
+
+        if((mode === 'acceleration') || (mode === 'all'))
+        {
+            acceleration.x = 0;
+            acceleration.y = 0;
+            acceleration.z = 0;
+            acceleration.timestamp = now.getTime();
+            
+            onAccelerationSuccess(acceleration);
+        }
+    }
+        
     function onAccelerationSuccess(acceleration)
     {
+        var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
+        
         //Acceleration is already recalculated in PhoneGap!
         //var g = 9.80665;
 
@@ -133,8 +181,6 @@
         acceleration.x = (acceleration.x).toFixed(2) + ' m/s\u00b2';
         acceleration.y = (acceleration.y).toFixed(2) + ' m/s\u00b2';
         acceleration.z = ((acceleration.z + 1)).toFixed(2) + ' m/s\u00b2';
-        
-        var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
 
         var accelerationText = i18n.t('phonegap.acceleration.line1',
         {
@@ -160,6 +206,8 @@
     function onAccelerationError()
     {
         $('#accelerationText').html(i18n.t('phonegap.acceleration.error'));
+        
+        $('#btnAccelerationStop').click();
     };
     
     function onCompassSuccess(compass)
@@ -185,36 +233,99 @@
     
     function onCompassError(CompassError)
     {
-        if(CompassError.COMPASS_INTERNAL_ERR) $('#compassText').html('Internal compass error has occured!');
+        if(CompassError.COMPASS_NOT_SUPPORTED)
+        {
+            $('#compassText').html('<strong>ERROR</strong>: Compass is not supported on this device!');
+        }
+        else if(CompassError.COMPASS_INTERNAL_ERR)
+        {
+            $('#compassText').html('<strong>ERROR</strong>: Internal compass error!');
+        }
+        else
+        {
+            $('#compassText').html('<strong>ERROR</strong>: Unknown compass error!');
+        }
         
-        if(CompassError.COMPASS_NOT_SUPPORTED) $('#compassText').html('Compass is not supported on this device!');
+        $('#btnCompassStop').click();
+    };
+    
+    function onGeolocationSuccess(position)
+    {
+        //Fix for stupid PhoneGap sometimes returning NaN...
+        position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
+        position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
+        position.coords.altitude = (parseFloat(position.coords.altitude) || 0);
+        position.coords.accuracy = (parseFloat(position.coords.accuracy) || 0);
+        position.coords.altitudeAccuracy = (parseFloat(position.coords.altitudeAccuracy) || 0);
+        position.coords.heading = (parseFloat(position.coords.heading) || 0);
+        position.coords.speed = (parseFloat(position.coords.speed) || 0);
+        
+        position.coords.latitude = position.coords.latitude.toFixed(6);
+        position.coords.longitude = position.coords.longitude.toFixed(6);
+        position.coords.altitude = position.coords.altitude.toFixed(2) + ' m';
+        position.coords.accuracy = position.coords.accuracy.toFixed(6) + ' m';
+        position.coords.altitudeAccuracy = position.coords.altitudeAccuracy.toFixed(2) + ' m';
+        position.coords.heading = position.coords.heading.toFixed(2) + '\u00b0';
+        position.coords.speed = position.coords.speed.toFixed(2) + ' m/s';
+        
+        var
+            timestampText = 'Current timestamp is <strong>' + position.timestamp.getTime() + '</strong>.',
+            geoText = '<strong>Longitude</strong> is <strong>' + position.coords.longitude + '</strong>.<br />';
+    
+        geoText = geoText + '<strong>Latitude</strong> is <strong>' + position.coords.latitude + '</strong>.<br />';
+        geoText = geoText + '<strong>Accuracy</strong> is <strong>' + position.coords.accuracy + '</strong>.<br />';
+        geoText = geoText + '<strong>Altitude</strong> is <strong>' + position.coords.altitude + '</strong>.<br />';
+        geoText = geoText + '<strong>Altitude Accuracy</strong> is <strong>' + position.coords.altitudeAccuracy + '</strong>.<br />';
+        geoText = geoText + '<strong>Heading</strong> is <strong>' + position.coords.heading + '</strong>.<br />';
+        geoText = geoText + '<strong>Speed</strong> is <strong>' + position.coords.speed + '</strong>.';
+
+        $('#positionText').html(geoText + '<br />' + timestampText);
+    }
+    
+    function onGeolocationError(PositionError)
+    {
+        if(PositionError.PERMISSION_DENIED)
+        {
+            $('#positionText').html('<strong>ERROR</strong>: User does not allow your application to retrieve position information!');
+        }
+        else if(PositionError.POSITION_UNAVAILABLE)
+        {
+            $('#positionText').html('<strong>ERROR</strong>: Position unavailable -- Device is unable to get a satellite fix!');
+        }
+        else if(PositionError.TIMEOUT)
+        {
+            $('#positionText').html('<strong>ERROR</strong>: Timeout -- Device is unable to retrieve a position within the specified time!');
+        }
+        else
+        {
+            $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error!');
+        }
+        
+        $('#btnGeolocationStop').click();
     };
     
 	$(function($)
     {
         var
             compassID = 0,
+            geolocationID = 0,
             accelerationID = 0;
+            
+        initPhonegapTab('all');
             
         /**
          * Acceleration
          */
         $('body').on('click', '#btnAccelerationStart', function()
 		{
-            //Fake initial values
-            var
-                acceleration = new Object(),
-                now = new Date();
+            var accelerationOptions =
+            {
+                frequency: 100
+            };
             
-            acceleration.x = 0;
-            acceleration.y = 0;
-            acceleration.z = -1;
-            acceleration.timestamp = now.getTime();
+            initPhonegapTab('acceleration');
             
-            onAccelerationSuccess(acceleration);
-            
-            //Start watching...
-			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, {frequency: 100});
+			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, accelerationOptions);
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
@@ -226,8 +337,6 @@
 		{
 			navigator.accelerometer.clearWatch(accelerationID);
             
-            $('#accelerationText').html('');
-			
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
             
@@ -239,20 +348,14 @@
          */
 		$('body').on('click', '#btnCompassStart', function()
 		{
-            //Fake initial values
-            var
-                compass = new Object(),
-                now = new Date();
+            var compassOptions =
+            {
+                frequency: 100
+            };
             
-            compass.magneticHeading = 0;
-            compass.trueHeading = 0;
-            compass.headingAccuracy = 0;
-            compass.timestamp = now.getTime();
+            initPhonegapTab('compass');
             
-            onCompassSuccess(compass);
-            
-            //Start watching...
-			compassID = navigator.compass.watchHeading(onCompassSuccess, onCompassError);
+			compassID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, compassOptions);
 			
 			$('#btnCompassStop').show();
 			$('#btnCompassStart').hide();
@@ -264,17 +367,50 @@
 		{
 			navigator.compass.clearWatch(compassID);
             
-            $('#compassText').html('');
-			
 			$('#btnCompassStart').show();
 			$('#btnCompassStop').hide();
             
             app.writeEventLog('btnCompassStop.click();');
 		});
-        
+ 
+        /**
+         * Geolocation
+         */
+		$('body').on('click', '#btnGeolocationStart', function()
+		{
+            var geolocationOptions =
+            {
+                timeout: 7000,
+                maximumAge: 3000,
+                enableHighAccuracy: true
+            };
+            
+            initPhonegapTab('geolocation');
+            
+			geolocationID = navigator.geolocation.watchPosition(onGeolocationSuccess, onGeolocationError, geolocationOptions);
+			
+			$('#btnGeolocationStop').show();
+			$('#btnGeolocationStart').hide();
+            
+            app.writeEventLog('btnGeolocationStart.click();');
+		});
+
+		$('body').on('click', '#btnGeolocationStop', function()
+		{
+			navigator.geolocation.clearWatch(geolocationID);
+            
+			$('#btnGeolocationStart').show();
+			$('#btnGeolocationStop').hide();
+            
+            app.writeEventLog('btnGeolocationStop.click();');
+		});
+                
+        /**
+         * Notification
+         */
 		$('body').on('click', '#btnNotificationVibrate', function()
 		{
-			navigator.notification.vibrate(2500);
+			navigator.notification.vibrate(1000);
             
             app.writeEventLog('btnNotificationVibrate.click();');
 		});
