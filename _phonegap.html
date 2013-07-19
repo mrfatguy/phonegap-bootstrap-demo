@@ -4,13 +4,11 @@
     /* We are using mobile device! Scrollbars are a bit annoying on mobiles, and
     so are disabled by default and must be enabled by force. */
     width: 100%;
-    resize: none;
-    height: 100px;
     font-size: 8pt;
-    max-height: 100px;
-    overflow-y: scroll;
+    min-height: 100px;
     box-sizing: border-box;
     font-family: monospace;
+    border: solid 3px royalblue;
 }    
 </style>
 
@@ -90,7 +88,7 @@
 
 <h3>Event log</h3>
 
-<p><textarea id="eventLog"></textarea></p>
+<p><div id="eventLog"></div></p>
 
 <div class="page-header"></div>
 

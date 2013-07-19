@@ -182,7 +182,7 @@ var app =
             now = new Date(),
             logEntry = '[' + now.getTime() + '] ' + log;
         
-        $('textarea#eventLog').text($('textarea#eventLog').text() + logEntry + "\n");
+        $('#eventLog').html($('#eventLog').html() + logEntry + "<br />");
         
         console.log('writeEventLog: ' + logEntry);
     }
