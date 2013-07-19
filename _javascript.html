@@ -1,6 +1,6 @@
 <div class="page-header"><h1>AJAX Example</h1></div>
 
-<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a href="#" onclick="openUrl('http://www.jsontest.com/');">JSON Test</a> service.</p>
+<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a href="#" onclick="app.openUrl('http://www.jsontest.com/');">JSON Test</a> service.</p>
 
 <p>
     
@@ -16,19 +16,19 @@
 
 <ul>
 
-    <li><a href="#" onclick="openUrl('http://samcroft.co.uk/2011/updated-loading-data-in-phonegap-using-jquery-1-5/');">Loading external data into PhoneGap app</a>,</li>
+    <li><a href="#" onclick="app.openUrl('http://samcroft.co.uk/2011/updated-loading-data-in-phonegap-using-jquery-1-5/');">Loading external data into PhoneGap app</a>,</li>
     
-    <li><a href="#" onclick="openUrl('http://samcroft.co.uk/2012/posting-data-from-a-phonegap-app-to-a-server-using-jquery/');">Posting data from a PhoneGap app to a server</a>,</li>
+    <li><a href="#" onclick="app.openUrl('http://samcroft.co.uk/2012/posting-data-from-a-phonegap-app-to-a-server-using-jquery/');">Posting data from a PhoneGap app to a server</a>,</li>
     
-    <li><a href="#" onclick="openUrl('http://www.jsontest.com/');">Simple testing for JSON-based applications</a>,</li>
+    <li><a href="#" onclick="app.openUrl('http://www.jsontest.com/');">Simple testing for JSON-based applications</a>,</li>
     
-    <li><a href="#" onclick="openUrl('http://stackoverflow.com/questions/3543513/how-to-parse-jsonp-data-returned-from-remote-server');">How to parse JSONP data from remote server</a>.</li>
+    <li><a href="#" onclick="app.openUrl('http://stackoverflow.com/questions/3543513/how-to-parse-jsonp-data-returned-from-remote-server');">How to parse JSONP data from remote server</a>.</li>
 
 </ul>
 
 <div class="page-header"><h1>Digital Clock</h1></div>
 
-<p>Pure JS digital display from <a href="#" onclick="openUrl('http://www.3quarks.com/en/SegmentDisplay/index.html');">3quarks.com</a>.</p>
+<p>Pure JS digital display from <a href="#" onclick="app.openUrl('http://www.3quarks.com/en/SegmentDisplay/index.html');">3quarks.com</a>.</p>
 
 <canvas id="segment-clock" width="280" height="50">
     Your browser is not supported!
@@ -249,7 +249,7 @@
          */
         $('body').on('click', '#ipButton', function()
         {
-            if(!isConnected()) connectionOrInternetError();
+            if(!app.isConnected()) connectionOrInternetError();
             
             $.ajax
             ({
@@ -267,7 +267,7 @@
         
         $('body').on('click', '#timeButton', function()
         {
-            if(!isConnected()) connectionOrInternetError();
+            if(!app.isConnected()) connectionOrInternetError();
             
             $.ajax
             ({
@@ -277,7 +277,7 @@
                 data : {},
                 success: function(data)
                 {
-                    apprise('<div style="text-align: center">Current date is:<br /><code>' + data.date + '</code><br /><br />Current time (UTC) is:<br /><code>' + data.time + '</code><br /><br />We\'ve <code>' + data.milliseconds_since_epoch + '</code> milliseconds since Unix Epoch.', {});
+                    apprise('<div style="text-align: center">Current date is:<br /><code>' + data.date + '</code><br /><br />Current time (UTC) is:<br /><code>' + data.time + '</code><br /><br />We\'ve <code>' + data.milliseconds_since_epoch + '</code> milliseconds since Epoch.', {});
                 },
                 error: connectionOrInternetError
             });
@@ -285,9 +285,9 @@
         
         $('body').on('click', '#md5Button', function()
         {
-            if(!isConnected()) connectionOrInternetError();
+            if(!app.isConnected()) connectionOrInternetError();
             
-            apprise('Enter ANY text', {'input':true, 'textOk':'Go!', 'textCancel':'No, thanks...'}, function(r)
+            apprise('Enter ANY text', {'input':true, 'textOk':'Go!', 'textCancel':'Nope...'}, function(r)
             {
                 if(typeof(r) === 'string')
                 {

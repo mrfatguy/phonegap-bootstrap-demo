@@ -134,7 +134,7 @@
 
                 </div>
 
-                <ul class="nav nav-tabs" id="myTabs">
+                <ul class="nav nav-tabs">
                     
                   <li class="active"><a href="#bootstrap" data-i18n="tabs.bootstrap" data-toggle="tab">tabs.bootstrap</a></li>
                   
@@ -160,68 +160,6 @@
         <script type="text/javascript">
         /*<![CDATA[*/
             /**
-             * Functions
-             */
-            function isConnected()
-            {
-                return !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
-            }
-            
-            function openUrl(url)
-            {
-                window.open(url, '_system', 'location=yes');
-            }
-            
-            function checkConnection()
-            {
-                var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
-
-                var states = {};
-                states[Connection.UNKNOWN]  = 'Unknown connection';
-                states[Connection.ETHERNET] = 'Ethernet connection';
-                states[Connection.WIFI]     = 'WiFi connection';
-                states[Connection.CELL_2G]  = 'Cell 2G connection';
-                states[Connection.CELL_3G]  = 'Cell 3G connection';
-                states[Connection.CELL_4G]  = 'Cell 4G connection';
-                states[Connection.CELL]     = 'Cell generic connection';
-                states[Connection.NONE]     = 'No network connection';
-
-                $('#connectionType').html(states[networkState]);
-            }
-            
-            function updatePhonegapTab()
-            {
-                checkConnection();
-            }
-            
-            /**
-             * Translation
-             * 
-             * http://i18next.com/pages/doc_init.html
-             */
-            i18n.init
-            ({
-                lng: 'en-US',
-                ns: 'general',
-                useCookie: false,
-                resGetPath: 'locales/__ns__.__lng__.json'
-            }, function()
-            {
-                /**
-                 * Preload tabs' contents and then translate them!
-                 */
-                $("div.tab-pane").each(function()
-                {
-                    $(this).load($(this).attr("data-url"), function()
-                    {
-                        $('body').i18n();
-                        
-                        updatePhonegapTab();
-                    });
-                });
-            });
-
-            /**
              * jQuery
              */
             $(function($)
@@ -233,6 +171,8 @@
                  */
                 $('#btnInfo').click(function()
                 {
+                    app.writeEventLog('btnInfo.click();');
+                    
                     var info =
                         'Model: <code>' + device.model + '</code><br /><br />' + 
                         'UUID: <code>' + device.uuid + '</code><br /><br />' + 
@@ -243,7 +183,9 @@
 
                 $('#btnAcrid').click(function()
                 {
-                    openUrl('http://acrid.pl');
+                    app.writeEventLog('btnAcrid.click() -- opening a website...');
+                    
+                    app.openUrl('http://acrid.pl');
                 });
                 
                 /**
@@ -287,7 +229,9 @@
                         theClock.colorOn = theDisplay.colorOn = $('h1').css('color');
                     }
                     
-                    updatePhonegapTab();
+                    app.updatePhonegapTab();
+                    
+                    app.writeEventLog('Changing style to "' + title + '" (' + stylesheet + ').');
                 });
                 
                 /**
@@ -304,11 +248,13 @@
                     {
                         $('body').i18n();
                         
-                        updatePhonegapTab();
+                        app.updatePhonegapTab();
                     });
                         
                     $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
                     $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
+                    
+                    app.writeEventLog('Changing language to "' + code + '".');
                 });
             });
         /*]]>*/

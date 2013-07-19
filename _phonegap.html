@@ -48,11 +48,19 @@
 /*<![CDATA[*/
     function onAccelerationSuccess(acceleration)
     {
+        /*
+         * Seems that acceleration is already recalculated in PhoneGap
+         * 
         var g = 9.80665;
         
-        acceleration.x = (acceleration.x * g).toFixed(2) + ' m/s\u00b2';
-        acceleration.y = (acceleration.y * g).toFixed(2) + ' m/s\u00b2';
-        acceleration.z = ((acceleration.z + 1) * g).toFixed(2) + ' m/s\u00b2';
+        acceleration.x = (acceleration.x * g).toFixed(2);
+        acceleration.y = (acceleration.y * g).toFixed(2);
+        acceleration.z = ((acceleration.z + 1) * g).toFixed(2);
+        */
+        
+        acceleration.x = (parseFloat(acceleration.x) || 0) + ' m/s\u00b2';
+        acceleration.y = (parseFloat(acceleration.y) || 0) + ' m/s\u00b2';
+        acceleration.z = (parseFloat(acceleration.z) || 0) + ' m/s\u00b2';
         
         var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
 
@@ -84,6 +92,14 @@
     
     function onCompassSuccess(compass)
     {
+        compass.trueHeading = compass.trueHeading.toFixed(2);
+        compass.magneticHeading = compass.magneticHeading.toFixed(2);
+        compass.headingAccuracy = compass.headingAccuracy.toFixed(2);
+        
+        compass.trueHeading = (parseFloat(compass.trueHeading) || 0) + '\u00b0';
+        compass.magneticHeading = (parseFloat(compass.magneticHeading) || 0) + '\u00b0';
+        compass.headingAccuracy = (parseFloat(compass.headingAccuracy) || 0) + '\u00b0';
+        
         var
             timestampText = 'Current timestamp is <strong>' + compass.timestamp + '</strong>.',
             headingText = '<strong>Magnetic heading</strong> is <strong>' + compass.magneticHeading + '</strong>.<br />';
@@ -129,6 +145,8 @@
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
+            
+            app.writeEventLog('btnAccelerationStart.click();');
 		});
 
 		$('#btnAccelerationStop').click(function()
@@ -139,6 +157,8 @@
 			
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
+            
+            app.writeEventLog('btnAccelerationStop.click();');
 		});
         
         /**
@@ -163,6 +183,8 @@
 			
 			$('#btnCompassStop').show();
 			$('#btnCompassStart').hide();
+            
+            app.writeEventLog('btnCompassStart.click();');
 		});
 
 		$('#btnCompassStop').click(function()
@@ -173,6 +195,8 @@
 			
 			$('#btnCompassStart').show();
 			$('#btnCompassStop').hide();
+            
+            app.writeEventLog('btnCompassStop.click();');
 		});
     });
 /*]]>*/
