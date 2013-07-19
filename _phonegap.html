@@ -201,7 +201,7 @@
         /**
          * Acceleration
          */
-        $('body').on('click', '#btnAccelerationStart').click(function()
+        $('body').on('click', '#btnAccelerationStart', function()
 		{
             //Fake initial values
             var
@@ -224,7 +224,7 @@
             app.writeEventLog('btnAccelerationStart.click();');
 		});
 
-		$('body').on('click', '#btnAccelerationStop').click(function()
+		$('body').on('click', '#btnAccelerationStop', function()
 		{
 			navigator.accelerometer.clearWatch(accelerationID);
             
@@ -239,7 +239,7 @@
         /**
          * Compass
          */
-		$('body').on('click', '#btnCompassStart').click(function()
+		$('body').on('click', '#btnCompassStart', function()
 		{
             //Fake initial values
             var
@@ -262,7 +262,7 @@
             app.writeEventLog('btnCompassStart.click();');
 		});
 
-		$('body').on('click', '#btnCompassStop').click(function()
+		$('body').on('click', '#btnCompassStop', function()
 		{
 			navigator.compass.clearWatch(compassID);
             
@@ -274,14 +274,14 @@
             app.writeEventLog('btnCompassStop.click();');
 		});
         
-		$('body').on('click', '#btnNotificationVibrate').click(function()
+		$('body').on('click', '#btnNotificationVibrate', function()
 		{
 			navigator.notification.vibrate(2500);
             
             app.writeEventLog('btnNotificationVibrate.click();');
 		});
         
-		$('body').on('click', '#btnNotificationBeep').click(function()
+		$('body').on('click', '#btnNotificationBeep', function()
 		{
             /**
              * The iPhone does not feature a native beep API. Cordova implements
