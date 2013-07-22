@@ -9,11 +9,18 @@
     box-sizing: border-box;
     font-family: monospace;
     border: solid 3px royalblue;
-}    
+}
+
+.audio-buttons a
+{
+    width: 48%;
+    margin-bottom: 7px;
+    box-sizing: border-box;
+}
 </style>
 
 <!-- Connection -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_connection_connection.md.html#Connection -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_connection_connection.md.html#Connection -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/network"/> in config.xml! -->
 
 <h1 data-i18n="phonegap.connection.title">phonegap.connection.title</h1>
@@ -24,7 +31,7 @@
 
 
 <!-- Geolocation -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_geolocation_geolocation.md.html#Geolocation -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_geolocation_geolocation.md.html#Geolocation -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/geolocation"/> in config.xml! -->
 
 <a id="btnGeolocationStart" class="btn btn-primary btn-large">Geolocation</a>
@@ -37,7 +44,7 @@
 
 
 <!-- Accelerometer -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_accelerometer_accelerometer.md.html#Accelerometer -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_accelerometer_accelerometer.md.html#Accelerometer -->
 
 <a id="btnAccelerationStart" class="btn btn-primary btn-large" data-i18n="phonegap.acceleration.title">phonegap.acceleration.title</a>
 <a id="btnAccelerationStop" class="btn btn-info btn-large" data-i18n="phonegap.acceleration.title" style="display: none">phonegap.acceleration.title</a>
@@ -49,7 +56,7 @@
 
 
 <!-- Compass -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_compass_compass.md.html#Compass -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_compass_compass.md.html#Compass -->
 
 <a id="btnCompassStart" class="btn btn-primary btn-large">Compass</a>
 <a id="btnCompassStop" class="btn btn-info btn-large" style="display: none">Compass</a>
@@ -61,18 +68,26 @@
 
 
 <!-- Media -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_media_media.md.html#Media -->
+<!-- Example: https://gist.github.com/alunny/2380994 -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_media_media.md.html#Media -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/media"/> in config.xml! -->
 
 <h3>Media</h3>
 
-<p>To be continued...</p>
+<div class="audio-buttons">
+
+    <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>audio/hangout.m4a</kbd></a>
+    <a class="btn btn-small" onclick="app.playAudio('beep.wav')"><kbd>beep.wav</kbd></a>
+    <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>audio/averno.mp3</kbd></a>
+    <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>audio/mayday.mp3</kbd></a>
+
+</div>
 
 <div class="page-header"></div>
 
 
 <!-- Battery -- only available through events -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html#Events -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_events_events.md.html#Events -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/battery"/> in config.xml! -->
 
 <h3>Battery</h3>
@@ -85,7 +100,7 @@
 
 
 <!-- Events -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_events_events.md.html#Events -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_events_events.md.html#Events -->
 
 <h3>Event log</h3>
 
@@ -95,7 +110,7 @@
 
 
 <!-- Storage -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_storage_storage.md.html#Storage -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_storage_storage.md.html#Storage -->
 
 <h3>Storage</h3>
 
@@ -105,7 +120,7 @@
 <div class="page-header"></div>
 
 <!-- Notification -->
-<!-- http://docs.phonegap.com/en/2.9.0/cordova_notification_notification.md.html#Notification -->
+<!-- API: http://docs.phonegap.com/en/3.0.0/cordova_notification_notification.md.html#Notification -->
 <!-- Needs: <feature name="http://api.phonegap.com/1.0/notification"/> in config.xml! -->
 
 <a id="btnNotificationBeep" class="btn btn-inverse btn-large">Beep!</a>

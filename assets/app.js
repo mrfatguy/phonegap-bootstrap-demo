@@ -185,6 +185,22 @@ var app =
         $('#eventLog').html($('#eventLog').html() + logEntry + "<br />");
         
         console.log('writeEventLog: ' + logEntry);
+    },
+            
+    //https://gist.github.com/alunny/2380994  
+    playAudio: function(file)
+    {
+//            if(device.platform == 'Android') src = '/android_asset/www/' + src;
+ 
+            var media = new Media(file, function(){}, function()
+            {
+                var errorMessage = 'app.playAudio() failed for " + file + "';
+                
+                app.writeEventLog(errorMessage);
+                apprise(errorMessage, {});
+            });
+ 
+            media.play();
     }
 };
 
