@@ -190,7 +190,7 @@ var app =
     //https://gist.github.com/alunny/2380994  
     playAudio: function(file)
     {
-            if(device.platform === 'Android') src = '/android_asset/www/' + src;
+            if(device.platform === 'Android') file = '/android_asset/www/' + file;
  
             var media = new Media(file, function(){}, function()
             {
