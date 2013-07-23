@@ -210,7 +210,7 @@ var app =
         
         $('#eventLog').html($('#eventLog').html() + logEntry + "<br />");
         
-        console.log('writeEventLog: ' + logEntry);
+        console.log(logEntry);
     },
             
     

@@ -251,11 +251,11 @@
     
     function onCompassError(CompassError)
     {
-        if(CompassError.code === 'COMPASS_NOT_SUPPORTED')
+        if(CompassError.code === CompassError.COMPASS_NOT_SUPPORTED)
         {
             $('#compassText').html('<strong>ERROR</strong>: Compass is not supported on this device!');
         }
-        else if(CompassError.code === 'COMPASS_INTERNAL_ERR')
+        else if(CompassError.code === CompassError.COMPASS_INTERNAL_ERR)
         {
             $('#compassText').html('<strong>ERROR</strong>: Internal compass error!');
         }
@@ -304,21 +304,21 @@
     
     function onGeolocationError(PositionError)
     {
-        if(PositionError.code === 'PERMISSION_DENIED')
+        if(PositionError.code === PositionError.PERMISSION_DENIED)
         {
-            $('#positionText').html('<strong>ERROR</strong>: User does not allow your application to retrieve position information!');
+            $('#positionText').html('<strong>ERROR</strong>: User does not allow your application to retrieve position information! Additional error message: "' + PositionError.message + '".');
         }
-        else if(PositionError.code === 'POSITION_UNAVAILABLE')
+        else if(PositionError.code === PositionError.POSITION_UNAVAILABLE)
         {
-            $('#positionText').html('<strong>ERROR</strong>: Position unavailable -- Device is unable to get a satellite fix!');
+            $('#positionText').html('<strong>ERROR</strong>: Position unavailable -- Device is unable to get a satellite fix! Additional error message: "' + PositionError.message + '".');
         }
-        else if(PositionError.code === 'TIMEOUT' || PositionError.code === 3)
+        else if(PositionError.code === PositionError.TIMEOUT)
         {
-            $('#positionText').html('<strong>ERROR</strong>: Timeout -- Device is unable to retrieve a position within the specified time!');
+            $('#positionText').html('<strong>ERROR</strong>: Timeout -- Device is unable to retrieve a position within the specified time! Additional error message: "' + PositionError.message + '".');
         }
         else
         {
-            $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error!');
+            $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error! Additional error message: "' + PositionError.message + '".');
         }
         
         console.log(PositionError);
