@@ -1,3 +1,8 @@
+<div class="page-header"><h1>jQuery UI Slider</h1></div>
+
+<p>Selected time: <span style="font-weight: bold" id="positionLabel"></span></p>
+<p><div id="positionSlider"></div></p>
+
 <div class="page-header"><h1>AJAX Example</h1></div>
 
 <p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a onclick="app.openUrl('http://www.jsontest.com/');">JSON Test</a> service.</p>
@@ -237,6 +242,9 @@
      */
     jQuery(function($)
     {
+        /**
+         * AJAX Examples
+         */
         function connectionOrInternetError()
         {
             apprise("There was an error loading data!<br /><br />Either you're not connected to the Internet or server didn't respond...", {'textOk':'Got that!'});
@@ -244,9 +252,6 @@
             return false;
         }
         
-        /**
-         * AJAX Examples
-         */
         $('body').on('click', '#ipButton', function()
         {
             if(!app.isConnected()) connectionOrInternetError();
@@ -306,6 +311,46 @@
                 }
             });
         });
+        
+        /**
+         * jQuery UI Slider
+         */
+        function todayMidnightTimestamp()
+        {
+            var
+                now = new Date(),
+                startOfDay = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+        
+            return startOfDay / 1000;
+        }
+        
+        function formattedTimeFromTimestamp(timestamp)
+        {
+            var
+                date = new Date(timestamp * 1000),
+                hours = (date.getHours() < 10 ? '0' + date.getHours() : date.getHours()),
+                minutes = (date.getMinutes() < 10 ? '0' + date.getMinutes() : date.getMinutes()),
+                seconds = (date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds()),
+                formattedTime = hours + ':' + minutes + ':' + seconds;
+
+            return formattedTime;
+        }
+        
+        $("#positionSlider").slider
+        ({
+            orientation: 'horizontal',
+            range: 'min',
+            max: 86400,
+            value: 0,
+            slide: function(event, ui)
+            {
+                var value = todayMidnightTimestamp() + $("#positionSlider").slider("value");
+            
+              $("#positionLabel").text(formattedTimeFromTimestamp(value));
+            }
+        });
+        
+        $("#positionLabel").text(formattedTimeFromTimestamp(todayMidnightTimestamp()));
     });
 /*]]>*/
 </script>
