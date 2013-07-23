@@ -251,11 +251,11 @@
     
     function onCompassError(CompassError)
     {
-        if(CompassError.COMPASS_NOT_SUPPORTED)
+        if(CompassError.code === 'COMPASS_NOT_SUPPORTED')
         {
             $('#compassText').html('<strong>ERROR</strong>: Compass is not supported on this device!');
         }
-        else if(CompassError.COMPASS_INTERNAL_ERR)
+        else if(CompassError.code === 'COMPASS_INTERNAL_ERR')
         {
             $('#compassText').html('<strong>ERROR</strong>: Internal compass error!');
         }
@@ -263,6 +263,8 @@
         {
             $('#compassText').html('<strong>ERROR</strong>: Unknown compass error!');
         }
+        
+        console.log(CompassError);
         
         $('#btnCompassStop').click();
     };
@@ -302,15 +304,15 @@
     
     function onGeolocationError(PositionError)
     {
-        if(PositionError.PERMISSION_DENIED)
+        if(PositionError.code === 'PERMISSION_DENIED')
         {
             $('#positionText').html('<strong>ERROR</strong>: User does not allow your application to retrieve position information!');
         }
-        else if(PositionError.POSITION_UNAVAILABLE)
+        else if(PositionError.code === 'POSITION_UNAVAILABLE')
         {
             $('#positionText').html('<strong>ERROR</strong>: Position unavailable -- Device is unable to get a satellite fix!');
         }
-        else if(PositionError.TIMEOUT)
+        else if(PositionError.code === 'TIMEOUT' || PositionError.code === 3)
         {
             $('#positionText').html('<strong>ERROR</strong>: Timeout -- Device is unable to retrieve a position within the specified time!');
         }
@@ -318,6 +320,8 @@
         {
             $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error!');
         }
+        
+        console.log(PositionError);
         
         $('#btnGeolocationStop').click();
     };
