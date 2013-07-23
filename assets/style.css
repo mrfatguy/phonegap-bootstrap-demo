@@ -6,3 +6,13 @@ body
 }
 
 code, pre {font-size: 16px !important}
+
+#menu-buttons .btn {margin: 2px}
+
+#menu-buttons .well {padding: 7px}
+
+#menu-buttons .btn-group + .btn-group {margin: 0px}
+
+#menu-buttons .btn-group > .btn:first-child {margin-right: 0px}
+
+#menu-buttons .btn-group > .btn.dropdown-toggle {margin-left: 0px}
