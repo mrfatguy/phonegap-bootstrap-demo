@@ -159,19 +159,45 @@ var app =
         {
             /**
              * Preload tabs' contents and then translate them...
+             * 
+             * We're NOT using jQuery.fn.load(), but our own function. This is required
+             * in any PhoneGap application, that loads data from local files via AJAX,
+             * to handle request.status === 0, which is not handled by jQuery.fn.load().
+             * 
+             * Without this fix, loading local files in Android 2.x.x platform fails.
+             * 
+             * Details are discussed in Simon Mac Donald's blog (closer to end):
+             * 
+             * http://simonmacdonald.blogspot.com/2011/12/on-third-day-of-phonegapping-getting.html
              */
             $('body').i18n();
 
             $("div.tab-pane").each(function()
             {
-                $(this).load($(this).attr("data-url"), function()
+                var
+                    target = $(this),
+                    request = new XMLHttpRequest();
+                    
+                request.open('GET', target.attr("data-url"), true);
+                
+                request.onreadystatechange = function()
                 {
-                    console.log('Loaded contents of "' + $(this).attr("data-url") + '" file into #' + $(this).attr("id") + ' tab...');
+                    if(request.readyState === 4)
+                    {
+                        if(request.status === 200 || request.status === 0)
+                        {
+                            target.html(request.responseText);
+                            
+                            $('#' + target.attr("id")).i18n();
 
-                    $('#' + $(this).attr("id")).i18n();
-
-                    app.updatePhonegapTab();
-                });
+                            if(target.attr("data-url") === '_phonegap.html') app.updatePhonegapTab();
+                            
+                            console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab...');
+                        }
+                    }
+                }
+                
+                request.send();
             });
         });
     },
@@ -187,20 +213,25 @@ var app =
         console.log('writeEventLog: ' + logEntry);
     },
             
-    //https://gist.github.com/alunny/2380994  
+    
     playAudio: function(file)
     {
-            if(device.platform === 'Android') file = '/android_asset/www/' + file;
- 
-            var media = new Media(file, function(){}, function()
-            {
-                var errorMessage = 'app.playAudio() failed for "' + file + '"!';
-                
-                app.writeEventLog(errorMessage);
-                apprise(errorMessage, {});
-            });
- 
-            media.play();
+        /**
+         * Fix for Android platform
+         * 
+         * https://gist.github.com/alunny/2380994
+         */
+        if(device.platform === 'Android') file = '/android_asset/www/' + file;
+
+        var media = new Media(file, function(){}, function()
+        {
+            var errorMessage = 'app.playAudio() failed for "' + file + '"!';
+
+            app.writeEventLog(errorMessage);
+            apprise(errorMessage, {});
+        });
+
+        media.play();
     }
 };
 
