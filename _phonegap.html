@@ -13,8 +13,14 @@
 
 .audio-buttons a
 {
-    width: 48%;
+    width: 100%;
     margin-bottom: 7px;
+    box-sizing: border-box;
+}
+
+.audio-buttons div.pull-left, .audio-buttons div.pull-right
+{
+    width: 45%;
     box-sizing: border-box;
 }
 </style>
@@ -75,11 +81,22 @@
 <h3>Media</h3>
 
 <div class="audio-buttons">
-
-    <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>audio/hangout.m4a</kbd></a>
-    <a class="btn btn-small" onclick="app.playAudio('beep.wav')"><kbd>beep.wav</kbd></a>
-    <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>audio/averno.mp3</kbd></a>
-    <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>audio/mayday.mp3</kbd></a>
+    
+    <div class="pull-left">
+        
+        <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>audio/hangout.m4a</kbd></a>
+        <a class="btn btn-small" onclick="app.playAudio('beep.wav')"><kbd>beep.wav</kbd></a>
+        
+    </div>
+    
+    <div class="pull-right text-right">
+        
+        <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>audio/averno.mp3</kbd></a>
+        <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>audio/mayday.mp3</kbd></a>
+        
+    </div>
+    
+    <div style="clear: both"></div>
 
 </div>
 

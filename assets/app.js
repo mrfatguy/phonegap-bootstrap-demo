@@ -103,6 +103,10 @@ var app =
             if(r)
             {
                 app.writeEventLog('Aplication is shutting down!');
+                
+                $('#btnCompassStop').click();
+                $('#btnGeolocationStop').click();
+                $('#btnAccelerationStop').click();
 
                 navigator.app.exitApp();
             }
