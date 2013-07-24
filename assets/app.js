@@ -186,7 +186,7 @@ var app =
                 
                 request.onerror = function(e)
                 {
-                    alert('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "' + e.target.status + '".');
+                    target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "' + e.target.status + '".');
                 };
                 
                 request.onreadystatechange = function()
@@ -203,6 +203,7 @@ var app =
                             
                             console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab...');
                         }
+                        else target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "request.status is different than 200 or 0".');
                     }
                 };
                 

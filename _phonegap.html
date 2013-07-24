@@ -84,15 +84,15 @@
     
     <div class="pull-left">
         
-        <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>audio/hangout.m4a</kbd></a>
+        <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>hangout.m4a</kbd></a>
         <a class="btn btn-small" onclick="app.playAudio('beep.wav')"><kbd>beep.wav</kbd></a>
         
     </div>
     
     <div class="pull-right text-right">
         
-        <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>audio/averno.mp3</kbd></a>
-        <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>audio/mayday.mp3</kbd></a>
+        <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>averno.mp3</kbd></a>
+        <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>mayday.mp3</kbd></a>
         
     </div>
     
@@ -288,7 +288,7 @@
     
     function onGeolocationSuccess(position)
     {
-        app.writeEventLog('onGeolocationSuccess() handler has fired...');
+        if((position.coords.latitude !== 0) || (position.coords.longitude !== 0)) app.writeEventLog('onGeolocationSuccess() handler has fired...');
         
         //Fix for stupid PhoneGap sometimes returning NaN...
         position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
