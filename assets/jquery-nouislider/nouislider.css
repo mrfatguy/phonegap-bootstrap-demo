@@ -1,0 +1,64 @@
+
+	/* http://dribbble.com/shots/756071-Range-Slider */
+	/* http://dribbble.com/search?q=range+slider */
+
+/*	@import url('/noUiDebug.css');*/
+	@import url('/nouislider/noUiFox.css');
+	@import url('/nouislider/noUiSpace.css');	
+
+/* FUNDAMENTAL */
+
+	.noUiSlider,
+	.noUiSlider * {
+-webkit-box-sizing: border-box;
+   -moz-box-sizing: border-box;
+		box-sizing: border-box;
+-webkit-user-select: none;
+   -moz-user-select: none;
+	-ms-user-select: none;
+		display: block;
+		cursor: default;
+	}
+	.noUiSlider {
+		position: relative;
+	}
+	.noUiSlider a {
+		position: absolute;
+		z-index: 1;
+	}
+	.noUiSlider a:nth-child(2) {
+		background: inherit !important;
+	}
+	.noUiSlider.vertical a {
+		width: 100%;
+		bottom: 0;
+	}
+	.noUiSlider.horizontal a {
+		height: 100%;
+		right: 0;
+	}
+	
+@media screen and (-ms-high-contrast: active), (-ms-high-contrast: none) {
+	.noUiSlider:before,
+	body.TOUCH,
+	.noUiSlider div {
+	/* http://blogs.msdn.com/b/ie/archive/2011/09/20/touch-input-for-ie10-and-metro-style-apps.aspx */
+		-ms-touch-action: none;
+	}
+	.noUiSlider:before {
+		display: block;
+		position: absolute;
+		width: 150%;
+		left: -25%;
+		height: 400%;
+		top: -150%;
+		content: "";
+		z-index: -1;
+	}
+	.noUiSlider.vertical:before {
+		width: 400%;
+		left: -150%;
+		height: 150%;
+		top: -25%;
+	}
+}

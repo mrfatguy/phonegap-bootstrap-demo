@@ -1,7 +1,10 @@
-<div class="page-header"><h1>jQuery UI Slider</h1></div>
+<div class="page-header"><h1>noUiSlider</h1></div>
 
 <p>Selected time: <span style="font-weight: bold" id="positionLabel"></span></p>
+
 <p><div id="positionSlider"></div></p>
+
+<p><small>Pretty pitty, but it seems, it doesn't work at all, right now!</small></p>
 
 <div class="page-header"><h1>AJAX Example</h1></div>
 
@@ -313,7 +316,7 @@
         });
         
         /**
-         * jQuery UI Slider
+         * noUiSlider
          */
         function todayMidnightTimestamp()
         {
@@ -336,17 +339,15 @@
             return formattedTime;
         }
         
-        $("#positionSlider").slider
+        $("#positionSlider").noUiSlider
         ({
-            orientation: 'horizontal',
-            range: 'min',
-            max: 86400,
-            value: 0,
-            slide: function(event, ui)
+            range: [0, 100],
+            start: 50,
+            handles: 1,
+            connect: "lower",
+            slide: function()
             {
-                var value = todayMidnightTimestamp() + $("#positionSlider").slider("value");
-            
-              $("#positionLabel").text(formattedTimeFromTimestamp(value));
+                $("#positionLabel").text(formattedTimeFromTimestamp($(this).val()));
             }
         });
         
