@@ -14,7 +14,7 @@
             "stop": "Stop",
             "title": "Accelerometer",
             "line1": "Acceleration in the <strong>__axis__</strong> axis is <strong>__acceleration__</strong>.",
-            "line2": "Current timestamp is <strong>__timestamp__</strong>.",
+            "line2": "Current timestamp is \"<strong>__timestamp__</strong>\".",
             "error": "Error getting data from the accelerometer..."
         }
     },

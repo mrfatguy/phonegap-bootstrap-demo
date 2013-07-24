@@ -14,7 +14,7 @@
             "stop": "Halt",
             "title": "Accelerometer",
             "line1": "Beschleunigung in der <strong>__axis__</strong> Achse ist <strong>__acceleration__</strong>.",
-            "line2": "Aktueller Zeitstempel ist <strong>__timestamp__</strong>.",
+            "line2": "Aktueller Zeitstempel ist \"<strong>__timestamp__</strong>\".",
             "error": "Fehler beim Abrufen von Daten aus dem Beschleunigungsmesser..."
         }
     },

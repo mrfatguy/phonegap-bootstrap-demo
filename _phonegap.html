@@ -170,7 +170,7 @@
             compass.magneticHeading = 0;
             compass.trueHeading = 0;
             compass.headingAccuracy = 0;
-            compass.timestamp = now.getTime();
+            compass.timestamp = now;
 
             onCompassSuccess(compass);
         }
@@ -195,7 +195,7 @@
             acceleration.x = 0;
             acceleration.y = 0;
             acceleration.z = 0;
-            acceleration.timestamp = now.getTime();
+            acceleration.timestamp = now;
             
             onAccelerationSuccess(acceleration);
         }
@@ -257,7 +257,7 @@
         compass.headingAccuracy = compass.headingAccuracy.toFixed(2) + '\u00b0';
         
         var
-            timestampText = 'Current timestamp is <strong>' + compass.timestamp + '</strong>.',
+            timestampText = 'Current timestamp is "<strong>' + compass.timestamp + '</strong>".',
             headingText = '<strong>Magnetic heading</strong> is <strong>' + compass.magneticHeading + '</strong>.<br />';
     
         headingText = headingText + '<strong>True heading</strong> is <strong>' + compass.trueHeading + '</strong>.<br />';
@@ -288,7 +288,12 @@
     
     function onGeolocationSuccess(position)
     {
-        if((position.coords.latitude !== 0) || (position.coords.longitude !== 0)) app.writeEventLog('onGeolocationSuccess() handler has fired...');
+        if((position.coords.latitude !== 0) || (position.coords.longitude !== 0))
+        {
+            app.writeEventLog('onGeolocationSuccess() fired!');
+            
+            console.log(position);
+        }
         
         //Fix for stupid PhoneGap sometimes returning NaN...
         position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
@@ -308,7 +313,7 @@
         position.coords.speed = position.coords.speed.toFixed(2) + ' m/s';
         
         var
-            timestampText = 'Current timestamp is <strong>' + position.timestamp.getTime() + '</strong>.',
+            timestampText = 'Current timestamp is "<strong>' + position.timestamp + '</strong>".',
             geoText = '<strong>Longitude</strong> is <strong>' + position.coords.longitude + '</strong>.<br />';
     
         geoText = geoText + '<strong>Latitude</strong> is <strong>' + position.coords.latitude + '</strong>.<br />';
@@ -323,7 +328,8 @@
     
     function onGeolocationError(PositionError)
     {
-        app.writeEventLog('onGeolocationError() handler has fired...');
+        app.writeEventLog('onGeolocationError() fired!');
+        console.log(PositionError);
         
         if(PositionError.code === PositionError.PERMISSION_DENIED)
         {
@@ -341,8 +347,6 @@
         {
             $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error! Additional error message: "' + PositionError.message + '".');
         }
-        
-        console.log(PositionError);
         
         $('#btnGeolocationStop').click();
     };
