@@ -170,7 +170,7 @@
             compass.magneticHeading = 0;
             compass.trueHeading = 0;
             compass.headingAccuracy = 0;
-            compass.timestamp = now;
+            compass.timestamp = now.getTime();
 
             onCompassSuccess(compass);
         }
@@ -185,7 +185,7 @@
             coords.heading = 0;
             coords.speed = 0;
             position.coords = coords;
-            position.timestamp = now;
+            position.timestamp = now.getTime();
 
             onGeolocationSuccess(position);
         }
@@ -195,7 +195,7 @@
             acceleration.x = 0;
             acceleration.y = 0;
             acceleration.z = 0;
-            acceleration.timestamp = now;
+            acceleration.timestamp = now.getTime();
             
             onAccelerationSuccess(acceleration);
         }
