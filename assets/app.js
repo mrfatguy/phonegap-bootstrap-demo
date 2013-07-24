@@ -184,6 +184,11 @@ var app =
                     
                 request.open('GET', target.attr("data-url"), true);
                 
+                request.onerror = function(e)
+                {
+                    alert('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "' + e.target.status + '".');
+                };
+                
                 request.onreadystatechange = function()
                 {
                     if(request.readyState === 4)
@@ -199,7 +204,7 @@ var app =
                             console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab...');
                         }
                     }
-                }
+                };
                 
                 request.send();
             });

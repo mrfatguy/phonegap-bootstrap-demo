@@ -288,6 +288,8 @@
     
     function onGeolocationSuccess(position)
     {
+        app.writeEventLog('onGeolocationSuccess() handler has fired...');
+        
         //Fix for stupid PhoneGap sometimes returning NaN...
         position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
         position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
@@ -321,6 +323,8 @@
     
     function onGeolocationError(PositionError)
     {
+        app.writeEventLog('onGeolocationError() handler has fired...');
+        
         if(PositionError.code === PositionError.PERMISSION_DENIED)
         {
             $('#positionText').html('<strong>ERROR</strong>: User does not allow your application to retrieve position information! Additional error message: "' + PositionError.message + '".');

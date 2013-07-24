@@ -13,6 +13,6 @@ code, pre {font-size: 16px !important}
 
 #menu-buttons .btn-group + .btn-group {margin: 0px}
 
-#menu-buttons .btn-group > .btn:first-child {margin-right: 0px}
+#menu-buttons .btn-group > .btn.dropdown-leader {margin-right: 0px}
 
 #menu-buttons .btn-group > .btn.dropdown-toggle {margin-left: 0px}
