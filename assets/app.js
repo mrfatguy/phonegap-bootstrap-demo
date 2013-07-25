@@ -4,13 +4,14 @@ var app =
 	{
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
         
-        app.translateApplication();
-        
-        app.writeEventLog('app.init();');
+        //Fix for nasty bug of Ripple not firing events!
+        if(typeof('ripple') !== 'undefined') app.deviceReadyHandler();
     },
 	
     deviceReadyHandler: function()
 	{
+        app.translateApplication();
+        
         /**
          * Actual handler, to handle app's exits.
          */
@@ -45,7 +46,8 @@ var app =
         
 		setTimeout(function()
 		{
-			navigator.splashscreen.hide();
+            //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
+			if(typeof('ripple') === 'undefined') navigator.splashscreen.hide();
 		},
 		1000);
         
@@ -148,6 +150,8 @@ var app =
             
     translateApplication: function()
     {
+        console.log('BEGIN app.translateApplication();');
+        
         /**
          * Load application contents, Init translation engine and translate application.
          * 
@@ -175,41 +179,58 @@ var app =
              * http://simonmacdonald.blogspot.com/2011/12/on-third-day-of-phonegapping-getting.html
              */
             $('body').i18n();
-
-            $("div.tab-pane").each(function()
-            {
-                var
-                    target = $(this),
-                    request = new XMLHttpRequest();
-                    
-                request.open('GET', target.attr("data-url"), true);
-                
-                request.onerror = function(e)
-                {
-                    target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "' + e.target.status + '".');
-                };
-                
-                request.onreadystatechange = function()
-                {
-                    if(request.readyState === 4)
-                    {
-                        if(request.status === 200 || request.status === 0)
-                        {
-                            target.html(request.responseText);
-                            
-                            $('#' + target.attr("id")).i18n();
-
-                            if(target.attr("data-url") === '_phonegap.html') app.updatePhonegapTab();
-                            
-                            console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab...');
-                        }
-                        else target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "request.status is different than 200 or 0".');
-                    }
-                };
-                
-                request.send();
-            });
+            
+            console.log('END app.translateApplication();');
+            
+            app.contentLoad();
         });
+    },
+    
+    contentLoad: function()
+    {
+        var tabNum = 0,
+            tabCount = $("div.tab-pane").size();
+    
+        console.log('BEGIN app.contentLoad();');
+        
+        $("div.tab-pane").each(function()
+        {
+            var
+                target = $(this),
+                request = new XMLHttpRequest();
+
+            request.open('GET', target.attr("data-url"), true);
+
+            request.onerror = function(e)
+            {
+                target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "' + e.target.status + '".');
+            };
+
+            request.onreadystatechange = function()
+            {
+                if(request.readyState === 4)
+                {
+                    if(request.status === 200 || request.status === 0)
+                    {
+                        target.html(request.responseText);
+
+                        console.log('$(#' + target.attr("id") + ').i18n();');
+                        $('#' + target.attr("id")).i18n();
+
+                        if(target.attr("data-url") === '_phonegap.html') app.updatePhonegapTab();
+
+                        console.log('Loaded contents of #' + target.attr("id") + ' tab!');
+                        
+                        tabNum++;
+                        if(tabNum === tabCount) console.log('END app.contentLoad();');
+                    }
+                    else target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "request.status is different than 200 or 0".');
+                }
+            };
+            
+            console.log('Loading contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab!');
+            request.send();
+        });  
     },
     
     writeEventLog: function(log)
