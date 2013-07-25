@@ -1,14 +1,34 @@
-<div class="page-header"><h1>noUiSlider</h1></div>
+<style>
+    
+    /*#bootstrapSlider2Inner .slider-selection {background: #FF8282;}*/
+    
+    /*#bootstrapSlider2Inner .slider-handle {background: red;}*/
+    
+    /*#bootstrapSlider3Inner .slider-selection {background: #8283FF}*/
+    
+    /*#bootstrapSlider3Inner .slider-handle {border-bottom-color: blue;}*/
+    
+</style>
 
-<p>Selected time: <span style="font-weight: bold" id="positionLabel"></span></p>
+<div class="page-header"><h1>Bootstrap Slider</h1></div>
 
-<p><div id="positionSlider"></div></p>
+<p><small>Hevily modified Bootstrap Slider from <a onclick="app.openUrl('http://www.eyecon.ro/bootstrap-slider/');">eyecon.ro</a>.</small></p>
 
-<p><small>Pretty pitty, but it seems, it doesn't work at all, right now!</small></p>
+<div style="width: 80%; margin-left: 10%"><input id="bootstrapSlider" style="width: 100%" /></div>
+
+<p></p>
+
+<p><small>Time: <span id="positionLabel"></span></small></p>
+
+<p><input id="bootstrapSlider2" value="" /></p>
+
+<p><input id="bootstrapSlider3" value="" data-slider-themed="true" data-slider-min="11" data-slider-max="2554" data-slider-step="9" data-slider-value="128" data-slider-tooltip="hide" data-slider-handle="triangle" data-slider-id="bootstrapSlider3Inner"/></p>
+
+<p></p>
 
 <div class="page-header"><h1>AJAX Example</h1></div>
 
-<p>Test AJAX / JSON / JSONP quering from PhoneGap, using <a onclick="app.openUrl('http://www.jsontest.com/');">JSON Test</a> service.</p>
+<p><small>Test AJAX / JSONP in PhoneGap, using <a onclick="app.openUrl('http://www.jsontest.com/');">JSON Test</a>.</small></p>
 
 <p>
     
@@ -316,9 +336,11 @@
         });
         
         /**
-         * noUiSlider
+         * Bootstrap Slider
+         * 
+         * http://www.eyecon.ro/bootstrap-slider/
          */
-        function todayMidnightTimestamp()
+        function timestamp4TodayMidnight()
         {
             var
                 now = new Date(),
@@ -327,7 +349,7 @@
             return startOfDay / 1000;
         }
         
-        function formattedTimeFromTimestamp(timestamp)
+        function timestamp2String(timestamp)
         {
             var
                 date = new Date(timestamp * 1000),
@@ -339,19 +361,48 @@
             return formattedTime;
         }
         
-        $("#positionSlider").noUiSlider
+        function fillTimeLabel(value)
+        {
+            var
+                timestamText = value + ' seconds since Midnight',
+                timeText = timestamp2String(timestamp4TodayMidnight() + value);
+                
+            $("#positionLabel").html('<strong>' + timeText + '</strong> (' + timestamText + ')');
+        }
+        
+        $("#bootstrapSlider").slider
         ({
-            range: [0, 100],
-            start: 50,
-            handles: 1,
-            connect: "lower",
-            slide: function()
+            min: 0,
+            max: 86399,
+            value: 41115,
+            themed: true,
+//            selectionClass: 'btn-info',
+//            trackOverflow: false,
+//            height: 21,
+            formater: function(value)
             {
-                $("#positionLabel").text(formattedTimeFromTimestamp($(this).val()));
+                return timestamp2String(timestamp4TodayMidnight() + value);
             }
+        })
+        .on('slide', function(ev)
+        {
+            fillTimeLabel(ev.value)
         });
         
-        $("#positionLabel").text(formattedTimeFromTimestamp(todayMidnightTimestamp()));
+        fillTimeLabel($("#bootstrapSlider").slider('getValue'));
+        
+        $("#bootstrapSlider2").slider
+        ({
+            min: 0,
+            max: 100,
+            step: 10,
+            themed: true,
+            value: [30,70],
+            handle: 'rectangle',
+            id: 'bootstrapSlider2Inner'
+        });
+        
+        $("#bootstrapSlider3").slider();
     });
 /*]]>*/
 </script>
