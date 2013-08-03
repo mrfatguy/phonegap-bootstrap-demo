@@ -172,9 +172,11 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Model: <code>' + device.model + '</code><br /><br />' + 
-                        'UUID: <code>' + device.uuid + '</code><br /><br />' + 
-                        'Platform: <code>' + device.platform + ' ' + device.version + '</code>';
+                        'Name: <strong>' + device.name + '</strong>.<br />' + 
+                        'Model: <strong>' + device.model + '</strong>.<br />' + 
+                        'UUID: <strong>' + device.uuid + '</strong>.<br />' + 
+                        'OS: <strong>' + device.platform + ' ' + device.version + '</strong>.<br />';
+                        'Screen: <strong>' + screen.availHeight + 'x' + screen.availWidth + '</strong>.';
 
                     apprise(info, {});
                 });
