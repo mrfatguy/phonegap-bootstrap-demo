@@ -73,15 +73,18 @@ var app =
     /**
      * Battery-related events.
      */
-    batteryLowHandler: function(info){app.batteryHandler('low', info);},
-    batteryStatusHandler: function(info){app.batteryHandler('status', info);},
-    batteryCriticalHandler: function(info){app.batteryHandler('critical', info);},
+    batteryLowHandler: function(info){console.log(info); app.batteryHandler('low', info);},
+    batteryStatusHandler: function(info){console.log(info); app.batteryHandler('status', info);},
+    batteryCriticalHandler: function(info){console.log(info); app.batteryHandler('critical', info);},
 	
     /**
      * General battery handler, to handle battery status updates
      */
     batteryHandler: function(type, info)
 	{
+        console.log('batteryHandler for "' + type + '" state:');
+        console.log(info);
+            
         var
             status = (type === 'status' ? 'normal' : type),
             event = type.charAt(0).toUpperCase() + type.slice(1);
