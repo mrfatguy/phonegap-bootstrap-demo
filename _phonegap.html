@@ -242,21 +242,21 @@
         console.log(position);
         
         //Fix for stupid PhoneGap sometimes returning NaN...
-//        position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
-//        position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
-//        position.coords.altitude = (parseFloat(position.coords.altitude) || 0);
-//        position.coords.accuracy = (parseFloat(position.coords.accuracy) || 0);
-//        position.coords.altitudeAccuracy = (parseFloat(position.coords.altitudeAccuracy) || 0);
-//        position.coords.heading = (parseFloat(position.coords.heading) || 0);
-//        position.coords.speed = (parseFloat(position.coords.speed) || 0);
+        position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
+        position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
+        position.coords.altitude = (parseFloat(position.coords.altitude) || 0);
+        position.coords.accuracy = (parseFloat(position.coords.accuracy) || 0);
+        position.coords.altitudeAccuracy = (parseFloat(position.coords.altitudeAccuracy) || 0);
+        position.coords.heading = (parseFloat(position.coords.heading) || 0);
+        position.coords.speed = (parseFloat(position.coords.speed) || 0);
         
-        position.coords.latitude = position.coords.latitude.toFixed(6);
-        position.coords.longitude = position.coords.longitude.toFixed(6);
-        position.coords.altitude = position.coords.altitude.toFixed(2) + ' m';
-        position.coords.accuracy = position.coords.accuracy.toFixed(6) + ' m';
-        position.coords.altitudeAccuracy = position.coords.altitudeAccuracy.toFixed(2) + ' m';
-        position.coords.heading = position.coords.heading.toFixed(2) + '\u00b0';
-        position.coords.speed = position.coords.speed.toFixed(2) + ' m/s';
+//        position.coords.latitude = position.coords.latitude.toFixed(6);
+//        position.coords.longitude = position.coords.longitude.toFixed(6);
+//        position.coords.altitude = position.coords.altitude.toFixed(2) + ' m';
+//        position.coords.accuracy = position.coords.accuracy.toFixed(6) + ' m';
+//        position.coords.altitudeAccuracy = position.coords.altitudeAccuracy.toFixed(2) + ' m';
+//        position.coords.heading = position.coords.heading.toFixed(2) + '\u00b0';
+//        position.coords.speed = position.coords.speed.toFixed(2) + ' m/s';
         
         var
             timestampText = 'Current timestamp is "<strong>' + position.timestamp + '</strong>".',
