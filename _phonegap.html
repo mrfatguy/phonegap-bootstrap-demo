@@ -245,25 +245,16 @@
             coords = position.coords,
             timestamp = position.timestamp;
         
-        //Fix for stupid PhoneGap sometimes returning NaN...
-        coords.latitude = (parseFloat(coords.latitude) || 0);
-        coords.longitude = (parseFloat(coords.longitude) || 0);
-        coords.altitude = (parseFloat(coords.altitude) || 0);
-        coords.accuracy = (parseFloat(coords.accuracy) || 0);
-        coords.altitudeAccuracy = (parseFloat(coords.altitudeAccuracy) || 0);
-        coords.heading = (parseFloat(coords.heading) || 0);
-        coords.speed = (parseFloat(coords.speed) || 0);
-        
-        coords.latitude = coords.latitude.toFixed(6);
-        coords.longitude = coords.longitude.toFixed(6);
-        coords.altitude = coords.altitude.toFixed(2) + ' m';
-        coords.accuracy = coords.accuracy.toFixed(6) + ' m';
-        coords.altitudeAccuracy = coords.altitudeAccuracy.toFixed(2) + ' m';
-        coords.heading = coords.heading.toFixed(2) + '\u00b0';
-        coords.speed = coords.speed.toFixed(2) + ' m/s';
+        coords.latitude = ((coords.latitude) || 'n/a');
+        coords.longitude = ((coords.longitude) || 'n/a');
+        coords.altitude = ((coords.altitude) ? coords.altitude + ' m' : 'n/a');
+        coords.heading = ((coords.heading) ? coords.heading + '\u00b0' : 'n/a');
+        coords.speed = ((coords.speed) ? coords.speed + ' m/s' : 'n/a');
+        coords.accuracy = ((coords.accuracy) ? coords.accuracy + ' m' : 'n/a');
+        coords.altitudeAccuracy = ((coords.altitudeAccuracy) ? coords.altitudeAccuracy + ' m' : 'n/a');
         
         var
-            timestampText = 'Current timestamp is "<strong>' + timestamp + '</strong>".',
+            timestampText = 'Current timestamp is <strong>' + timestamp + '</strong>.',
             geoText = '<strong>Longitude</strong> is <strong>' + coords.longitude + '</strong>.<br />';
     
         geoText = geoText + '<strong>Latitude</strong> is <strong>' + coords.latitude + '</strong>.<br />';
