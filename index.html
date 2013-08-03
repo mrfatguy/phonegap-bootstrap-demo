@@ -172,10 +172,9 @@
                 $('#btnInfo').click(function()
                 {
                     var info =
-                        'Name: <strong>' + device.name + '</strong>.<br />' + 
                         'Model: <strong>' + device.model + '</strong>.<br />' + 
                         'UUID: <strong>' + device.uuid + '</strong>.<br />' + 
-                        'OS: <strong>' + device.platform + ' ' + device.version + '</strong>.<br />';
+                        'OS: <strong>' + device.platform + ' ' + device.version + '</strong>.<br />' +
                         'Screen: <strong>' + screen.availHeight + 'x' + screen.availWidth + '</strong>.';
 
                     apprise(info, {});
