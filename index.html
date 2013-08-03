@@ -171,8 +171,6 @@
                  */
                 $('#btnInfo').click(function()
                 {
-                    app.writeEventLog('btnInfo.click();');
-                    
                     var info =
                         'Model: <code>' + device.model + '</code><br /><br />' + 
                         'UUID: <code>' + device.uuid + '</code><br /><br />' + 
@@ -183,8 +181,6 @@
 
                 $('#btnAcrid').click(function()
                 {
-                    app.writeEventLog('btnAcrid.click() -- opening a website...');
-                    
                     app.openUrl('http://acrid.pl');
                 });
                 

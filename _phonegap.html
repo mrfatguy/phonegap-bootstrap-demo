@@ -156,51 +156,6 @@
 
 <script type="text/javascript">
 /*<![CDATA[*/
-    function initPhonegapTab(mode)
-    {
-        var
-            coords = new Object(),
-            compass = new Object(),
-            position = new Object(),
-            acceleration = new Object(),
-            now = new Date();
-    
-        if((mode === 'compass') || (mode === 'all'))
-        {
-            compass.magneticHeading = 0;
-            compass.trueHeading = 0;
-            compass.headingAccuracy = 0;
-            compass.timestamp = now.getTime();
-
-            onCompassSuccess(compass);
-        }
-
-        if((mode === 'geolocation') || (mode === 'all'))
-        {
-            coords.latitude = 0;
-            coords.longitude = 0;
-            coords.accuracy = 0;
-            coords.altitude = 0;
-            coords.altitudeAccuracy = 0;
-            coords.heading = 0;
-            coords.speed = 0;
-            position.coords = coords;
-            position.timestamp = now.getTime();
-
-            onGeolocationSuccess(position);
-        }
-
-        if((mode === 'acceleration') || (mode === 'all'))
-        {
-            acceleration.x = 0;
-            acceleration.y = 0;
-            acceleration.z = 0;
-            acceleration.timestamp = now.getTime();
-            
-            onAccelerationSuccess(acceleration);
-        }
-    }
-        
     function onAccelerationSuccess(acceleration)
     {
         var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
@@ -241,8 +196,6 @@
     function onAccelerationError()
     {
         $('#accelerationText').html(i18n.t('phonegap.acceleration.error'));
-        
-        $('#btnAccelerationStop').click();
     };
     
     function onCompassSuccess(compass)
@@ -282,18 +235,13 @@
         }
         
         console.log(CompassError);
-        
-        $('#btnCompassStop').click();
     };
     
     function onGeolocationSuccess(position)
     {
-        if((position.coords.latitude !== 0) || (position.coords.longitude !== 0))
-        {
-            app.writeEventLog('onGeolocationSuccess() fired!');
-            
-            console.log(position);
-        }
+        console.log(position);
+        
+        prompt('Hi, you little fuck!', 'https://maps.google.pl/maps?ll=' + position.coords.latitude + ',' + position.coords.longitude);
         
         //Fix for stupid PhoneGap sometimes returning NaN...
         position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
@@ -322,13 +270,14 @@
         geoText = geoText + '<strong>Altitude Accuracy</strong> is <strong>' + position.coords.altitudeAccuracy + '</strong>.<br />';
         geoText = geoText + '<strong>Heading</strong> is <strong>' + position.coords.heading + '</strong>.<br />';
         geoText = geoText + '<strong>Speed</strong> is <strong>' + position.coords.speed + '</strong>.';
+        
+        console.log(geoText);
 
         $('#positionText').html(geoText + '<br />' + timestampText);
     }
     
     function onGeolocationError(PositionError)
     {
-        app.writeEventLog('onGeolocationError() fired!');
         console.log(PositionError);
         
         if(PositionError.code === PositionError.PERMISSION_DENIED)
@@ -347,8 +296,6 @@
         {
             $('#positionText').html('<strong>ERROR</strong>: Unknown geolocation error! Additional error message: "' + PositionError.message + '".');
         }
-        
-        $('#btnGeolocationStop').click();
     };
     
 	$(function($)
@@ -357,8 +304,6 @@
             compassID = 0,
             geolocationID = 0,
             accelerationID = 0;
-            
-        initPhonegapTab('all');
             
         /**
          * Acceleration
@@ -370,14 +315,10 @@
                 frequency: 100
             };
             
-            initPhonegapTab('acceleration');
-            
 			accelerationID = navigator.accelerometer.watchAcceleration(onAccelerationSuccess, onAccelerationError, accelerationOptions);
 			
 			$('#btnAccelerationStop').show();
 			$('#btnAccelerationStart').hide();
-            
-            app.writeEventLog('btnAccelerationStart.click();');
 		});
 
 		$('body').on('click', '#btnAccelerationStop', function()
@@ -386,8 +327,7 @@
             
 			$('#btnAccelerationStart').show();
 			$('#btnAccelerationStop').hide();
-            
-            app.writeEventLog('btnAccelerationStop.click();');
+            $('#accelerationText').empty();
 		});
         
         /**
@@ -400,14 +340,10 @@
                 frequency: 100
             };
             
-            initPhonegapTab('compass');
-            
 			compassID = navigator.compass.watchHeading(onCompassSuccess, onCompassError, compassOptions);
 			
 			$('#btnCompassStop').show();
 			$('#btnCompassStart').hide();
-            
-            app.writeEventLog('btnCompassStart.click();');
 		});
 
 		$('body').on('click', '#btnCompassStop', function()
@@ -416,8 +352,7 @@
             
 			$('#btnCompassStart').show();
 			$('#btnCompassStop').hide();
-            
-            app.writeEventLog('btnCompassStop.click();');
+            $('#compassText').empty();
 		});
  
         /**
@@ -432,14 +367,10 @@
                 enableHighAccuracy: true
             };
             
-            initPhonegapTab('geolocation');
-            
 			geolocationID = navigator.geolocation.watchPosition(onGeolocationSuccess, onGeolocationError, geolocationOptions);
 			
 			$('#btnGeolocationStop').show();
 			$('#btnGeolocationStart').hide();
-            
-            app.writeEventLog('btnGeolocationStart.click();');
 		});
 
 		$('body').on('click', '#btnGeolocationStop', function()
@@ -448,8 +379,7 @@
             
 			$('#btnGeolocationStart').show();
 			$('#btnGeolocationStop').hide();
-            
-            app.writeEventLog('btnGeolocationStop.click();');
+            $('#geolocationText').empty();
 		});
                 
         /**
@@ -458,8 +388,6 @@
 		$('body').on('click', '#btnNotificationVibrate', function()
 		{
 			navigator.notification.vibrate(1000);
-            
-            app.writeEventLog('btnNotificationVibrate.click();');
 		});
         
 		$('body').on('click', '#btnNotificationBeep', function()
@@ -475,7 +403,6 @@
              * .wav File Signal Generator: http://www.audiocheck.net/audiofrequencysignalgenerator_sinetone.php
              */
 			navigator.notification.beep(3);
-            
             app.writeEventLog('btnNotificationVibrate.click();');
 		});
     });
