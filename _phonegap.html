@@ -245,13 +245,13 @@
             coords = position.coords,
             timestamp = position.timestamp;
         
-        coords.latitude = ((coords.latitude) || 'n/a');
-        coords.longitude = ((coords.longitude) || 'n/a');
-        coords.altitude = ((coords.altitude) ? coords.altitude + ' m' : 'n/a');
-        coords.heading = ((coords.heading) ? coords.heading + '\u00b0' : 'n/a');
-        coords.speed = ((coords.speed) ? coords.speed + ' m/s' : 'n/a');
-        coords.accuracy = ((coords.accuracy) ? coords.accuracy + ' m' : 'n/a');
-        coords.altitudeAccuracy = ((coords.altitudeAccuracy) ? coords.altitudeAccuracy + ' m' : 'n/a');
+        coords.speed = app.ensureValue(coords.speed, ' m/s');
+        coords.heading = app.ensureValue(coords.heading, '\u00b0');
+        coords.altitude = app.ensureValue(coords.altitude, ' m');
+        coords.latitude = app.ensureValue(coords.latitude);
+        coords.accuracy = app.ensureValue(coords.accuracy, ' m');
+        coords.longitude = app.ensureValue(coords.longitude);
+        coords.altitudeAccuracy = app.ensureValue(coords.altitudeAccuracy, ' m');
         
         var
             timestampText = 'Current timestamp is <strong>' + timestamp + '</strong>.',

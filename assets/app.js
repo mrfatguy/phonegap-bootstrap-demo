@@ -148,6 +148,15 @@ var app =
     {
         window.open(url, '_system', 'location=yes');
     },
+    
+    ensureValue: function(value, unit)
+    {
+        var
+            unit = unit || '',
+            value = value || 0;
+        
+        return value.toString() + unit;
+    },
             
     translateApplication: function()
     {
