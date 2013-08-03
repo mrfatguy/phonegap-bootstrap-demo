@@ -241,16 +241,14 @@
     {
         console.log(position);
         
-        prompt('Hi, you little fuck!', 'https://maps.google.pl/maps?ll=' + position.coords.latitude + ',' + position.coords.longitude);
-        
         //Fix for stupid PhoneGap sometimes returning NaN...
-        position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
-        position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
-        position.coords.altitude = (parseFloat(position.coords.altitude) || 0);
-        position.coords.accuracy = (parseFloat(position.coords.accuracy) || 0);
-        position.coords.altitudeAccuracy = (parseFloat(position.coords.altitudeAccuracy) || 0);
-        position.coords.heading = (parseFloat(position.coords.heading) || 0);
-        position.coords.speed = (parseFloat(position.coords.speed) || 0);
+//        position.coords.latitude = (parseFloat(position.coords.latitude) || 0);
+//        position.coords.longitude = (parseFloat(position.coords.longitude) || 0);
+//        position.coords.altitude = (parseFloat(position.coords.altitude) || 0);
+//        position.coords.accuracy = (parseFloat(position.coords.accuracy) || 0);
+//        position.coords.altitudeAccuracy = (parseFloat(position.coords.altitudeAccuracy) || 0);
+//        position.coords.heading = (parseFloat(position.coords.heading) || 0);
+//        position.coords.speed = (parseFloat(position.coords.speed) || 0);
         
         position.coords.latitude = position.coords.latitude.toFixed(6);
         position.coords.longitude = position.coords.longitude.toFixed(6);
