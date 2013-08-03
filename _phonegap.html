@@ -160,17 +160,9 @@
     {
         var timestampText = i18n.t('phonegap.acceleration.line2', {timestamp: acceleration.timestamp});
         
-        //Acceleration is already recalculated in PhoneGap!
-        //var g = 9.80665;
-
-        //Fix for stupid PhoneGap sometimes returning NaN...
-        acceleration.x = (parseFloat(acceleration.x) || 0);
-        acceleration.y = (parseFloat(acceleration.y) || 0);
-        acceleration.z = (parseFloat(acceleration.z) || 0);
-        
-        acceleration.x = (acceleration.x).toFixed(2) + ' m/s\u00b2';
-        acceleration.y = (acceleration.y).toFixed(2) + ' m/s\u00b2';
-        acceleration.z = ((acceleration.z + 1)).toFixed(2) + ' m/s\u00b2';
+        acceleration.x = app.ensureValue(acceleration.x.toFixed(2), ' m/s\u00b2');
+        acceleration.y = app.ensureValue(acceleration.y.toFixed(2), ' m/s\u00b2');
+        acceleration.z = app.ensureValue(acceleration.z.toFixed(2), ' m/s\u00b2');
 
         var accelerationText = i18n.t('phonegap.acceleration.line1',
         {
@@ -200,14 +192,9 @@
     
     function onCompassSuccess(compass)
     {
-        //Fix for stupid PhoneGap sometimes returning NaN...
-        compass.trueHeading = (parseFloat(compass.trueHeading) || 0);
-        compass.magneticHeading = (parseFloat(compass.magneticHeading) || 0);
-        compass.headingAccuracy = (parseFloat(compass.headingAccuracy) || 0);
-        
-        compass.trueHeading = compass.trueHeading.toFixed(2) + '\u00b0';
-        compass.magneticHeading = compass.magneticHeading.toFixed(2) + '\u00b0';
-        compass.headingAccuracy = compass.headingAccuracy.toFixed(2) + '\u00b0';
+        compass.trueHeading = app.ensureValue(compass.trueHeading.toFixed(2), '\u00b0');
+        compass.magneticHeading = app.ensureValue(compass.magneticHeading.toFixed(2), '\u00b0');
+        compass.headingAccuracy = app.ensureValue(compass.headingAccuracy.toFixed(2), '\u00b0');
         
         var
             timestampText = 'Current timestamp is "<strong>' + compass.timestamp + '</strong>".',
@@ -245,13 +232,13 @@
             coords = position.coords,
             timestamp = position.timestamp;
         
-//        coords.speed = app.ensureValue(coords.speed, ' m/s');
-//        coords.heading = app.ensureValue(coords.heading, '\u00b0');
-//        coords.altitude = app.ensureValue(coords.altitude, ' m');
-//        coords.latitude = app.ensureValue(coords.latitude);
-//        coords.accuracy = app.ensureValue(coords.accuracy, ' m');
-//        coords.longitude = app.ensureValue(coords.longitude);
-//        coords.altitudeAccuracy = app.ensureValue(coords.altitudeAccuracy, ' m');
+        coords.speed = app.ensureValue(coords.speed, ' m/s');
+        coords.heading = app.ensureValue(coords.heading, '\u00b0');
+        coords.altitude = app.ensureValue(coords.altitude, ' m');
+        coords.latitude = app.ensureValue(coords.latitude);
+        coords.accuracy = app.ensureValue(coords.accuracy, ' m');
+        coords.longitude = app.ensureValue(coords.longitude);
+        coords.altitudeAccuracy = app.ensureValue(coords.altitudeAccuracy, ' m');
         
         var
             timestampText = 'Current timestamp is <strong>' + timestamp + '</strong>.',
