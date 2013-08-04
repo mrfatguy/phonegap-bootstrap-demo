@@ -208,6 +208,8 @@ var app =
             var
                 target = $(this),
                 request = new XMLHttpRequest();
+                
+            if(typeof(target.attr("data-url")) === 'undefined') return true;
 
             request.open('GET', target.attr("data-url"), true);
 
@@ -234,7 +236,7 @@ var app =
                         tabNum++;
                         if(tabNum === tabCount) console.log('END app.contentLoad();');
                     }
-                    else target.html('Attempt to load contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab caused an error: "request.status is different than 200 or 0".');
+                    else target.html('Error when loading contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab: "<em>Value of <kbd>request.status</kbd> is different than <kbd>200</kbd> or <kbd>0</kbd>. File is probably missing, is not accessible or has an invalid filename</em>".');
                 }
             };
             
