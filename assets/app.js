@@ -1,5 +1,7 @@
 var app = 
 {
+    language: '',
+    
     init: function()
 	{
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
@@ -10,6 +12,10 @@ var app =
 	
     deviceReadyHandler: function()
 	{
+        /**
+         * Actual handler, to handle app's exits.
+         */
+        app.getLanguage();
         app.translateApplication();
         
         /**
@@ -18,7 +24,7 @@ var app =
         document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
-         * Battery-related events.
+         * Battery-related event handlers.
          * 
          * Don't foreget about putting:
          * 
@@ -31,7 +37,7 @@ var app =
         document.addEventListener('batterycritical', app.batteryCriticalHandler, false);
         
         /**
-         * Demo purpose only events.
+         * Demo purpose only events handlers.
          */
         document.addEventListener('pause', app.pauseHandler, false);
         document.addEventListener('resume', app.resumeHandler, false);
@@ -55,6 +61,11 @@ var app =
         
         app.writeEventLog('app.deviceReadyHandler();');
     },
+    
+    /**
+     * Menu button press event handler to display current language.
+     */
+    menuButtonHandler: function(){alert('System language is currently set to: "' + app.language + '".');},
 	
     /**
      * Demo purpose only events.
@@ -63,7 +74,6 @@ var app =
     resumeHandler: function(){app.writeEventLog('app.resumeHandler();');},
     onlineHandler: function(){app.writeEventLog('app.onlineHandler();');},
     offlineHandler: function(){app.writeEventLog('app.offlineHandler();');},
-    menuButtonHandler: function(){app.writeEventLog('app.menuButtonHandler();');},
     searchButtonHandler: function(){app.writeEventLog('app.searchButtonHandler();');},
     endCallButtonHandler: function(){app.writeEventLog('app.endCallButtonHandler();');},
     startCallButtonHandler: function(){app.writeEventLog('app.startCallButtonHandler();');},
@@ -156,6 +166,19 @@ var app =
             value = value || 0;
         
         return value.toString() + unit;
+    },
+    
+    getLanguage: function()
+    {
+        //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
+        if(typeof('ripple') === 'undefined')
+        {
+            navigator.globalization.getPreferredLanguage
+            (
+                function(language){app.language = language.value},
+                function(){}
+            );
+        }
     },
             
     translateApplication: function()
