@@ -17,13 +17,11 @@
 
         <script type="text/javascript" src="assets/jquery.min.js"></script>
 
-        <script type="text/javascript" src="assets/apprise/apprise.min.js"></script>
-        
-        <script type="text/javascript" src="assets/nouislider/nouislider.min.js"></script>
-
         <script type="text/javascript" src="assets/i18next.min.js"></script>
-
+        <script type="text/javascript" src="assets/apprise/apprise.min.js"></script>
         <script type="text/javascript" src="assets/segment-display.min.js"></script>
+        <script type="text/javascript" src="assets/bootstrap-tabdrop.min.js"></script>
+        <script type="text/javascript" src="assets/nouislider/nouislider.min.js"></script>
 
         <script type="text/javascript" src="assets/app.js"></script>
         <script type="text/javascript" src="cordova.js"></script>
@@ -146,6 +144,11 @@
                     <li><a href="#javascript" data-i18n="tabs.javascript" data-toggle="tab">tabs.javascript</a></li>
 
                     <li><a href="#phonegap" data-i18n="tabs.phonegap" data-toggle="tab">tabs.phonegap</a></li>
+                    
+                    <li><a href="#other" data-toggle="tab">Other</a></li>
+                    
+                    <li><a href="#more" data-toggle="tab">More</a></li>
+                    
                   
                 </ul>
 
@@ -156,6 +159,10 @@
                     <div class="tab-pane" id="javascript" data-url="_javascript.html">Please wait, loading...</div>
 
                     <div class="tab-pane" id="phonegap" data-url="_phonegap.html">Please wait, loading...</div>
+                    
+                    <div class="tab-pane" id="other" data-url="_other.html">Please wait, loading...</div>
+                    
+                    <div class="tab-pane" id="more">This is only a fake tab -- This page is intentionally left blank.</div>
                   
                 </div>
                     
@@ -258,6 +265,13 @@
                     
                     app.writeEventLog('Changing language to "' + code + '".');
                 });
+                
+                /**
+                 * Tab drop for Bootstrap
+                 * 
+                 * http://www.eyecon.ro/bootstrap-tabdrop/
+                 */
+                $('.nav-tabs').tabdrop();
             });
         /*]]>*/
         </script>
