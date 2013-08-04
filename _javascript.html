@@ -1,20 +1,18 @@
 <style>
     
-    /*#bootstrapSlider2Inner .slider-selection {background: #FF8282;}*/
-    
-    /*#bootstrapSlider2Inner .slider-handle {background: red;}*/
-    
-    /*#bootstrapSlider3Inner .slider-selection {background: #8283FF}*/
-    
-    /*#bootstrapSlider3Inner .slider-handle {border-bottom-color: blue;}*/
+    #noUiSlider {width: 100%}
     
 </style>
 
 <div class="page-header"><h1>Bootstrap Slider</h1></div>
 
-<p><small>Hevily modified Bootstrap Slider from <a onclick="app.openUrl('http://www.eyecon.ro/bootstrap-slider/');">eyecon.ro</a>. It supports Bootstrap's styles (rewritten version, original -- not) and has some extra features, but requires <em>Modernizr</em> to support touch events.</small></p>
+<p><small>Hevily modified Bootstrap Slider from <a onclick="app.openUrl('http://www.eyecon.ro/bootstrap-slider/');">eyecon.ro</a>. It supports Bootstrap's styles (rewritten version, original -- not) and has some extra features, but requires <em>Modernizr</em> to support touch events. 21,5 kB minified (with custom Modernizr).</small></p>
 
-<div style="width: 80%; margin-left: 10%"><input id="bootstrapSlider" style="width: 100%" /></div>
+<div style="width: 80%; margin-left: 10%">
+    
+    <input id="bootstrapSlider" style="width: 100%" />
+
+</div>
 
 <p></p>
 
@@ -24,6 +22,19 @@
 
 <p><input id="bootstrapSlider3" value="" data-slider-themed="true" data-slider-min="11" data-slider-max="2554" data-slider-step="9" data-slider-value="128" data-slider-tooltip="hide" data-slider-handle="triangle" data-slider-id="bootstrapSlider3Inner"/></p>
 
+<p></p>
+
+<div class="page-header"><h1>noUiSlider</h1></div>
+
+<p><small>noUiSlider from <a onclick="app.openUrl('http://refreshless.com/nouislider/');">refreshless.com</a>. A bit less features and no Bootstrap styling, but supports touch events without Modernizer and is only 6,55 kB minified.</small></p>
+
+<div style="width: 80%; margin-left: 10%">
+
+    <div id="noUiSlider" class="noUiSlider"></div>
+    
+</div>
+
+<p></p>
 <p></p>
 
 <div class="page-header"><h1>AJAX Example</h1></div>
@@ -403,6 +414,19 @@
         });
         
         $("#bootstrapSlider3").slider();
+        
+        /**
+         * noUiSlider
+         * 
+         * http://refreshless.com/nouislider/
+         */
+        $("#noUiSlider").noUiSlider
+        ({
+            range: [0, 100],
+            start: 0,
+            handles: 1,
+            connect: "lower"
+        });
     });
 /*]]>*/
 </script>
