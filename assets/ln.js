@@ -2,9 +2,9 @@ var ln =
 {
     language:
     {
-        code: 'cz',
-        local: '\u4E2D\u6587',
-        international: 'China'
+        code: 'en',
+        local: 'English',
+        international: 'English'
     },
     
     init: function()
@@ -35,10 +35,8 @@ var ln =
     
     getLanguage: function()
     {
-        alert("typeof('ripple') = " + typeof('ripple'));
-        
         //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
-        if(typeof('ripple') === 'undefined')
+        if(!app.debug)
         {
             navigator.globalization.getPreferredLanguage
             (

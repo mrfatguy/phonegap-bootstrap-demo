@@ -1,5 +1,7 @@
 var app = 
 {
+    debug: window.tinyHippos != undefined,
+    
     init: function()
 	{
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
@@ -12,7 +14,7 @@ var app =
          * 
          * With fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
          */
-        if(typeof('ripple') === 'undefined') document.addEventListener("backbutton", app.backButtonHandler, true);
+        if(!app.debug) document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
          * Battery-related and menu button press events handlers.
@@ -54,17 +56,17 @@ var app =
      */
     menuButtonHandler: function()
     {
-            var message = i18n.t
-            (
-                'messages.menu',
-                {
-                    code: ln.language.code,
-                    local: ln.language.local,
-                    language: ln.language.international
-                }
-            );
+        var message = i18n.t
+        (
+            'messages.menu',
+            {
+                code: ln.language.code,
+                local: ln.language.local,
+                language: ln.language.international
+            }
+        );
 
-            alert(message);
+        alert(message);
     },
 	
     /**
@@ -111,8 +113,6 @@ var app =
      */
     backButtonHandler: function()
 	{
-        app.writeEventLog('app.backButtonHandler();');
-        
         apprise(i18n.t("messages.exit"), {'verify':true, 'textYes':i18n.t("messages.yes"), 'textNo':i18n.t("messages.no")}, function(r)
         {
             if(r)
