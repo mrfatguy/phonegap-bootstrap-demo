@@ -195,6 +195,11 @@
                     app.openUrl('http://acrid.pl');
                 });
                 
+                $('body').on('click', '.nav-tabs', function()
+                {
+                    app.updatePhonegapTab();
+                });
+                
                 /**
                  * Dynamic stylesheet changer.
                  * 
@@ -206,11 +211,6 @@
                 $('body').on('click', '#buttonStyle', function()
                 {
                     apprise(i18n.t("messages.style"), {});
-                });
-                
-                $('body').on('click', '#buttonLanguage', function()
-                {
-                    apprise(i18n.t("messages.language"), {});
                 });
                 
                 $('body').on('click', '.change-style-menu-item', function()
@@ -260,6 +260,11 @@
                  * 
                  * to get actual local name, for (nearly) any language, you wish.
                  */
+                $('body').on('click', '#buttonLanguage', function()
+                {
+                    apprise(i18n.t("messages.language"), {});
+                });
+                
                 $('body').on('click', '.change-language-menu-item', function()
                 {
                     var language = $(this).attr('data-language');
