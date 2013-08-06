@@ -66,7 +66,7 @@ var app =
             }
         );
 
-        alert(message);
+        apprise(message, {});
     },
 	
     /**

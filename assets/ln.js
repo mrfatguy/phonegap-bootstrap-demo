@@ -42,21 +42,10 @@ var ln =
             (
                 function(lang)
                 {
-                    alert("Yyyiiisajd getPreferredLanguage success callback");
-                    
                     ln.language.local = lang.value;
                     ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
                     ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
                     
-                    var debugText = 'lang.value = ' + lang.value + ', ln.language.local = ' + ln.language.local + ', ln.language.international = ' + ln.language.international + ', ln.language.code = ' + ln.language.code;
-                    
-                    console.log('getPreferredLanguage success callback!');
-                    console.log(lang);
-                    console.log(ln.language);
-                    console.log(debugText);
-                    alert('getPreferredLanguage success callback -- ' + debugText);
-                    app.menuButtonHandler();
-
                     i18n.setLng(ln.language.code, function(t)
                     {
                         $('body').i18n();
@@ -64,12 +53,7 @@ var ln =
                         app.contentLoad();
                     });
                 },
-                function(error)
-                {
-                    console.log('Error getting language setting -- getPreferredLanguage error callback called!');
-                    console.log(error);
-                    alert('Error getting language setting -- getPreferredLanguage error callback called!');
-                }
+                function(error){}
             );
         }
         else
