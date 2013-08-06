@@ -1,7 +1,10 @@
 PhoneGap Demo Bootstrap
 =======================
-This is a simple PhoneGap application based on Twitter Bootstrap library. It should be ready for _PhoneGap Build_.
+This is a simple PhoneGap application based on Twitter Bootstrap library. It should be ready for _PhoneGap Build_. Use or fork it, if you want to see, how Bootstrap framework works and looks inside a mobile application or if you need a base app for building PhoneGap applications using Bootstrap.
 
+
+Includes
+--------
 This demo contains or includes following things:
 
 * Twitter Bootstrap itself and examples of using it,
@@ -10,13 +13,26 @@ This demo contains or includes following things:
 
 * Some examples of using AJAX / JSON calls from PhoneGap application,
 
-* Very cool and superb customizable digital display, purely in Javascript, from [3quarks.com](http://www.3quarks.com/en/SegmentDisplay/index.html),
+* Very cool and superb customizable digital display, purely in Javascript, from [3quarks.com](http://www.3quarks.com/en/SegmentDisplay/index.html).
 
 * Simple theme (stylesheet switcher) allowing dynamic (client-side) look change plus all the free Bootstrap themes / styles from Bootswatch.com.
 
-Use or fork it, if you want to see, how Bootstrap framework works and looks inside a mobile application or if you need a base app for building PhoneGap applications using Bootstrap.
+* Multi-language, application auto-translation system, based on [i18next](http://i18next.com/) library. Some example locales (English, Polish, German and Chinese) included.
 
-To get started: fork this repo, modify the config.xml to match your needs, and go building!
+As you can see, there are a lot of things here, which makes application big and slow. In most projects, however, you'll only need part of them, so don't worry. This is only an example.
+
+
+Tests
+-----
+Tested on five different devices and five Android versions:
+
+- Sony Xperia E with Android 4.1.1,
+- GSmart Rola G1317D with Android 2.2.2.
+- Kiano Core 10.1 tablet with Android 4.1.1,
+- LG GT540 with Android 2.3.3 and CyanogenMod 7,
+- Samsung Galaxy Nexus with Android 4.3 (previously on 4.2.2).
+
+Seems fine on all of them (see below notice for devices with Android 2.x on-board).
 
 
 Notice

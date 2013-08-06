@@ -39,8 +39,8 @@ var app =
         document.addEventListener('menubutton', app.menuButtonHandler, false);
         document.addEventListener('searchbutton', app.searchButtonHandler, false);
         document.addEventListener('endcallbutton', app.endCallButtonHandler, false);
-        document.addEventListener('startcallbutton', app.startCallButtonHandler, false);
         document.addEventListener('volumeupbutton', app.volumeUpButtonHandler, false);
+        document.addEventListener('startcallbutton', app.startCallButtonHandler, false);
         document.addEventListener('volumedownbutton', app.volumeDownButtonHandler, false);
         
         /**
