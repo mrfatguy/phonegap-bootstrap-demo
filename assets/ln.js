@@ -3,7 +3,7 @@ var ln =
     language:
     {
         code: '',
-        local: 'Deutsch',
+        local: 'English',
         international: '',
         fromLocalStorage: false
     },
