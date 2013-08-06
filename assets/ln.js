@@ -85,7 +85,7 @@ var ln =
             ln.updateLanguageSelector(lang);
             
             window.localStorage.setItem('settings.language', lang);
-
+            
             if(app.initMode) app.contentLoad();
         });
     },
