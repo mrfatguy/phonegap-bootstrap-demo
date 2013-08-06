@@ -1,6 +1,7 @@
 var app = 
 {
     initMode: false,
+    modalDialogDisplayed: false,
     debugMode: window.tinyHippos != undefined,
     
     init: function()
@@ -116,16 +117,23 @@ var app =
      */
     backButtonHandler: function()
 	{
+        if(app.modalDialogDisplayed) return false;
+        
+        app.modalDialogDisplayed = true;
+        
         apprise(i18n.t("messages.exit"), {'verify':true, 'textYes':i18n.t("messages.yes"), 'textNo':i18n.t("messages.no")}, function(r)
         {
             if(r)
             {
+                app.modalDialogDisplayed = false;
+                
                 $('#btnCompassStop').click();
                 $('#btnGeolocationStop').click();
                 $('#btnAccelerationStop').click();
 
                 navigator.app.exitApp();
             }
+            else app.modalDialogDisplayed = false;
         });
     },
             
@@ -154,7 +162,20 @@ var app =
     
     isConnected: function()
     {
-        return !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
+        /**
+         * Note, that window.navigator.onLine is correctly implemented ONLY in Chrome
+         * or WebKit-based browsers and it is used here only for testing purposes
+         * (pre-testing application under Ripple Emulator):
+         * 
+         * https://developer.mozilla.org/en-US/docs/Web/API/window.navigator.onLine#Browser_compatibility
+         * http://stackoverflow.com/questions/3181080/how-to-detect-online-offline-event-cross-browser/4813406#4813406
+         * http://stackoverflow.com/questions/2384167/check-if-internet-connection-exists-with-javascript/2384227#2384227
+         */
+        if(window.navigator && window.navigator.onLine)
+        {
+            return  !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
+        }
+        else return false;
     },
     
     openUrl: function(url)

@@ -262,69 +262,80 @@
          */
         function connectionOrInternetError()
         {
-            apprise("There was an error loading data!<br /><br />Either you're not connected to the Internet or server didn't respond...", {'textOk':'Got that!'});
+            if(app.modalDialogDisplayed) return false;
+            
+            apprise("<strong>Error loading data!</strong><br /><br />You're not connected to the Internet or an error occured when getting server reply.", {'textOk':'Got that!'}, function()
+            {
+                app.modalDialogDisplayed = false;
+            });
             
             return false;
         }
         
         $('body').on('click', '#ipButton', function()
         {
-            if(!app.isConnected()) connectionOrInternetError();
-            
-            $.ajax
-            ({
-                type : "GET",
-                dataType : "jsonp",
-                url : 'http://ip.jsontest.com/',
-                data : {},
-                success: function(data)
-                {
-                    apprise('<div style="text-align: center">Your IP Address is:<br /><code>' + data.ip + '</code></div>', {'textOk':'Great, thanks!'});
-                },
-                error: connectionOrInternetError
-            });
+            if(app.isConnected())
+            {
+                $.ajax
+                ({
+                    type : "GET",
+                    dataType : "jsonp",
+                    url : 'http://ip.jsontest.com/',
+                    data : {},
+                    success: function(data)
+                    {
+                        apprise('<div style="text-align: center">Your IP Address is:<br /><code>' + data.ip + '</code></div>', {'textOk':'Great, thanks!'});
+                    },
+                    error: connectionOrInternetError
+                });
+            }
+            else connectionOrInternetError();
         });
         
         $('body').on('click', '#timeButton', function()
         {
-            if(!app.isConnected()) connectionOrInternetError();
-            
-            $.ajax
-            ({
-                type : "GET",
-                dataType : "jsonp",
-                url : 'http://date.jsontest.com/',
-                data : {},
-                success: function(data)
-                {
-                    apprise('<div style="text-align: center">Current date is:<br /><code>' + data.date + '</code><br /><br />Current time (UTC) is:<br /><code>' + data.time + '</code><br /><br />We\'ve <code>' + data.milliseconds_since_epoch + '</code> milliseconds since Epoch.', {});
-                },
-                error: connectionOrInternetError
-            });
+            if(app.isConnected())
+            {
+                $.ajax
+                ({
+                    type : "GET",
+                    dataType : "jsonp",
+                    url : 'http://date.jsontest.com/',
+                    data : {},
+                    success: function(data)
+                    {
+                        apprise('<div style="text-align: center">Current date is:<br /><code>' + data.date + '</code><br /><br />Current time (UTC) is:<br /><code>' + data.time + '</code><br /><br />We\'ve <code>' + data.milliseconds_since_epoch + '</code> milliseconds since Epoch.', {});
+                    },
+                    error: connectionOrInternetError
+                });
+            }
+            else connectionOrInternetError();
         });
         
         $('body').on('click', '#md5Button', function()
         {
-            if(!app.isConnected()) connectionOrInternetError();
-            
-            apprise('Enter ANY text', {'input':true, 'textOk':'Go!', 'textCancel':'Nope...'}, function(r)
+            if(app.isConnected())
             {
-                if(typeof(r) === 'string')
+                apprise('Enter ANY text', {'input':true, 'textOk':'Go!', 'textCancel':'Nope...'}, function(r)
                 {
-                    $.ajax
-                    ({
-                        type : "GET",
-                        dataType : "jsonp",
-                        url : 'http://md5.jsontest.com/?text=' + r,
-                        data : {},
-                        success: function(data)
-                        {
-                            apprise('<div style="text-align: center">MD5 hash of:<br /><strong>' + data.original + '</strong><br /><br />is:<br /><strong>' + data.md5 + '</strong></div>', {});
-                        },
-                        error: connectionOrInternetError
-                    });
-                }
-            });
+                    if(typeof(r) === 'string')
+                    {
+                        $.ajax
+                        ({
+                            type : "GET",
+                            dataType : "jsonp",
+                            url : 'http://md5.jsontest.com/?text=' + r,
+                            data : {},
+                            success: function(data)
+                            {
+                                apprise('<div style="text-align: center">MD5 hash of:<br /><strong>' + data.original + '</strong><br /><br />is:<br /><strong>' + data.md5 + '</strong></div>', {});
+                            },
+                            error: connectionOrInternetError
+                        });
+                    }
+                });
+            }
+            else connectionOrInternetError();
         });
         
         /**
