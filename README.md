@@ -19,6 +19,8 @@ This demo contains or includes following things:
 
 * Multi-language, application auto-translation system, based on [i18next](http://i18next.com/) library. Some example locales (English, Polish, German and Chinese) included.
 
+* Heavily modified version of [Boostrap Slider](http://www.eyecon.ro/bootstrap-slider/). My modifications includes theming (slider will adapt to any Bootswatch style), adding some new features and fixing many small bugs.
+
 As you can see, there are a lot of things here, which makes application big and slow. In most projects, however, you'll only need part of them, so don't worry. This is only an example.
 
 
