@@ -50,13 +50,6 @@ var app =
         document.addEventListener('volumeupbutton', app.volumeUpButtonHandler, false);
         document.addEventListener('volumedownbutton', app.volumeDownButtonHandler, false);
         
-		setTimeout(function()
-		{
-            //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
-			if(typeof('ripple') === 'undefined') navigator.splashscreen.hide();
-		},
-		1000);
-        
         app.updatePhonegapTab();
         
         app.writeEventLog('app.deviceReadyHandler();');
@@ -195,6 +188,7 @@ var app =
             lng: 'en-US',
             ns: 'general',
             useCookie: false,
+            fallbackLng: 'en',
             resGetPath: 'locales/__ns__.__lng__.json'
         }, function()
         {
