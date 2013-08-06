@@ -9,5 +9,3 @@
 	+ D:\Dropbox\Materialy WWW\Blog Network\onezeronull.com\PhoneGap\Mobile ads in PhoneGap applications build with PhoneGap Build.txt
 
 [ ] Include BlockUI with auto-attach for URL change / AJAX.
-
-[ ] Szeleg -- call/volume events!
