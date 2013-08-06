@@ -2,9 +2,9 @@ var ln =
 {
     language:
     {
-        code: 'en',
-        local: 'English',
-        international: 'English'
+        code: '\u4E2D\u6587',
+        local: 'Czajna',
+        international: 'China'
     },
     
     init: function()
@@ -35,13 +35,19 @@ var ln =
     
     getLanguage: function()
     {
+        alert("Folks! We're rolling with getLanguage()...");
+        
         //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
         if(typeof('ripple') === 'undefined')
         {
+            alert("typeof('ripple') === 'undefined' TRUE");
+            
             navigator.globalization.getPreferredLanguage
             (
                 function(lang)
                 {
+                    alert("Yyyiiisajd getPreferredLanguage success callback");
+                    
                     ln.language.local = lang.value;
                     ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
                     ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
@@ -72,6 +78,8 @@ var ln =
         }
         else
         {
+            alert("typeof('ripple') === 'undefined' FALSE");
+            
             //Mimic object normally returned by navigator.globalization.getPreferredLanguage()
             var lang = {value: ln.language.local};
 
