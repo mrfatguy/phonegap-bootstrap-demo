@@ -179,7 +179,7 @@
                  * 
                  * Gathers device information and displays it as Bootstrap modal.
                  */
-                $('#btnInfo').click(function()
+                $('body').on('click', '#btnInfo', function()
                 {
                     var info =
                         'Model: <strong>' + device.model + '</strong>.<br />' + 
@@ -189,8 +189,8 @@
 
                     apprise(info, {});
                 });
-
-                $('#btnAcrid').click(function()
+                
+                $('body').on('click', '#btnAcrid', function()
                 {
                     app.openUrl('http://acrid.pl');
                 });
