@@ -1,7 +1,5 @@
 var app = 
 {
-    language: '',
-    
     init: function()
 	{
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
@@ -17,26 +15,27 @@ var app =
         if(typeof('ripple') === 'undefined') document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
-         * Battery-related event handlers.
+         * Battery-related and menu button press events handlers.
          * 
-         * Don't foreget about putting:
+         * Used as real events in this application -- i.e. has some function.
          * 
-         * <feature name="http://api.phonegap.com/1.0/battery"/>
-         * 
-         * to your config.xml!
+         * Add <feature name="http://api.phonegap.com/1.0/battery"/> to your config.xml!
          */
+        document.addEventListener('menubutton', app.menuButtonHandler, false);
+        
         document.addEventListener('batterylow', app.batteryLowHandler, false);
         document.addEventListener('batterystatus', app.batteryStatusHandler, false);
         document.addEventListener('batterycritical', app.batteryCriticalHandler, false);
         
         /**
          * Demo purpose only events handlers.
+         * 
+         * Meaningless in this application, just throwing info to console / event log.
          */
         document.addEventListener('pause', app.pauseHandler, false);
         document.addEventListener('resume', app.resumeHandler, false);
         document.addEventListener('online', app.onlineHandler, false);
         document.addEventListener('offline', app.offlineHandler, false);
-        document.addEventListener('menubutton', app.menuButtonHandler, false);
         document.addEventListener('searchbutton', app.searchButtonHandler, false);
         document.addEventListener('endcallbutton', app.endCallButtonHandler, false);
         document.addEventListener('volumeupbutton', app.volumeUpButtonHandler, false);
@@ -53,7 +52,20 @@ var app =
     /**
      * Menu button press event handler to display current language.
      */
-    menuButtonHandler: function(){alert('System language is currently set to: "' + app.language + '".');},
+    menuButtonHandler: function()
+    {
+            var message = i18n.t
+            (
+                'messages.menu',
+                {
+                    code: ln.language.code,
+                    local: ln.language.local,
+                    language: ln.language.international
+                }
+            );
+
+            alert(message);
+    },
 	
     /**
      * Demo purpose only events.

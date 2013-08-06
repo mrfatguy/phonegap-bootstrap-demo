@@ -63,12 +63,12 @@ var ln =
         else
         {
             //Mimic object normally returned by navigator.globalization.getPreferredLanguage()
-            var lang = {value: ln.language.code};
+            var lang = {value: ln.language.local};
 
             ln.language.local = lang.value;
             ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
             ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
-
+            
             i18n.setLng(ln.language.code, function(t)
             {
                 $('body').i18n();
