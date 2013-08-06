@@ -13,7 +13,7 @@ var ln =
         /**
          * Check, if user has language stored in localStorage and use it, if so.
          */
-        var storedLanguage =  window.localStorage.getItem('settings.language');
+        var storedLanguage = window.localStorage.getItem('settings.language');
         
         if(storedLanguage !== null)
         {

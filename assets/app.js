@@ -158,6 +158,8 @@ var app =
     updatePhonegapTab: function()
     {
         $('#connectionType').html(app.checkConnection());
+        
+        $('#currentLanguage').html(window.localStorage.getItem('settings.language'));
     },            
     
     isConnected: function()
