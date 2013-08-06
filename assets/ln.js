@@ -45,15 +45,19 @@ var ln =
                     ln.language.local = lang.value;
                     ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
                     ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
+                    
+                    var debugText = 'lang.value = ' + lang.value + ', ln.language.local = ' + ln.language.local + ', ln.language.international = ' + ln.language.international + ', ln.language.code = ' + ln.language.code;
+                    
+                    console.log('getPreferredLanguage success callback!');
+                    console.log(lang);
+                    console.log(ln.language);
+                    console.log(debugText);
+                    alert('getPreferredLanguage success callback -- ' + debugText);
+                    app.menuButtonHandler();
 
                     i18n.setLng(ln.language.code, function(t)
                     {
                         $('body').i18n();
-                        
-                        console.log('getPreferredLanguage success callback!');
-                        console.log(ln.language);
-                        alert('getPreferredLanguage success callback!');
-                        app.menuButtonHandler();
                         
                         app.contentLoad();
                     });
@@ -74,11 +78,6 @@ var ln =
             ln.language.local = lang.value;
             ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
             ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
-            
-            console.log('getPreferredLanguage success callback!');
-            console.log(ln.language);
-            alert('getPreferredLanguage success callback!');
-            app.menuButtonHandler();
             
             i18n.setLng(ln.language.code, function(t)
             {
