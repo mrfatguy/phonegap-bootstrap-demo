@@ -15,12 +15,6 @@ var app =
         /**
          * Actual handler, to handle app's exits.
          */
-        app.getLanguage();
-        app.translateApplication();
-        
-        /**
-         * Actual handler, to handle app's exits.
-         */
         document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
@@ -50,9 +44,12 @@ var app =
         document.addEventListener('volumeupbutton', app.volumeUpButtonHandler, false);
         document.addEventListener('volumedownbutton', app.volumeDownButtonHandler, false);
         
+        /**
+         * Content translation and rendering.
+         */
+        app.getLanguage();
+        app.translateApplication();
         app.updatePhonegapTab();
-        
-        app.writeEventLog('app.deviceReadyHandler();');
     },
     
     /**
@@ -176,8 +173,6 @@ var app =
             
     translateApplication: function()
     {
-        console.log('BEGIN app.translateApplication();');
-        
         /**
          * Load application contents, Init translation engine and translate application.
          * 
@@ -193,21 +188,10 @@ var app =
         }, function()
         {
             /**
-             * Preload tabs' contents and then translate them...
-             * 
-             * We're NOT using jQuery.fn.load(), but our own function. This is required
-             * in any PhoneGap application, that loads data from local files via AJAX,
-             * to handle request.status === 0, which is not handled by jQuery.fn.load().
-             * 
-             * Without this fix, loading local files in Android 2.x.x platform fails.
-             * 
-             * Details are discussed in Simon Mac Donald's blog (closer to end):
-             * 
-             * http://simonmacdonald.blogspot.com/2011/12/on-third-day-of-phonegapping-getting.html
+             * Translate non-dynamic contents of page and then preload all the
+             * dynamic content, running translation on each of them.
              */
             $('body').i18n();
-            
-            console.log('END app.translateApplication();');
             
             app.contentLoad();
         });
@@ -215,6 +199,19 @@ var app =
     
     contentLoad: function()
     {
+        /**
+         * Preload tabs' contents and then translate them...
+         * 
+         * We're NOT using jQuery.fn.load(), but our own function. This is required
+         * in any PhoneGap application, that loads data from local files via AJAX,
+         * to handle request.status === 0, which is not handled by jQuery.fn.load().
+         * 
+         * Without this fix, loading local files in Android 2.x.x platform fails.
+         * 
+         * Details are discussed in Simon Mac Donald's blog (closer to end):
+         * 
+         * http://simonmacdonald.blogspot.com/2011/12/on-third-day-of-phonegapping-getting.html
+         */
         var tabNum = 0,
             tabCount = $("div.tab-pane").size();
     
