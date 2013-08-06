@@ -4,11 +4,28 @@ var ln =
     {
         code: '',
         local: 'Deutsch',
-        international: ''
+        international: '',
+        fromLocalStorage: false
     },
     
     init: function()
 	{
+        /**
+         * Check, if user has language stored in localStorage and use it, if so.
+         */
+        var storedLanguage =  window.localStorage.getItem('settings.language');
+        
+        if(storedLanguage !== null)
+        {
+            ln.language.local = storedLanguage;
+            ln.language.code = ln.localLanguageNameToISOCode(storedLanguage);
+            ln.language.international = ln.localLanguageNameToEnglishName(storedLanguage);
+            
+            ln.updateLanguageSelector(storedLanguage);
+            
+            ln.fromLocalStorage = true;
+        }
+        
         /**
          * i18next -- http://i18next.com/
          * 
@@ -35,19 +52,23 @@ var ln =
     
     getLanguage: function()
     {
-        //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
-        if(!app.debugMode)
+        if(!ln.fromLocalStorage)
         {
-            navigator.globalization.getPreferredLanguage
-            (
-                function(lang)
-                {
-                    app.setLanguage(lang.value);
-                },
-                function(){}
-            );
+            //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
+            if(!app.debugMode)
+            {
+                navigator.globalization.getPreferredLanguage
+                (
+                    function(lang)
+                    {
+                        app.setLanguage(lang.value);
+                    },
+                    function(){}
+                );
+            }
+            else ln.setLanguage(ln.language.local);
         }
-        else ln.setLanguage(ln.language.local);
+        else if(app.initMode) app.contentLoad();
     },
     
     setLanguage: function(lang)
@@ -61,12 +82,18 @@ var ln =
             $('body').i18n();
             
             app.updatePhonegapTab();
+            ln.updateLanguageSelector(lang);
             
-            $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
-            $('.change-language-menu-item[data-language=' + lang + ']').css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
+            window.localStorage.setItem('settings.language', lang);
 
             if(app.initMode) app.contentLoad();
         });
+    },
+    
+    updateLanguageSelector: function(lang)
+    {
+        $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
+        $('.change-language-menu-item[data-language=' + lang + ']').css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
     },
 
     localLanguageNameToISOCode: function(lang)
