@@ -50,6 +50,11 @@ var ln =
                     {
                         $('body').i18n();
                         
+                        console.log('getPreferredLanguage success callback!');
+                        console.log(ln.language);
+                        alert('getPreferredLanguage success callback!');
+                        app.menuButtonHandler();
+                        
                         app.contentLoad();
                     });
                 },
@@ -57,6 +62,7 @@ var ln =
                 {
                     console.log('Error getting language setting -- getPreferredLanguage error callback called!');
                     console.log(error);
+                    alert('Error getting language setting -- getPreferredLanguage error callback called!');
                 }
             );
         }
@@ -68,6 +74,11 @@ var ln =
             ln.language.local = lang.value;
             ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
             ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
+            
+            console.log('getPreferredLanguage success callback!');
+            console.log(ln.language);
+            alert('getPreferredLanguage success callback!');
+            app.menuButtonHandler();
             
             i18n.setLng(ln.language.code, function(t)
             {
