@@ -5,17 +5,16 @@ var app =
     init: function()
 	{
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
-        
-        //Fix for nasty bug of Ripple not firing events!
-        if(typeof('ripple') !== 'undefined') app.deviceReadyHandler();
     },
 	
     deviceReadyHandler: function()
 	{
         /**
-         * Actual handler, to handle app's exits.
+         * Actual handler, to handle app's exits (back button press).
+         * 
+         * With fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
          */
-        document.addEventListener("backbutton", app.backButtonHandler, true);
+        if(typeof('ripple') === 'undefined') document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
          * Battery-related event handlers.
@@ -47,8 +46,7 @@ var app =
         /**
          * Content translation and rendering.
          */
-        app.getLanguage();
-        app.translateApplication();
+        ln.init();
         app.updatePhonegapTab();
     },
     
@@ -157,46 +155,7 @@ var app =
         
         return value.toString() + unit;
     },
-    
-    getLanguage: function()
-    {
-        //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
-        if(typeof('ripple') === 'undefined')
-        {
-            navigator.globalization.getPreferredLanguage
-            (
-                function(language){app.language = language.value},
-                function(){}
-            );
-        }
-    },
-            
-    translateApplication: function()
-    {
-        /**
-         * Load application contents, Init translation engine and translate application.
-         * 
-         * Translation engine -- i18next: http://i18next.com/pages/doc_init.html
-         */
-        i18n.init
-        ({
-            lng: 'en-US',
-            ns: 'general',
-            useCookie: false,
-            fallbackLng: 'en',
-            resGetPath: 'locales/__ns__.__lng__.json'
-        }, function()
-        {
-            /**
-             * Translate non-dynamic contents of page and then preload all the
-             * dynamic content, running translation on each of them.
-             */
-            $('body').i18n();
-            
-            app.contentLoad();
-        });
-    },
-    
+
     contentLoad: function()
     {
         /**
