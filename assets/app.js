@@ -1,9 +1,12 @@
 var app = 
 {
-    debug: window.tinyHippos != undefined,
+    initMode: false,
+    debugMode: window.tinyHippos != undefined,
     
     init: function()
 	{
+        app.initMode = true;
+        
         document.addEventListener('deviceready', app.deviceReadyHandler, false);
     },
 	
@@ -14,7 +17,7 @@ var app =
          * 
          * With fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
          */
-        if(!app.debug) document.addEventListener("backbutton", app.backButtonHandler, true);
+        if(!app.debugMode) document.addEventListener("backbutton", app.backButtonHandler, true);
         
         /**
          * Battery-related and menu button press events handlers.
@@ -211,6 +214,8 @@ var app =
                         if(target.attr("data-url") === '_phonegap.html') app.updatePhonegapTab();
 
                         console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab!');
+                        
+                        app.initMode = false;
                     }
                     else
                     {

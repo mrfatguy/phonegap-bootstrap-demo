@@ -2,9 +2,9 @@ var ln =
 {
     language:
     {
-        code: 'en',
-        local: 'English',
-        international: 'English'
+        code: '',
+        local: 'Deutsch',
+        international: ''
     },
     
     init: function()
@@ -20,7 +20,7 @@ var ln =
          */
         i18n.init
         ({
-            lng: ln.language.code,
+            lng: ln.localLanguageNameToISOCode(ln.language.local),
             ns: 'general',
             useCookie: false,
             fallbackLng: 'en',
@@ -36,45 +36,40 @@ var ln =
     getLanguage: function()
     {
         //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
-        if(!app.debug)
+        if(!app.debugMode)
         {
             navigator.globalization.getPreferredLanguage
             (
                 function(lang)
                 {
-                    ln.language.local = lang.value;
-                    ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
-                    ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
-                    
-                    i18n.setLng(ln.language.code, function(t)
-                    {
-                        $('body').i18n();
-                        
-                        app.contentLoad();
-                    });
+                    app.setLanguage(lang.value);
                 },
-                function(error){}
+                function(){}
             );
         }
-        else
+        else ln.setLanguage(ln.language.local);
+    },
+    
+    setLanguage: function(lang)
+    {
+        ln.language.local = lang;
+        ln.language.code = ln.localLanguageNameToISOCode(lang);
+        ln.language.international = ln.localLanguageNameToEnglishName(lang);
+                    
+        i18n.setLng(ln.language.code, function()
         {
-            //Mimic object normally returned by navigator.globalization.getPreferredLanguage()
-            var lang = {value: ln.language.local};
-
-            ln.language.local = lang.value;
-            ln.language.code = ln.nativeLanguageNameToISOCode(lang.value);
-            ln.language.international = ln.nativeLanguageNameToEnglishName(lang.value);
+            $('body').i18n();
             
-            i18n.setLng(ln.language.code, function(t)
-            {
-                $('body').i18n();
-                
-                app.contentLoad();
-            });
-        }
+            app.updatePhonegapTab();
+            
+            $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
+            $('.change-language-menu-item[data-language=' + lang + ']').css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
+
+            if(app.initMode) app.contentLoad();
+        });
     },
 
-    nativeLanguageNameToISOCode: function(lang)
+    localLanguageNameToISOCode: function(lang)
     {
         var
             dict = {},
@@ -136,7 +131,7 @@ var ln =
         return code;
     },
 
-    nativeLanguageNameToEnglishName: function(lang)
+    localLanguageNameToEnglishName: function(lang)
     {
         var
             dict = {},

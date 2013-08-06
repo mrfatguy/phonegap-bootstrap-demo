@@ -107,15 +107,15 @@
                             
                             <ul class="dropdown-menu">
                               
-                                <li><a class="change-language-menu-item" rel="de"><i class="icon-fixed-width"></i> Deutsch (de-DE)</a></li>
+                                <li><a class="change-language-menu-item" data-language="Deutsch"><i class="icon-fixed-width"></i> Deutsch (de-DE)</a></li>
 
-                                <li><a class="change-language-menu-item" rel="zh"><i class="icon-fixed-width"></i> 中文（简体） (zh-CN)</a></li>
+                                <li><a class="change-language-menu-item" data-language="中文"><i class="icon-fixed-width"></i> 中文（简体） (zh-CN)</a></li>
                                 
-                                <li><a class="change-language-menu-item" rel="pl"><i class="icon-fixed-width"></i> polski (pl-PL)</a></li>
+                                <li><a class="change-language-menu-item" data-language="polski"><i class="icon-fixed-width"></i> polski (pl-PL)</a></li>
                                 
                                 <li class="divider"></li>
 
-                                <li><a style="font-weight: bold" class="change-language-menu-item" rel="en"><i class="icon-fixed-width icon-arrow-right"></i> English (en-GB)</a></li>
+                                <li><a style="font-weight: bold" class="change-language-menu-item" rel="en" data-language="English"><i class="icon-fixed-width icon-arrow-right"></i> English (en-GB)</a></li>
 
                             </ul>
                             
@@ -246,22 +246,27 @@
                  * 
                  * onClick handler for dynamic change of page's language. Based
                  * on i18next engine: http://i18next.com/
+                 * 
+                 * Note: We're using local language names here (i.e. 中文 -- for Chinese),
+                 * which seems to be way, way harder (more stupid?) than just using
+                 * ISO 639-1 two-letter codes (i.e. zh -- for Chinese). Don't blame
+                 * me -- this is how (stupidly) PhoneGap is build, that it returns
+                 * local language name from navigator.globalization.getPreferredLanguage
+                 * while it SHOULD return code. So, entire mechanism is oriented
+                 * toward this behavior, and that is why, you have to provide real,
+                 * not encoded, not escapsed name in `data-language` attribute. Use:
+                 * 
+                 * http://en.wikipedia.org/wiki/List_of_ISO_639-1_codes
+                 * 
+                 * to get actual local name, for (nearly) any language, you wish.
                  */
                 $('body').on('click', '.change-language-menu-item', function()
                 {
-                    var code = $(this).attr('rel');
-                        
-                    i18n.setLng(code, function(t)
-                    {
-                        $('body').i18n();
-                        
-                        app.updatePhonegapTab();
-                    });
-                        
-                    $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
-                    $(this).css('font-weight', 'bold').find('i').addClass('icon-arrow-right');
+                    var language = $(this).attr('data-language');
                     
-                    app.writeEventLog('Changing language to "' + code + '".');
+                    ln.setLanguage(language);
+                    
+                    app.writeEventLog('Changing language to: ' + ln.language.international + ' (' + ln.language.local + ').');
                 });
                 
                 /**
