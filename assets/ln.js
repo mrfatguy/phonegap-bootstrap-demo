@@ -2,13 +2,14 @@ var ln =
 {
     language:
     {
-        code: '\u4E2D\u6587',
-        local: 'Czajna',
+        code: 'cz',
+        local: '\u4E2D\u6587',
         international: 'China'
     },
     
     init: function()
 	{
+        alert("Folks! We're rolling with ln.init()...");
         /**
          * i18next -- http://i18next.com/
          * 
@@ -35,7 +36,7 @@ var ln =
     
     getLanguage: function()
     {
-        alert("Folks! We're rolling with getLanguage()...");
+        alert("Folks! We're rolling with ln.getLanguage()...");
         
         //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
         if(typeof('ripple') === 'undefined')
