@@ -9,7 +9,6 @@ var ln =
     
     init: function()
 	{
-        alert("Folks! We're rolling with ln.init()...");
         /**
          * i18next -- http://i18next.com/
          * 
@@ -36,13 +35,11 @@ var ln =
     
     getLanguage: function()
     {
-        alert("Folks! We're rolling with ln.getLanguage()...");
+        alert("typeof('ripple') = " + typeof('ripple'));
         
         //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
         if(typeof('ripple') === 'undefined')
         {
-            alert("typeof('ripple') === 'undefined' TRUE");
-            
             navigator.globalization.getPreferredLanguage
             (
                 function(lang)
@@ -79,8 +76,6 @@ var ln =
         }
         else
         {
-            alert("typeof('ripple') === 'undefined' FALSE");
-            
             //Mimic object normally returned by navigator.globalization.getPreferredLanguage()
             var lang = {value: ln.language.local};
 
