@@ -212,11 +212,6 @@ var app =
          * 
          * http://simonmacdonald.blogspot.com/2011/12/on-third-day-of-phonegapping-getting.html
          */
-        var tabNum = 0,
-            tabCount = $("div.tab-pane").size();
-    
-        console.log('BEGIN app.contentLoad();');
-        
         $("div.tab-pane").each(function()
         {
             var
@@ -240,21 +235,22 @@ var app =
                     {
                         target.html(request.responseText);
 
-                        console.log('$(#' + target.attr("id") + ').i18n();');
                         $('#' + target.attr("id")).i18n();
 
                         if(target.attr("data-url") === '_phonegap.html') app.updatePhonegapTab();
 
-                        console.log('Loaded contents of #' + target.attr("id") + ' tab!');
-                        
-                        tabNum++;
-                        if(tabNum === tabCount) console.log('END app.contentLoad();');
+                        console.log('Loaded contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab!');
                     }
-                    else target.html('Error when loading contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab: "<em>Value of <kbd>request.status</kbd> is different than <kbd>200</kbd> or <kbd>0</kbd>. File is probably missing, is not accessible or has an invalid filename</em>".');
+                    else
+                    {
+                        var errorMessage = 'Error when loading contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab: "Value of request.status is different than 200 or 0. File is probably missing, is not accessible or has an invalid filename".';
+                        
+                        console.log(errorMessage);
+                        target.html(errorMessage);
+                    }
                 }
             };
             
-            console.log('Loading contents of "' + target.attr("data-url") + '" file into #' + target.attr("id") + ' tab!');
             request.send();
         });  
     },
