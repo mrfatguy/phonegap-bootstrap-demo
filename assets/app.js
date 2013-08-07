@@ -14,6 +14,11 @@ var app =
     deviceReadyHandler: function()
 	{
         /**
+         * Display so called loader. Will be hidden by last AJAX end -- see index.html.
+         */
+        $.blockUI();
+        
+        /**
          * Actual handler, to handle app's exits (back button press).
          * 
          * With fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
