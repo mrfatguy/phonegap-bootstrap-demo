@@ -23,13 +23,13 @@ var ln =
             
             ln.updateLanguageSelector(storedLanguage);
             
-            ln.fromLocalStorage = true;
+            ln.language.fromLocalStorage = true;
         }
         
         alert
         (
             'storedLanguage = ' + storedLanguage + "\n" +
-            'ln.fromLocalStorage = ' + ln.fromLocalStorage + "\n" +
+            'ln.language.fromLocalStorage = ' + ln.language.fromLocalStorage + "\n" +
             'ln.language.code = ' + ln.language.code + "\n" +
             'ln.language.local = ' + ln.language.local + "\n" +
             'ln.language.international = ' + ln.language.international
@@ -63,7 +63,7 @@ var ln =
     {
         alert('ln.getLanguage()');
         
-        if(!ln.fromLocalStorage)
+        if(!ln.language.fromLocalStorage)
         {
             //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
             if(!app.debugMode)
