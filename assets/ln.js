@@ -26,15 +26,6 @@ var ln =
             ln.language.fromLocalStorage = true;
         }
         
-        alert
-        (
-            'storedLanguage = ' + storedLanguage + "\n" +
-            'ln.language.fromLocalStorage = ' + ln.language.fromLocalStorage + "\n" +
-            'ln.language.code = ' + ln.language.code + "\n" +
-            'ln.language.local = ' + ln.language.local + "\n" +
-            'ln.language.international = ' + ln.language.international
-        )
-        
         /**
          * i18next -- http://i18next.com/
          * 
@@ -61,7 +52,12 @@ var ln =
     
     getLanguage: function()
     {
-        alert('ln.getLanguage()');
+        alert
+        (
+            'fromLocalStorage = ' + ln.language.fromLocalStorage + "\n" +
+            'app.debugMode = ' + app.debugMode + "\n" +
+            'app.initMode = ' + app.initMode
+        )
         
         if(!ln.language.fromLocalStorage)
         {
@@ -72,9 +68,11 @@ var ln =
                 (
                     function(lang)
                     {
+                        alert('navigator.globalization.getPreferredLanguage SUCCESS!');
+                        
                         app.setLanguage(lang.value);
                     },
-                    function(){}
+                    function(){alert('navigator.globalization.getPreferredLanguage ERROR!')}
                 );
             }
             else ln.setLanguage(ln.language.local);

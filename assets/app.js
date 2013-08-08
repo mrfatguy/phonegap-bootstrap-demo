@@ -180,12 +180,6 @@ var app =
          */
         var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
         
-        alert
-        (
-            'networkState = ' + networkState + "\n" +
-            'isConnected = ' + (networkState !== 'unknown' && networkState !== 'none')
-        );
-        
         return networkState !== 'unknown' && networkState !== 'none';
     },
     
