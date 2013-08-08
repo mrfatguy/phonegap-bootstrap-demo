@@ -7,6 +7,15 @@ body
 
 code, pre {font-size: 16px !important}
 
+kbd
+{
+    padding: 2px 4px;
+    color: #d14;
+    white-space: nowrap;
+    background-color: #f7f7f9;
+    border: 1px solid #e1e1e8;
+}
+
 #menu-buttons .btn {margin: 2px}
 
 #audio-buttons .btn

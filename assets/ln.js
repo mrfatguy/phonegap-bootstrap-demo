@@ -90,6 +90,13 @@ var ln =
         });
     },
     
+    removeLanguageSetting: function()
+    {
+        window.localStorage.removeItem('settings.language');
+        
+        app.updatePhonegapTab();
+    }, 
+    
     updateLanguageSelector: function(lang)
     {
         $('.change-language-menu-item').css('font-weight', 'normal').find('i').removeClass('icon-arrow-right');
