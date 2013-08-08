@@ -80,22 +80,39 @@
 
 <h3>Media</h3>
 
-<div class="audio-buttons">
-    
-    <div class="pull-left">
-        
-        <a class="btn btn-small" onclick="app.playAudio('audio/hangout.m4a')"><kbd>hangout.m4a</kbd></a>
-        <a class="btn btn-small" onclick="app.playAudio('beep.wav')"><kbd>beep.wav</kbd></a>
-        
+<div class="well well-small" id="audio-buttons">
+
+    <div class="pull-left" style="width: 48%">
+
+            <a class="btn btn-warning" onclick="app.playAudio('audio/hangout.m4a')">
+
+                <i class="icon-music"></i> hangout.m4a
+
+            </a>
+
+            <a class="btn btn-warning" onclick="app.playAudio('beep.wav')">
+
+                <i class="icon-music"></i> beep.wav
+            </a>
+
     </div>
-    
-    <div class="pull-right text-right">
+
+    <div class="pull-right text-right" style="width: 48%">
+
+        <a class="btn btn-info" onclick="app.playAudio('audio/averno.mp3')">
+            
+            <i class="icon-music"></i> averno.mp3
         
-        <a class="btn btn-small" onclick="app.playAudio('audio/averno.mp3')"><kbd>averno.mp3</kbd></a>
-        <a class="btn btn-small" onclick="app.playAudio('audio/mayday.mp3')"><kbd>mayday.mp3</kbd></a>
+        </a>
+
+        <a class="btn btn-info" onclick="app.playAudio('audio/mayday.mp3')">
+            
+            <i class="icon-music"></i> mayday.mp3
         
+        </a>
+
     </div>
-    
+
     <div style="clear: both"></div>
 
 </div>

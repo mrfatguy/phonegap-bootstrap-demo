@@ -9,7 +9,14 @@ code, pre {font-size: 16px !important}
 
 #menu-buttons .btn {margin: 2px}
 
-#menu-buttons .well {padding: 7px}
+#audio-buttons .btn
+{
+    margin: 2px;
+    width: 100px;
+    text-align: left;
+}
+
+#menu-buttons .well, #audio-buttons .well {padding: 7px}
 
 #menu-buttons .btn-group + .btn-group {margin: 0px}
 
