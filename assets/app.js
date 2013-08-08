@@ -144,7 +144,13 @@ var app =
             
     checkConnection: function()
     {
-        //Workaround for Ripple Emulator having very old PhoneGap (2.0.0) on-board...
+        /**
+         * Ripple Emulator (used in debugging) has very, very old PhoneGap 2.0.0 
+         * behind and checks connection type from different object.
+         * 
+         * Change from navigator.network.connection to navigator.connection was introduced
+         * in PhoneGap 2.2.0.
+         */
         var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
 
         var states = {};
@@ -170,19 +176,11 @@ var app =
     isConnected: function()
     {
         /**
-         * Note, that window.navigator.onLine is correctly implemented ONLY in Chrome
-         * or WebKit-based browsers and it is used here only for testing purposes
-         * (pre-testing application under Ripple Emulator):
-         * 
-         * https://developer.mozilla.org/en-US/docs/Web/API/window.navigator.onLine#Browser_compatibility
-         * http://stackoverflow.com/questions/3181080/how-to-detect-online-offline-event-cross-browser/4813406#4813406
-         * http://stackoverflow.com/questions/2384167/check-if-internet-connection-exists-with-javascript/2384227#2384227
+         * See note for app.checkConnection();
          */
-        if(window.navigator && window.navigator.onLine)
-        {
-            return  !(navigator && navigator.connection && navigator.connection.type && navigator.connection.type === Connection.NONE);
-        }
-        else return false;
+        var networkState = ((navigator.connection) ? navigator.connection.type : ((navigator.network && navigator.network.connection) ? navigator.network.connection.type : 'unknown'));
+        
+        return networkState !== 'unknown' && networkState !== 'none';
     },
     
     openUrl: function(url)
