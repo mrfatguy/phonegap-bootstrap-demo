@@ -61,11 +61,7 @@ var ln =
                 (
                     function(lang)
                     {
-                        alert('lang.value = ' + lang.value + "\n\n" + 'About to fire app.setLanguage(' + lang.value +');');
-                        
-                        app.setLanguage(lang.value);
-                        
-                        alert('This line is BELOW app.setLanguage(' + lang.value +');');
+                        ln.setLanguage(lang.value);
                     },
                     function(){}
                 );
@@ -77,8 +73,6 @@ var ln =
     
     setLanguage: function(lang)
     {
-        alert('ln.setLanguage()');
-        
         ln.language.local = lang;
         ln.language.code = ln.localLanguageNameToISOCode(lang);
         ln.language.international = ln.localLanguageNameToEnglishName(lang);

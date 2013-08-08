@@ -43,5 +43,3 @@ kbd
  * Bootstrap fixup
  */
 .nav-tabs, .nav-pills {position: relative;}
-
-.tab-content {overflow: visible !important;}
