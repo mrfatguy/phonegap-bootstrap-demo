@@ -1,3 +1,6 @@
+/*
+ * General styles
+ */
 body
 {
 	font-family: 'Helvetica Neue', Helvetica, Arial, Verdana, sans-serif;
@@ -16,6 +19,9 @@ kbd
     border: 1px solid #e1e1e8;
 }
 
+/*
+ * Local styles
+ */
 #menu-buttons .btn {margin: 2px}
 
 #audio-buttons .btn
@@ -33,4 +39,9 @@ kbd
 
 #menu-buttons .btn-group > .btn.dropdown-toggle {margin-left: 0px}
 
+/*
+ * Bootstrap fixup
+ */
 .nav-tabs, .nav-pills {position: relative;}
+
+.tab-content {overflow: visible !important;}

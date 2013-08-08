@@ -29,8 +29,12 @@
     <preference name="target-device"        value="universal" />
     <preference name="fullscreen"           value="false" />
 	<preference name="autorotate"           value="false" readonly="true" />
+    
+	<preference name="loadUrlTimeoutValue" value="60000" />
 	<preference name="AutoHideSplashScreen" value="false" />
 	<preference name="OpenAllWhitelistURLsInWebView" value="No" />
+    
+    <access origin="*" subdomains="true" />
 
 	<icon src="icon.png" gap:role="default" />
 
