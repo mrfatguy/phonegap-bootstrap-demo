@@ -199,8 +199,6 @@ var app =
 
     contentLoad: function()
     {
-        alert('app.contentLoad()');
-        
         /**
          * Preload tabs' contents and then translate them...
          * 
