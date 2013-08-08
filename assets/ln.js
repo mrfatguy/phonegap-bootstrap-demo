@@ -26,6 +26,15 @@ var ln =
             ln.fromLocalStorage = true;
         }
         
+        alert
+        (
+            'storedLanguage = ' + storedLanguage + "\n" +
+            'ln.fromLocalStorage = ' + ln.fromLocalStorage + "\n" +
+            'ln.language.code = ' + ln.language.code + "\n" +
+            'ln.language.local = ' + ln.language.local + "\n" +
+            'ln.language.international = ' + ln.language.international
+        )
+        
         /**
          * i18next -- http://i18next.com/
          * 
@@ -52,6 +61,8 @@ var ln =
     
     getLanguage: function()
     {
+        alert('ln.getLanguage()');
+        
         if(!ln.fromLocalStorage)
         {
             //Fix for nasty bug of Ripple having deadly old PhoneGap 2.0.0 behind!
@@ -73,6 +84,8 @@ var ln =
     
     setLanguage: function(lang)
     {
+        alert('ln.setLanguage()');
+        
         ln.language.local = lang;
         ln.language.code = ln.localLanguageNameToISOCode(lang);
         ln.language.international = ln.localLanguageNameToEnglishName(lang);
