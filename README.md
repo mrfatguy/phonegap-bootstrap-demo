@@ -3,6 +3,17 @@ PhoneGap Demo Bootstrap
 This is a simple PhoneGap application based on Twitter Bootstrap library. It should be ready for _PhoneGap Build_. Use or fork it, if you want to see, how Bootstrap framework works and looks inside a mobile application or if you need a base app for building PhoneGap applications using Bootstrap.
 
 
+Important notice
+----------------
+This project is written, using nearly-newest [PhoneGap 2.9.0 API](http://docs.phonegap.com/en/2.9.0/index.html), while Ripple Emulator has very old [2.0.0 API](http://docs.phonegap.com/en/2.0.0/index.html) behind, so it **some parts of this demo will not work in desktop computer browser**, even if you run it with Ripple Emulator. You have to compile it and test it on mobile device, if you want to see all implemented things in action.
+
+Battery demo part has some unfixed bugs and is not working. Reffer to my [pg-demo-battery project](https://github.com/trejder/pg-demo-battery) to see this fixed.
+
+Plus, it uses AJAX loading of key parts (tab contents), which may fail in certain situations (on some browsers and devices, including desktop computers and mobile devices). It sounded like a good idea, when I first time designed it, but finally it turned out to be not so cool and causing some problems, especially on some old hardware (Android 2.x).
+
+In general, I dropped this project, because it turned out, that apps written with Bootstrap are very, very slow on most mobile devices with Android. This project was planned as base for all my apps, but I abandoned this idea for performance reasons. Right now, I'm building all my apps from scratch, without using Bootstrap or any other framework, as they turn out to be too much for PhoneGap-based apps.
+
+
 Includes
 --------
 This demo contains or includes following things:
