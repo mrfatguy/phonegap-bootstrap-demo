@@ -11,7 +11,7 @@ Battery demo part has some unfixed bugs and is not working. Reffer to my [pg-dem
 
 Plus, it uses AJAX loading of key parts (tab contents), which may fail in certain situations (on some browsers and devices, including desktop computers and mobile devices). It sounded like a good idea, when I first time designed it, but finally it turned out to be not so cool and causing some problems, especially on some old hardware (Android 2.x).
 
-In general, I dropped this project, because it turned out, that apps written with Bootstrap are very, very slow on most mobile devices with Android. This project was planned as base for all my apps, but I abandoned this idea for performance reasons. Right now, I'm building all my apps from scratch, without using Bootstrap or any other framework, as they turn out to be too much for PhoneGap-based apps.
+In general, **I dropped this project**, because it turned out, that apps written with Bootstrap are very, very slow on most mobile devices with Android. This project was planned as base for all my apps, but I abandoned this idea for performance reasons. Right now, I'm building all my apps from scratch, without using Bootstrap or any other framework, as they turn out to be too much for PhoneGap-based apps.
 
 
 Includes
