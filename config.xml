@@ -1,50 +1,49 @@
-<!-- https://build.phonegap.com/docs/config-xml -->
-
 <?xml version="1.0" encoding="UTF-8"?>
-<widget
-	xmlns="http://www.w3.org/ns/widgets"
-	xmlns:gap="http://phonegap.com/ns/1.0"
-	id="pl.acrid.demo.bootstrap"
-	version="1.7.0">
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "pl.gaman.phonetest"
+        version   = "1.8.0">
 
-	<name>Demo Bootstrap</name>
+    <name>Phone Test</name>
 
-	<description>acrid.pl Demo Bootstrap</description>
+    <description>
+        This application allows you to test various aspects of your phone, including
+        hardware (vibration, compass, audio, geolocation, sound), graphic (many test)
+        libraries and frameworks (including Twitter Bootstrap) and overall performance
+        of HTML5-based mobile applications written and build with PhoneGap.
+    </description>
 
-	<author
-		href="http://www.acrid.pl/"
-		email="info@acrid.pl">
-		acrid.pl
-	</author>
+    <author href="https://github.com/trejder">
+        https://github.com/trejder/
+    </author>
 
-	<gap:platforms>
-		<gap:platform name="android" minVersion="2.2" />
-		<gap:platform name="webos" />
-		<gap:platform name="symbian.wrt" />
-		<gap:platform name="blackberry" project="widgets" />
-	</gap:platforms>
-	
-    <preference name="phonegap-version"     value="2.9.0" />
-    <preference name="orientation"          value="default" />
-    <preference name="target-device"        value="universal" />
-    <preference name="fullscreen"           value="false" />
-	<preference name="autorotate"           value="false" readonly="true" />
+    <gap:plugin name="org.apache.cordova.inappbrowser" version="0.5.2" />
+    <gap:plugin name="org.apache.cordova.vibration" version="0.3.11" />
+    <gap:plugin name="org.apache.cordova.splashscreen" version="0.3.4" />
+    <gap:plugin name="org.apache.cordova.dialogs" version="0.2.10" />
+    <gap:plugin name="org.apache.cordova.network-information" version="0.2.12" />
+    <gap:plugin name="org.apache.cordova.media" version="0.2.13" />
+    <gap:plugin name="org.apache.cordova.globalization" version="0.3.1" />
+    <gap:plugin name="org.apache.cordova.geolocation" version="0.3.10" />
+    <gap:plugin name="org.apache.cordova.device-orientation" version="0.3.9" />
+    <gap:plugin name="org.apache.cordova.device-motion" version="0.2.10" />
+    <gap:plugin name="org.apache.cordova.device" version="0.2.12" />
+    <gap:plugin name="org.apache.cordova.battery-status" version="0.2.11" />
+
+    <feature name="http://api.phonegap.com/1.0/media"/>
+    <feature name="http://api.phonegap.com/1.0/device"/>
+    <feature name="http://api.phonegap.com/1.0/network"/>
+    <feature name="http://api.phonegap.com/1.0/geolocation"/>
+    <feature name="http://api.phonegap.com/1.0/notification"/>
+
+    <preference name="phonegap-version" value="3.7.0" />
+    <preference name="orientation"      value="default" />
+    <preference name="target-device"    value="universal" />
+    <preference name="fullscreen"       value="false" />
+    <preference name="webviewbounce"    value="false" />
+    <preference name="autorotate"       value="false" readonly="true" />
     
-	<preference name="loadUrlTimeoutValue" value="60000" />
-	<preference name="AutoHideSplashScreen" value="false" />
-	<preference name="OpenAllWhitelistURLsInWebView" value="No" />
-    
-    <access origin="*" subdomains="true" />
-
-	<icon src="icon.png" gap:role="default" />
-
+    <icon src="icon.png" gap:role="default" />
     <gap:splash src="splash.png" />
-    
-	<feature name="http://api.phonegap.com/1.0/battery"/>
-	<feature name="http://api.phonegap.com/1.0/media"/>
-	<feature name="http://api.phonegap.com/1.0/device"/>
-	<feature name="http://api.phonegap.com/1.0/network"/>
-	<feature name="http://api.phonegap.com/1.0/geolocation"/>
-	<feature name="http://api.phonegap.com/1.0/notification"/>
     
 </widget>
