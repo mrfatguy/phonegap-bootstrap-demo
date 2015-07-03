@@ -4,7 +4,7 @@ This is a simple PhoneGap application based on Twitter Bootstrap 2.3.x library. 
 
 ## Important notices, before you start
 
-**I dropped this project, because it turned out, that apps written with Bootstrap are very, very slow on most mobile devices with Android. This project was planned as base for all my apps, but I abandoned this idea for performance reasons. Right now, I'm building all my apps from scratch, without using Bootstrap or any other framework, as I haven't found any with good performance in PhoneGap apps. Should you find one of such, drop me a line at _tomasz_ at _trejderowski_ period _pl_ or open a new issue.**
+**This project ABANDONED, because it was meant to be test project only! There is no wiki, issues and no support. There will be no future updates. Unfortunately, you're on your own.**
 
 This project is written, using [PhoneGap 2.9.0 API](http://docs.phonegap.com/en/2.9.0/index.html), while Ripple Emulator has very old [2.0.0 API](http://docs.phonegap.com/en/2.0.0/index.html) behind, so it _some parts of this demo will not work in desktop computer browser_, even if you run it with Ripple. You have to compile it and test it on mobile device, if you want to see all implemented things in action.
 
@@ -57,3 +57,5 @@ Tested **only** as compiled through [PhoneGap Build](http://build.phonegap.com).
 ## TO-DO
 
 The only thing, that is left, is a test-add of ads from inMobi. The InMobi Developers Wiki's article "[Integrating Using InMobi JavaScript SDK](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code)" may be useful, especially [last section](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code#Utilizing_Geolocation)".
+
+**This project ABANDONED, because it was meant to be test project only! There is no wiki, issues and no support. There will be no future updates. Unfortunately, you're on your own.**
