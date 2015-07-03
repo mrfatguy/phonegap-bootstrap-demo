@@ -56,6 +56,6 @@ Tested **only** as compiled through [PhoneGap Build](http://build.phonegap.com).
 
 ## TO-DO
 
-The only thing, that is left, is a test-add of ads from inMobi. The InMobi Developers Wiki's article "[Integrating Using InMobi JavaScript SDK](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code)" may be useful, especially [last section](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code#Utilizing_Geolocation)".
+<s>The only thing, that is left, is a test-add of ads from inMobi. The InMobi Developers Wiki's article "[Integrating Using InMobi JavaScript SDK](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code)" may be useful, especially [last section](http://developer.inmobi.com/wiki/index.php?title=Integrating_Using_JavaScript_Ad_Code#Utilizing_Geolocation)".</s> This was accomplished as a part of [`trejder/phonegap-kode-reader`](https://github.com/trejder/phonegap-kode-reader) repository.
 
 **This project ABANDONED, because it was meant to be test project only! There is no wiki, issues and no support. There will be no future updates. Unfortunately, you're on your own.**
