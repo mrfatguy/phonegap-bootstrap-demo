@@ -17,20 +17,25 @@ This demo / application uses AJAX for loading key parts (tab contents). This may
 This demo contains or includes following things:
 
 * [Twitter Bootstrap 2.3.x](http://getbootstrap.com/2.3.2/) and examples of using it,
-
 * [Font Awesome](http://fortawesome.github.io/Font-Awesome/) library along with some cool examples,
-
 * some examples of using AJAX / JSON calls from PhoneGap application,
-
 * nice looking and very customizable [pure Javascript digital display](http://www.3quarks.com/en/SegmentDisplay/index.html) from _3quarks.com_,
-
 * simple theme (stylesheet switcher) allowing dynamic (client-side) look change plus all free [Bootswatch](http://bootswatch.com/) themes,
-
 * multi-language, application auto-translation system, based on [i18next](http://i18next.com/) library plus some example locales (English, Polish, German and Chinese),
-
 * heavily modified version of [Boostrap Slider](http://www.eyecon.ro/bootstrap-slider/); modifications includes theming (slider will adapt to any Bootswatch style), adding some new features and fixing many small bugs.
 
 As you can see, there are a lot of things here, which makes application big, clunky and slow. In most projects, however, you'll only need part of them, so don't worry. This is only an example.
+
+Some screensshots of compiled application, running under Android platform:
+
+| main screen | change language | digital clock | confirm in Deutsch |
+| :----:| :----:| :----:| :----:|
+|![android-s01.png][androids01]|![android-s02.png][androids02]|![android-s03.png][androids03]|![android-s05.png][androids05]|
+
+[androids01]: https://raw.githubusercontent.com/phonegapdemos/bootstrap-demo/master/_publish/android-s01.png "android-s01.png"
+[androids02]: https://raw.githubusercontent.com/phonegapdemos/bootstrap-demo/master/_publish/android-s02.png "android-s02.png"
+[androids03]: https://raw.githubusercontent.com/phonegapdemos/bootstrap-demo/master/_publish/android-s03.png "android-s03.png"
+[androids05]: https://raw.githubusercontent.com/phonegapdemos/bootstrap-demo/master/_publish/android-s05.png "android-s05.png"
 
 ## AJAX Problems
 
