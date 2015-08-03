@@ -59,7 +59,7 @@ Seems fine on all of them (see notice for devices with Android 2.x on-board).
 
 Tested **only** as compiled through [PhoneGap Build](http://build.phonegap.com). Never compiled locally or tested after such build.
 
-You can download compiled versions of this application for different platforms from [`_publish`](https://github.com/phonegapdemos/bootstrap-demo/tree/master/_publish) folder or directly from PhoneGap Build public pages for these applications ([here](https://build.phonegap.com/apps/1579365/share) and [Kode Reader 2.1.0](https://build.phonegap.com/apps/1579359/share)). Note, that they're signed with my own private signing keys and certificates.
+You can download compiled versions of this application for different platforms from [`_publish`](https://github.com/phonegapdemos/bootstrap-demo/tree/master/_publish) folder or directly from PhoneGap Build public pages for these applications ([here](https://build.phonegap.com/apps/1579365/share)). Note, that they're signed with my own private signing keys and certificates.
 
 Note also, that since these applications are copied directly to SD card (instead of being downloaded from proper mobile stores) you should undertake additional steps (like enabling installation from untrusted sources in Android) to be able to install them on your mobile device.
 
